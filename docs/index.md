@@ -2,7 +2,7 @@
   <img src="assets/diagrams/images/CC-hero.jpg" alt="Claude Code -hero" /><br>
 </div>
 
-# Claude Code - Pieni käytäntö opas agenttiseen kehitykseen
+# Claude Code - Pieni käytännön opas agenttiseen kehitykseen
 
 Claude Code ‑opas on suunniteltu sekä aloittelijoille että kokeneille kehittäjille, jotka haluavat hallita agenttipohjaisen kehitysympäristön kokonaisuutena. Kyse ei ole pelkästä perusteista, vaan käytännönläheisestä ja projektivetoisesta oppaasta, joka näyttää, miten Claude Codea hyödynnetään tehokkaasti todellisissa kehitysskenaarioissa.
 
