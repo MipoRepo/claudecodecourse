@@ -1,4 +1,4 @@
-# Claude Code - Pieni Käytäntöopas
+# Claude Code - Pieni Käytännön opas Claude Code kehitykseen
 
 **Käytäntöopas Claude Code -agenttikehitysympäristöstä suomeksi**
 
