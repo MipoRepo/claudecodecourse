@@ -1,9 +1,14 @@
-# Claude Code - Pieni käytäntö opas
+<div class="md-hero">
+  <img src="assets/diagrams/images/CC-hero.jpg" alt="Claude Code -hero" /><br>
+</div>
 
-!!! info "Tämä on paikallispohjainen sivusto"
-    Tämä dokumentaatio on luotu PDF-materiaalin *Claude Code - Täydellinen käytäntö opas* pohjalta.
-    Se on tarkoitettu sekä aloittelijalle että edistuneelle kehittäjälle, joka haluaa oppia
-    Claude Code -agenttikehitysympäristön käyttämään täysimääräisesti.
+# Claude Code - Pieni käytäntö opas agenttiseen kehitykseen
+
+Claude Code ‑opas on suunniteltu sekä aloittelijoille että kokeneille kehittäjille, jotka haluavat hallita agenttipohjaisen kehitysympäristön kokonaisuutena. Kyse ei ole pelkästä perusteista, vaan käytännönläheisestä ja projektivetoisesta oppaasta, joka näyttää, miten Claude Codea hyödynnetään tehokkaasti todellisissa kehitysskenaarioissa.
+
+Mukana on myös selkeä ja konkreettinen ohje OpenRouter‑rajapinnan käyttämiseen MML‑mallien kanssa — suora väylä, jonka kautta saat päivittäin jopa 50 API‑kutsua eri malleille täysin ilmaiseksi (tai jopa 1000 kutsua noin 13 dollarilla). OpenRouter tarjoaa lisäksi täysin ilmaisia LLM‑malleja, joiden avulla voit kokeilla, testata ja rakentaa ilman kustannuspaineita. Tämä tekee oppaasta erinomaisen työkalun kaikille, jotka haluavat kehittää ja iteratiivisesti testata agenttiratkaisuja nopeasti ja kustannustehokkaasti.
+
+Opas syntyi omista muistiinpanoistani ja käytännön kokeiluista. Toivon, että se tarjoaa sinulle yhtä paljon oivalluksia ja hyötyä kuin minulle sen kokoamisen aikana. 
 
 ## Mitä tässä oppaassa opit?
 
@@ -31,24 +36,6 @@ Valitse alla olevista linkeistä:
 !!! advanced "Edistyneet käyttäjät"
     Siirry suoraan [Luku 2: Arkkitehtuuri ja periaatteet](arkkitehtuuri/arkkitehtuuri.md),
     jossa tarkastellaan kerrosmallia ja permission engine -periaatteita.
-
-## Teknologian perusteiden päivittäminen
-
-!!! example "Harjoitus"
-    [Harjoitus 01: Ensimmäinen read-only työ](harjoitukset/01-read-only-tyo.md)
-    on helppo aloitus, jossa harjoitellaan repositoryn tutkimista ilman muutoksia.
-
-## Mitä uutta?
-
-PDF:n päivitysversiosta katsien:
-
-- **Sub-agentit** → `.claude/agents/`-kansioon sijoitettavat erikoistuneet agentit
-- **Skills** → `.claude/skills/`-kansioon sijoitettavat uudelleenkäytettävät työt prosessit
-- **Hooks** → `.claude/hooks/`-kansioon sijoitettavat deterministiset tapahtumankäsittelijät
-- **MCP** → Model Context Protocol -ulkoiset työkalut ja tietolähteet
-- **Worktrees** → Erillisiä Git-checkouteja rinnakkaiseen kehittämiseen
-- **Headless mode** → `claude -p` skripteissä ja CI/CD:ssä
-- **Checkpoints** → `/rewind`-toiminto aiempiin tiloihin palatuksessa
 
 ---
 

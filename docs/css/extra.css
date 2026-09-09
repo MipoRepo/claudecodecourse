@@ -116,6 +116,33 @@
     padding-left: 1rem;
 }
 
+/* ===== Hero-kuva ===== */
+.md-hero {
+    text-align: center;
+    margin: 1.5rem 0 2rem;
+}
+.md-hero img {
+    max-width: 1200px;
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Sivunavigaatioiden reunatila (32px lisäpaddingi) ===== */
+/* Vasen ja oikea alimenu ovat liian lähellä sivun reunaa – lisätään 32px tilaa. */
+@media screen and (min-width: 76.25em) {
+    /* Vasen navigaatio – lisää tilaa vasempaan reunaan */
+    .md-sidebar--primary .md-nav__list {
+        padding-left: 2.6rem; /* .6rem + 2rem (32px) */
+    }
+
+    /* Oikea navigaatio (sisällysluettelo) – lisää tilaa oikeaan reunaan */
+    .md-sidebar--secondary .md-nav__list {
+        padding-right: 2.6rem; /* .6rem + 2rem (32px) */
+    }
+}
+
 /* ===== Responsiivisuus ===== */
 @media (max-width: 768px) {
     .md-header__list {

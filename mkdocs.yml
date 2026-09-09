@@ -1,14 +1,14 @@
-site_name: Claude Code - Pieni Käytäntö Opas
+site_name: Claude Code Course
 site_description: Pieni käytäntöopas Claude Code -agenttikehitysympäristöstä (suomeksi)
 site_author: Mikko Pohjola
-site_url: https://miporepo.github.io/claude-code-opas/
-repo_url: https://github.com/miporepo/claude-code-opas
+site_url: https://miporepo.github.io/claudecodecourse/
+repo_url: https://github.com/miporepo/claudecodecourse
 docs_dir: docs
 extra_css:
   - css/extra.css
 extra_javascript:
   - js/extra.js
-copyright: © 2026 Claude Code - Opas
+copyright: '© 2026 <a href="https://github.com/MipoRepo">Mikko Pohjola</a>. All rights reserved.'
 theme:
   name: material
   features:
@@ -43,13 +43,12 @@ markdown_extensions:
   - toc:
       permalink: true
 nav:
-  - Etusivu:
-      - Aloitussivu: index.md
-      - Johdanto:
-          - Mitä on Claude Code?: johdanto/mita-on-claude-code.md
-          - Terminologia: johdanto/terminologia.md
-          - LLM malli: johdanto/mielenmalli.md
-          - Permission engine: johdanto/permission-engine.md
+  - Etusivu: index.md
+  - Johdanto:
+      - Mitä on Claude Code?: johdanto/mita-on-claude-code.md
+      - Terminologia: johdanto/terminologia.md
+      - LLM malli: johdanto/mielenmalli.md
+      - Permission engine: johdanto/permission-engine.md
       - Teknologian perusteet:
           - Aloittelijalle: teknologian-perusteet/aloitus.md
           - Edistyneelle: teknologian-perusteet/edistyneelle.md
@@ -118,4 +117,4 @@ plugins:
   - search
 extra:
   footer:
-    copyright: MIT License
+    copyright: '© 2026 <a href="https://github.com/MipoRepo">Mikko Pohjola</a>. All rights reserved.'
