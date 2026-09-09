@@ -40,6 +40,5 @@ Valitse alla olevista linkeistä:
 ---
 
 <div class="md-admonition-wrapper">
-<p align="center"><em>Tarkista aina
- versiopoikkeavuudet omasta versiosi <code>claude --help</code> -komennolla.</em></p>
+<p align="center"><em>"Virheet ovat vain tekoälyn luovia ehdotuksia siitä, miten asiat voisi tehdä vaikeammin."</em></p>
 </div>
