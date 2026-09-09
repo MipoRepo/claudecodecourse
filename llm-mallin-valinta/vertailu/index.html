@@ -1,0 +1,2810 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Pieni käytäntöopas Claude Code -agenttikehitysympäristöstä (suomeksi)">
+      
+      
+        <meta name="author" content="Mikko Pohjola">
+      
+      
+        <link rel="canonical" href="https://miporepo.github.io/claudecodecourse/llm-mallin-valinta/vertailu/">
+      
+      
+        <link rel="prev" href="../claude-codessa/">
+      
+      
+        <link rel="next" href="../../arkkitehtuuri/arkkitehtuuri/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+    
+    
+      
+        <title>Vertailu ja suositukset - Claude Code Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vertailu-ja-suositukset" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Claude Code Course" class="md-header__button md-logo" aria-label="Claude Code Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Claude Code Course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Vertailu ja suositukset
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Vaihda tummaan teemaan"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Vaihda tummaan teemaan" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Vaihda vaaleaan teemaan"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Vaihda vaaleaan teemaan" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/miporepo/claudecodecourse" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Etusivu
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../johdanto/mita-on-claude-code/" class="md-tabs__link">
+          
+  
+  Johdanto
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../arkkitehtuuri/arkkitehtuuri/" class="md-tabs__link">
+          
+  
+  Kurssi
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../harjoitukset/" class="md-tabs__link">
+          
+  
+  Harjoitukset
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Claude Code Course" class="md-nav__button md-logo" aria-label="Claude Code Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Claude Code Course
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/miporepo/claudecodecourse" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Etusivu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Johdanto
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Johdanto
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../johdanto/mita-on-claude-code/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mitä on Claude Code?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../johdanto/terminologia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Terminologia
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../johdanto/mielenmalli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LLM malli
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../johdanto/permission-engine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Permission engine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Teknologian perusteet
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Teknologian perusteet
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teknologian-perusteet/aloitus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Aloittelijalle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teknologian-perusteet/edistyneelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Edistyneelle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    OpenRouter
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            OpenRouter
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../openrouter/johdanto/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Johdanto OpenRouteriin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../openrouter/api-avaimet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API-avaimet ja ilmaiskäyttö
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    LLM-mallin valinta
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            LLM-mallin valinta
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../claude-codessa/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mallin valinta Claude Codessa
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Vertailu ja suositukset
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Vertailu ja suositukset
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mallin-arviointiprosessi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mallin arviointiprosessi
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kaytannon-testitapaukset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Käytännön testitapaukset
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Käytännön testitapaukset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testi-1-tiedoston-lukeminen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testi 1: Tiedoston lukeminen
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testi-2-tiedoston-luominen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testi 2: Tiedoston luominen
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testi-3-tiedoston-muokkaaminen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testi 3: Tiedoston muokkaaminen
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testi-4-monen-tiedoston-kasittely" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testi 4: Monen tiedoston käsittely
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testi-5-virheenkasittely" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testi 5: Virheenkäsittely
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testi-6-tyon-tarkistaminen-verification-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testi 6: Työn tarkistaminen (Verification loop)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testi-7-suomen-kieli-ja-terminologia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testi 7: Suomen kieli ja terminologia
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testi-8-laaja-agenttitehtava" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testi 8: Laaja agenttitehtävä
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testaa-sama-tehtava-useita-kertoja" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testaa sama tehtävä useita kertoja
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mallien-pisteytysmatriisi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mallien pisteytysmatriisi
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ilmaisten-openrouter-mallien-erityispiirteet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ilmaisten OpenRouter-mallien erityispiirteet
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kaytannon-esimerkki-mallien-vertailusta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Käytännön esimerkki mallien vertailusta
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testaa-erillisessa-testiprojektissa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testaa erillisessä testiprojektissa
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oma-llm-agenttibenchmark" class="md-nav__link">
+    <span class="md-ellipsis">
+      Oma LLM-agenttibenchmark
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarkein-periaate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tärkein periaate
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seuraavaksi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Seuraavaksi
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kurssi
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Kurssi
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arkkitehtuuri/arkkitehtuuri/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arkkitehtuuri
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sub-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sub-agentit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../skills/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Skills
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hooks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hooks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mcp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MCP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git-worktrees/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Worktrees
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../parallel-sessions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rinnakkaiset sessiot
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../headless-mode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Headless-tila
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../checkpoints/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Checkpoints
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../parhaat-k%C3%A4yt%C3%A4nnit/12-periaatetta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Parhaat käytännöt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../turvallisuus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Turvallisuus
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../yhteenveto/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Yhteenveto
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_13" id="__nav_3_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Liitteet
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_13">
+            <span class="md-nav__icon md-icon"></span>
+            Liitteet
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../liitteet/liite-a-komennot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Liite A (komennot)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../liitteet/liite-b-projektarakenne/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Liite B (rakenne)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../liitteet/liite-c-l%C3%A4hteet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Liite C (lähteet)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../liitteet/liite-d-esimerkit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Liite D (esimerkit)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Harjoitukset
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Harjoitukset
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kaikki harjoitukset
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/01-read-only-tyo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    01. Ensimmäinen read-only työ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/02-kontekstin-seuranta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    02. Kontekstin seuranta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/03-plan-mode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    03. Plan-mode analyysi
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/04-headless-ty%C3%B6kalut/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    04. Headless-työkalut
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/05-reviewer-agentti/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    05. Reviewer-agentti
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/06-debugger-agentti/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    06. Debugger-agentti
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/07-security-agentti/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    07. Security-agentti
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/08-manual-deploy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    08. Manuaalinen deploy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/09-skill-argumentit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    09. Skill-argumentit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/10-incident-triage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Incident triage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/11-formatointi-hook/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Formatoinnin hook
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/12-vaaralliset-komennot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Vaaralliset komennot
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/13-sessionstart-compact/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. SessionStart + Compact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/14-mcp-issue-tracker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. MCP + issue tracker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/15-mcp-observability/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. MCP + observability
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/16-mcp-readonly-db/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. MCP + readonly DB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/17-riskialtis-refaktorointi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. Riskialtis refaktorointi
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/18-bugfix-session/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Bugfix-sessio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/19-pr-session/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. PR-sessio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/20-bugfix-feature-parallel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Bugfix + feature rinnakkain
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/21-agentti-worktree/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Agentin worktree
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/22-worktree-merge/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    22. Worktreejen yhdistäminen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/23-ci-triage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    23. CI triage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/24-read-only-pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    24. Read-only pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/25-exit-code/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    25. Exit code -ajattelu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/26-rikkin%C3%A4inen-build/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    26. Rikkinäinen build
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/27-s%C3%A4ilyt%C3%A4-keskustelu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    27. Säilytä keskustelu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/28-palauta-vain-koodi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    28. Palauta vain koodi
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/29-tdd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    29. TDD-työskentely
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/30-definition-of-done/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    30. Definition of Done
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/31-review-gate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    31. Review gate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/32-release-pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    32. Release pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/33-production-deploy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    33. Production deploy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/34-secrets-audit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    34. Secrets audit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harjoitukset/35-prompt-injection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    35. Prompt injection -testi
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mallin-arviointiprosessi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mallin arviointiprosessi
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kaytannon-testitapaukset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Käytännön testitapaukset
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Käytännön testitapaukset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testi-1-tiedoston-lukeminen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testi 1: Tiedoston lukeminen
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testi-2-tiedoston-luominen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testi 2: Tiedoston luominen
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testi-3-tiedoston-muokkaaminen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testi 3: Tiedoston muokkaaminen
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testi-4-monen-tiedoston-kasittely" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testi 4: Monen tiedoston käsittely
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testi-5-virheenkasittely" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testi 5: Virheenkäsittely
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testi-6-tyon-tarkistaminen-verification-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testi 6: Työn tarkistaminen (Verification loop)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testi-7-suomen-kieli-ja-terminologia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testi 7: Suomen kieli ja terminologia
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testi-8-laaja-agenttitehtava" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testi 8: Laaja agenttitehtävä
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testaa-sama-tehtava-useita-kertoja" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testaa sama tehtävä useita kertoja
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mallien-pisteytysmatriisi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mallien pisteytysmatriisi
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ilmaisten-openrouter-mallien-erityispiirteet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ilmaisten OpenRouter-mallien erityispiirteet
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kaytannon-esimerkki-mallien-vertailusta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Käytännön esimerkki mallien vertailusta
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testaa-erillisessa-testiprojektissa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testaa erillisessä testiprojektissa
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oma-llm-agenttibenchmark" class="md-nav__link">
+    <span class="md-ellipsis">
+      Oma LLM-agenttibenchmark
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarkein-periaate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tärkein periaate
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seuraavaksi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Seuraavaksi
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="vertailu-ja-suositukset">Vertailu ja suositukset<a class="headerlink" href="#vertailu-ja-suositukset" title="Permanent link">&para;</a></h1>
+<p>Tällä sivulla käydään läpi käytännön testausmenetelmä uuden LLM-mallin arvioimiseksi Claude Code -käytössä sekä ilmaisten OpenRouter-mallien erityispiirteet.</p>
+<hr />
+<h2 id="mallin-arviointiprosessi">Mallin arviointiprosessi<a class="headerlink" href="#mallin-arviointiprosessi" title="Permanent link">&para;</a></h2>
+<pre><code class="language-text">                 UUSI MALLI
+                     │
+                     ▼
+          ┌────────────────────┐
+          │ 1. Tool support?   │
+          └─────────┬──────────┘
+                    │ YES
+                    ▼
+          ┌────────────────────┐
+          │ 2. OpenRouter      │
+          │    supports it?    │
+          └─────────┬──────────┘
+                    │ YES
+                    ▼
+          ┌────────────────────┐
+          │ 3. Claude Code     │
+          │    compatibility?  │
+          └─────────┬──────────┘
+                    │ YES
+                    ▼
+          ┌────────────────────┐
+          │ 4. Tool test       │
+          └─────────┬──────────┘
+                    │ PASS
+                    ▼
+          ┌────────────────────┐
+          │ 5. File test       │
+          └─────────┬──────────┘
+                    │ PASS
+                    ▼
+          ┌────────────────────┐
+          │ 6. Multi-file      │
+          └─────────┬──────────┘
+                    │ PASS
+                    ▼
+          ┌────────────────────┐
+          │ 7. Reasoning       │
+          └─────────┬──────────┘
+                    │ PASS
+                    ▼
+          ┌────────────────────┐
+          │ 8. Finnish test    │
+          └─────────┬──────────┘
+                    │ PASS
+                    ▼
+                 TUOTANTOKÄYTTÖ
+</code></pre>
+<hr />
+<h2 id="kaytannon-testitapaukset">Käytännön testitapaukset<a class="headerlink" href="#kaytannon-testitapaukset" title="Permanent link">&para;</a></h2>
+<h3 id="testi-1-tiedoston-lukeminen">Testi 1: Tiedoston lukeminen<a class="headerlink" href="#testi-1-tiedoston-lukeminen" title="Permanent link">&para;</a></h3>
+<pre><code class="language-text">Lue README.md.
+Älä muuta mitään.
+Kerro kolme tärkeintä asiaa.
+</code></pre>
+<p><strong>Hyväksyttävä tulos (PASS):</strong> Agentti käyttää tiedostonlukutyökalua ja perustaa vastauksensa todelliseen sisältöön.</p>
+<p><strong>Hylätty tulos (FAIL):</strong> Agentti arvaa tiedoston sisällön tai antaa yleisen vastauksen lukematta tiedostoa.</p>
+<hr />
+<h3 id="testi-2-tiedoston-luominen">Testi 2: Tiedoston luominen<a class="headerlink" href="#testi-2-tiedoston-luominen" title="Permanent link">&para;</a></h3>
+<pre><code class="language-text">Luo agent-test.md, jonka sisältönä on:
+
+# Agenttitesti
+
+Claude Code tool calling toimii.
+</code></pre>
+<p>Tarkista:
+- agentti käyttää työkalua
+- tiedosto luodaan oikeasti levylle
+- sisältö kirjoitetaan tiedostoon</p>
+<p>Pelkkä tekstivastaus <code>"Tässä on tiedoston sisältö..."</code> <strong>ei</strong> ole onnistunut agenttitesti.</p>
+<hr />
+<h3 id="testi-3-tiedoston-muokkaaminen">Testi 3: Tiedoston muokkaaminen<a class="headerlink" href="#testi-3-tiedoston-muokkaaminen" title="Permanent link">&para;</a></h3>
+<pre><code class="language-text">Lisää agent-test.md-tiedoston loppuun:
+
+## Toinen testi
+</code></pre>
+<p>Tarkista:</p>
+<pre><code class="language-text">✓ alkuperäinen sisältö säilyy
+✓ uusi sisältö lisätään
+✓ tiedosto tallennetaan
+✓ agentti ei korvaa tiedostoa tarpeettomasti
+</code></pre>
+<hr />
+<h3 id="testi-4-monen-tiedoston-kasittely">Testi 4: Monen tiedoston käsittely<a class="headerlink" href="#testi-4-monen-tiedoston-kasittely" title="Permanent link">&para;</a></h3>
+<pre><code class="language-text">Luo:
+test/
+├── README.md
+├── config.md
+└── notes.md
+
+Muokkaa sitten kaikkia kolmea tiedostoa siten,
+että jokaisessa on projektin nimi.
+</code></pre>
+<p>Tarkista:</p>
+<pre><code class="language-text">✓ kaikki tiedostot löytyvät
+✓ kaikki kolme muokataan
+✓ tiedostoja ei unohdeta
+✓ muutokset tehdään oikeisiin tiedostoihin
+</code></pre>
+<hr />
+<h3 id="testi-5-virheenkasittely">Testi 5: Virheenkäsittely<a class="headerlink" href="#testi-5-virheenkasittely" title="Permanent link">&para;</a></h3>
+<pre><code class="language-text">Muokkaa tiedostoa, jota ei ole olemassa.
+
+Jos tiedostoa ei löydy,
+selvitä ensin projektista,
+onko vastaava tiedosto olemassa.
+</code></pre>
+<p><strong>Hyvä agentti:</strong> <code>File not found → Search → Find alternative → Continue</code></p>
+<p><strong>Huono agentti:</strong> <code>File not found → ERROR → STOP</code></p>
+<hr />
+<h3 id="testi-6-tyon-tarkistaminen-verification-loop">Testi 6: Työn tarkistaminen (Verification loop)<a class="headerlink" href="#testi-6-tyon-tarkistaminen-verification-loop" title="Permanent link">&para;</a></h3>
+<pre><code class="language-text">Muuta README.md:n otsikko.
+
+Kun olet tehnyt muutoksen,
+lue tiedosto uudelleen ja varmista,
+että otsikko muuttui.
+</code></pre>
+<p>Tavoiteltu toimintaketju: <code>Modify → Read → Verify → Done</code></p>
+<hr />
+<h3 id="testi-7-suomen-kieli-ja-terminologia">Testi 7: Suomen kieli ja terminologia<a class="headerlink" href="#testi-7-suomen-kieli-ja-terminologia" title="Permanent link">&para;</a></h3>
+<pre><code class="language-text">Kirjoita suomeksi tekninen kappale,
+jossa selität Claude Coden sub-agentin,
+skillin, hookin ja MCP:n erot.
+</code></pre>
+<p>Tarkista:</p>
+<ul>
+<li>kielioppi ja oikeinkirjoitus</li>
+<li>lauserakenne</li>
+<li>tekninen täsmällisyys</li>
+<li>terminologian johdonmukaisuus</li>
+</ul>
+<p>Vakiintuneet termit säilyvät englanniksi:</p>
+<pre><code class="language-text">✓ sub-agentti, skill, hook, MCP, worktree
+✗ työpuu, taito, koukku  (ellei asiayhteydessä tarkoituksenmukaista)
+</code></pre>
+<hr />
+<h3 id="testi-8-laaja-agenttitehtava">Testi 8: Laaja agenttitehtävä<a class="headerlink" href="#testi-8-laaja-agenttitehtava" title="Permanent link">&para;</a></h3>
+<pre><code class="language-text">Tutki tämä MkDocs-projekti.
+
+1. Selvitä projektin rakenne.
+2. Etsi Markdown-tiedostot.
+3. Tarkista niiden tekninen sisältö.
+4. Tarkista suomen kieli.
+5. Tarkista mkdocs.yml.
+6. Korjaa havaitut virheet.
+7. Luo todo.md.
+8. Tarkista lopuksi tehdyt muutokset.
+</code></pre>
+<p>Tämä on paljon realistisempi agenttitesti kuin yksinkertainen koodinkirjoitustehtävä.</p>
+<hr />
+<h2 id="testaa-sama-tehtava-useita-kertoja">Testaa sama tehtävä useita kertoja<a class="headerlink" href="#testaa-sama-tehtava-useita-kertoja" title="Permanent link">&para;</a></h2>
+<p>Yksi onnistunut testi ei vielä tarkoita, että agentti on luotettava:</p>
+<pre><code class="language-text">PASS, FAIL, PASS, PASS, FAIL  →  ei riittävän luotettava
+PASS, PASS, PASS, PASS, PASS  →  luotettava
+</code></pre>
+<p><strong>Toistettavuus</strong> on agenttimallissa kriittinen ominaisuus.</p>
+<hr />
+<h2 id="mallien-pisteytysmatriisi">Mallien pisteytysmatriisi<a class="headerlink" href="#mallien-pisteytysmatriisi" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Testi</th>
+<th style="text-align: right;">Painoarvo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tool calling</td>
+<td style="text-align: right;">25 %</td>
+</tr>
+<tr>
+<td>Tiedostojen luku</td>
+<td style="text-align: right;">10 %</td>
+</tr>
+<tr>
+<td>Tiedostojen muokkaus</td>
+<td style="text-align: right;">15 %</td>
+</tr>
+<tr>
+<td>Multi-file</td>
+<td style="text-align: right;">10 %</td>
+</tr>
+<tr>
+<td>Reasoning</td>
+<td style="text-align: right;">10 %</td>
+</tr>
+<tr>
+<td>Verification</td>
+<td style="text-align: right;">10 %</td>
+</tr>
+<tr>
+<td>Error recovery</td>
+<td style="text-align: right;">10 %</td>
+</tr>
+<tr>
+<td>Suomen kieli</td>
+<td style="text-align: right;">5 %</td>
+</tr>
+<tr>
+<td>Terminologia</td>
+<td style="text-align: right;">5 %</td>
+</tr>
+<tr>
+<td><strong>Yhteensä</strong></td>
+<td style="text-align: right;"><strong>100 %</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ilmaisten-openrouter-mallien-erityispiirteet">Ilmaisten OpenRouter-mallien erityispiirteet<a class="headerlink" href="#ilmaisten-openrouter-mallien-erityispiirteet" title="Permanent link">&para;</a></h2>
+<p>Ilmaisissa malleissa voi esiintyä:</p>
+<ul>
+<li>rate limit -rajoituksia</li>
+<li>kuormitusta ja hidastumista</li>
+<li>provider-vaihtelua</li>
+<li>hetkellisiä saatavuusongelmia</li>
+<li>mallin päivityksiä ilman varoitusta</li>
+<li>vaihtelevaa agenttikäyttäytymistä</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Ilmaiset mallit eivät sovellu sellaisenaan tuotantoon</p>
+<p><code>FREE ≠ PRODUCTION RELIABILITY</code></p>
+<p>Ilmaiset mallit sopivat erinomaisesti opiskeluun, kokeiluun, prototypointiin ja agenttiarkkitehtuurin kehittämiseen. Tuotantokäytössä kannattaa arvioida myös maksullisia vaihtoehtoja.</p>
+</div>
+<hr />
+<h2 id="kaytannon-esimerkki-mallien-vertailusta">Käytännön esimerkki mallien vertailusta<a class="headerlink" href="#kaytannon-esimerkki-mallien-vertailusta" title="Permanent link">&para;</a></h2>
+<pre><code class="language-text">Gemma 4 31B
+    ↓ Tool calling: ✓
+    ↓ Claude Code: ✗
+    → FAIL
+
+North Mini Code
+    ↓ Tool calling: ✓
+    ↓ Claude Code: ✗
+    → FAIL
+
+Nex-N2.5-Pro
+    ↓ Tool calling: ✓
+    ↓ Claude Code: ✓
+    ↓ Agent execution: ✓
+    → PASS
+</code></pre>
+<p>Tämä osoittaa, miksi käytännön testi on ratkaiseva.</p>
+<hr />
+<h2 id="testaa-erillisessa-testiprojektissa">Testaa erillisessä testiprojektissa<a class="headerlink" href="#testaa-erillisessa-testiprojektissa" title="Permanent link">&para;</a></h2>
+<p>Älä testaa uutta agenttimallia ensimmäisenä tärkeässä tuotantoprojektissa. Luo erillinen testiprojekti:</p>
+<pre><code class="language-text">claude-agent-test/
+├── README.md
+├── test1.md
+├── test2.md
+├── test3.md
+└── .claude/
+</code></pre>
+<p>Testaa mallia tässä ympäristössä ennen varsinaisen projektin käyttöä.</p>
+<hr />
+<h2 id="oma-llm-agenttibenchmark">Oma LLM-agenttibenchmark<a class="headerlink" href="#oma-llm-agenttibenchmark" title="Permanent link">&para;</a></h2>
+<p>Kun agenttien käyttö laajenee, mallitestauksesta kannattaa tehdä oma järjestelmä:</p>
+<pre><code class="language-text">LLM-Agent-Benchmark/
+│
+├── README.md
+│
+├── models/
+│   ├── nex-pro.md
+│   └── model-b.md
+│
+├── tests/
+│   ├── 01-tool-calling.md
+│   ├── 02-file-read.md
+│   ├── 03-file-write.md
+│   ├── 04-multi-file.md
+│   ├── 05-error-recovery.md
+│   ├── 06-verification.md
+│   ├── 07-reasoning.md
+│   └── 08-finnish.md
+│
+└── results/
+    ├── nex-pro.json
+    └── model-b.json
+</code></pre>
+<p>Sama testisarja voidaan suorittaa jokaiselle mallille, jolloin vertailu perustuu dataan eikä vaikutelmiin.</p>
+<hr />
+<h2 id="tarkein-periaate">Tärkein periaate<a class="headerlink" href="#tarkein-periaate" title="Permanent link">&para;</a></h2>
+<p>Claude Code + OpenRouter -agentille mallin valinta kannattaa tehdä <strong>empiirisesti</strong>:</p>
+<pre><code class="language-text">OpenRouter metadata
+        +
+Claude Code compatibility
+        +
+Tool test
+        +
+File test
+        +
+Multi-file test
+        +
+Reasoning test
+        +
+Verification test
+        +
+Finnish test
+        ↓
+REAL AGENT SCORE
+</code></pre>
+<blockquote>
+<p><strong>Mallin ilmoitettu ominaisuus on vasta lähtökohta. Todellinen käyttökelpoisuus ratkaistaan sillä, miten malli toimii sinun agenttiympäristössäsi.</strong></p>
+</blockquote>
+<hr />
+<h2 id="seuraavaksi">Seuraavaksi<a class="headerlink" href="#seuraavaksi" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../claude-codessa/">Mallin valinta Claude Codessa</a> — valintakriteerit ja arkkitehtuuri</li>
+<li><a href="../../openrouter/johdanto/">OpenRouter — johdanto</a> — OpenRouterin perusteet</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2026 <a href="https://github.com/MipoRepo">Mikko Pohjola</a>. All rights reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.sections", "navigation.tracking", "search.highlight", "search.suggest", "content.code.annotate", "content.code.copy", "content.tooltips"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      
+        <script src="../../js/extra.js"></script>
+      
+    
+  </body>
+</html>
