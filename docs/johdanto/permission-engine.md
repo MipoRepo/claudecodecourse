@@ -107,7 +107,7 @@ Tool call
 
 ## Seuraavaksi
 
-- [Luku 2: Arkkitehtuuri](../arkkitehtuuri/arkkitehtuuri.md)
+- [Luku 1: Arkkitehtuuri](../arkkitehtuuri/arkkitehtuuri.md)
 
 ---
 
