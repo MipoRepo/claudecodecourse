@@ -1,0 +1,144 @@
+/* ===== Claude Code Opas - Extra CSS ===== */
+/* Tämä tiedosto sisältää sivuston muotoilun lisätyylit. */
+/* Käytetään MkDocs Material -teeman päällä. */
+
+/* ===== Yläpalkin navigointi ===== */
+.md-header__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.md-header__list {
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+.md-header__button,
+.md-header__link {
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    border-radius: 0.375rem;
+    transition: all 0.2s ease;
+}
+
+.md-header__link:hover,
+.md-header__button:hover {
+    background-color: rgba(63, 94, 230, 0.1);
+    color: var(--md-primary);
+}
+
+/* ===== Logo ja sivuston nimi ===== */
+.md-header__button--title {
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+/* ===== Sivun sisältö ===== */
+/* Poistetaan max-width -rajoitus, jotta keskimmäinen sisältöalue
+   laajautuu selaimen ikkunan mukaiseksi mahdollisimman laajaksi.
+   Vasen ja oikea valikko pysyvät kiinteinä leveytenä (12.1rem). */
+.md-main__inner {
+    max-width: none;
+    margin: 0 auto;
+}
+
+/* ===== Tblr-taulukot ===== */
+.md-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+}
+
+.md-content table th,
+.md-content table td {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--md-default--line-color);
+    text-align: left;
+}
+
+.md-content table th {
+    background-color: var(--md-default--bg-color, #f8f9fa);
+    font-weight: 600;
+}
+
+/* ===== Koodiblokit ===== */
+.md-content pre {
+    border-radius: 0.5rem;
+    border: 1px solid var(--md-default--line-color);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.md-content code {
+    font-family: "JetBrains Mono", "Fira Code", "Consolas", monospace;
+    font-size: 0.875rem;
+}
+
+/* ===== Huomautukset (admonitions) ===== */
+.md-content .admonition {
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+}
+
+.md-content .admonition.note {
+    border-left: 4px solid var(--md-primary);
+}
+
+.md-content .admonition.warning {
+    border-left: 4px solid #f39c12;
+}
+
+.md-content .admonition.danger {
+    border-left: 4px solid #e74c3c;
+}
+
+.md-content .admonition.success {
+    border-left: 4px solid #27ae60;
+}
+
+.md-content .admonition.title {
+    font-weight: 600;
+}
+
+/* ===== Otsikot ===== */
+.md-content h2 {
+    margin-top: 2rem;
+    border-bottom: 2px solid var(--md-primary);
+    padding-bottom: 0.3rem;
+}
+
+.md-content h3 {
+    margin-top: 1.5rem;
+}
+
+/* ===== Sisällysluettelo ===== */
+.md-nav--toc .md-nav__list {
+    padding-left: 1rem;
+}
+
+/* ===== Responsiivisuus ===== */
+@media (max-width: 768px) {
+    .md-header__list {
+        display: none;
+    }
+
+    .md-header__button--menu {
+        display: block;
+    }
+
+    .md-content {
+        padding: 0 1rem;
+    }
+}
+
+/* ===== Footer ===== */
+.md-footer {
+    border-top: 1px solid var(--md-default--line-color);
+    padding-top: 1.5rem;
+    margin-top: 3rem;
+}
+
+.md-footer-meta {
+    font-size: 0.85rem;
+    color: var(--md-default--text-color--secondary);
+}

@@ -1,0 +1,121 @@
+site_name: Claude Code - Pieni Käytäntö Opas
+site_description: Pieni käytäntöopas Claude Code -agenttikehitysympäristöstä (suomeksi)
+site_author: Mikko Pohjola
+site_url: https://miporepo.github.io/claude-code-opas/
+repo_url: https://github.com/miporepo/claude-code-opas
+docs_dir: docs
+extra_css:
+  - css/extra.css
+extra_javascript:
+  - js/extra.js
+copyright: © 2026 Claude Code - Opas
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.sections
+    - navigation.tracking
+    - search.highlight
+    - search.suggest
+    - content.code.annotate
+    - content.code.copy
+    - content.tooltips
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/weather-sunny
+        name: Vaihda tummaan teemaan
+    - scheme: slate
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: Vaihda vaaleaan teemaan
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - toc:
+      permalink: true
+nav:
+  - Etusivu:
+      - Aloitussivu: index.md
+      - Johdanto:
+          - Mitä on Claude Code?: johdanto/mita-on-claude-code.md
+          - Terminologia: johdanto/terminologia.md
+          - LLM malli: johdanto/mielenmalli.md
+          - Permission engine: johdanto/permission-engine.md
+      - Teknologian perusteet:
+          - Aloittelijalle: teknologian-perusteet/aloitus.md
+          - Edistyneelle: teknologian-perusteet/edistyneelle.md
+      - OpenRouter:
+          - Johdanto OpenRouteriin: openrouter/johdanto.md
+          - API-avaimet ja ilmaiskäyttö: openrouter/api-avaimet.md
+      - LLM-mallin valinta:
+          - Mallin valinta Claude Codessa: llm-mallin-valinta/claude-codessa.md
+          - Vertailu ja suositukset: llm-mallin-valinta/vertailu.md
+  - Kurssi:
+      - Arkkitehtuuri: arkkitehtuuri/arkkitehtuuri.md
+      - Sub-agentit: sub-agents/index.md
+      - Skills: skills/index.md
+      - Hooks: hooks/index.md
+      - MCP: mcp/index.md
+      - Worktrees: git-worktrees/index.md
+      - Rinnakkaiset sessiot: parallel-sessions/index.md
+      - Headless-tila: headless-mode/index.md
+      - Checkpoints: checkpoints/index.md
+      - Parhaat käytännöt: parhaat-käytännit/12-periaatetta.md
+      - Turvallisuus: turvallisuus/index.md
+      - Yhteenveto: yhteenveto.md
+      - Liitteet:
+          - Liite A (komennot): liitteet/liite-a-komennot.md
+          - Liite B (rakenne): liitteet/liite-b-projektarakenne.md
+          - Liite C (lähteet): liitteet/liite-c-lähteet.md
+          - Liite D (esimerkit): liitteet/liite-d-esimerkit/index.md
+  - Harjoitukset:
+      - Kaikki harjoitukset: harjoitukset/index.md
+      - 01. Ensimmäinen read-only työ: harjoitukset/01-read-only-tyo.md
+      - 02. Kontekstin seuranta: harjoitukset/02-kontekstin-seuranta.md
+      - 03. Plan-mode analyysi: harjoitukset/03-plan-mode.md
+      - 04. Headless-työkalut: harjoitukset/04-headless-työkalut.md
+      - 05. Reviewer-agentti: harjoitukset/05-reviewer-agentti.md
+      - 06. Debugger-agentti: harjoitukset/06-debugger-agentti.md
+      - 07. Security-agentti: harjoitukset/07-security-agentti.md
+      - 08. Manuaalinen deploy: harjoitukset/08-manual-deploy.md
+      - 09. Skill-argumentit: harjoitukset/09-skill-argumentit.md
+      - 10. Incident triage: harjoitukset/10-incident-triage.md
+      - 11. Formatoinnin hook: harjoitukset/11-formatointi-hook.md
+      - 12. Vaaralliset komennot: harjoitukset/12-vaaralliset-komennot.md
+      - 13. SessionStart + Compact: harjoitukset/13-sessionstart-compact.md
+      - 14. MCP + issue tracker: harjoitukset/14-mcp-issue-tracker.md
+      - 15. MCP + observability: harjoitukset/15-mcp-observability.md
+      - 16. MCP + readonly DB: harjoitukset/16-mcp-readonly-db.md
+      - 17. Riskialtis refaktorointi: harjoitukset/17-riskialtis-refaktorointi.md
+      - 18. Bugfix-sessio: harjoitukset/18-bugfix-session.md
+      - 19. PR-sessio: harjoitukset/19-pr-session.md
+      - 20. Bugfix + feature rinnakkain: harjoitukset/20-bugfix-feature-parallel.md
+      - 21. Agentin worktree: harjoitukset/21-agentti-worktree.md
+      - 22. Worktreejen yhdistäminen: harjoitukset/22-worktree-merge.md
+      - 23. CI triage: harjoitukset/23-ci-triage.md
+      - 24. Read-only pipeline: harjoitukset/24-read-only-pipeline.md
+      - 25. Exit code -ajattelu: harjoitukset/25-exit-code.md
+      - 26. Rikkinäinen build: harjoitukset/26-rikkinäinen-build.md
+      - 27. Säilytä keskustelu: harjoitukset/27-säilytä-keskustelu.md
+      - 28. Palauta vain koodi: harjoitukset/28-palauta-vain-koodi.md
+      - 29. TDD-työskentely: harjoitukset/29-tdd.md
+      - 30. Definition of Done: harjoitukset/30-definition-of-done.md
+      - 31. Review gate: harjoitukset/31-review-gate.md
+      - 32. Release pipeline: harjoitukset/32-release-pipeline.md
+      - 33. Production deploy: harjoitukset/33-production-deploy.md
+      - 34. Secrets audit: harjoitukset/34-secrets-audit.md
+      - 35. Prompt injection -testi: harjoitukset/35-prompt-injection.md
+plugins:
+  - search
+extra:
+  footer:
+    copyright: MIT License
