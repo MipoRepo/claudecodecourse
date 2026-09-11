@@ -44,7 +44,7 @@ markdown_extensions:
       permalink: true
 nav:
   - Etusivu: index.md
-  - Johdanto:
+  - Perusteet:
       - Mitä on Claude Code?: johdanto/mita-on-claude-code.md
       - Terminologia: johdanto/terminologia.md
       - LLM malli: johdanto/mielenmalli.md
