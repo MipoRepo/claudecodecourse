@@ -1,5 +1,5 @@
-site_name: Claude Code Course
-site_description: Pieni käytäntön opas Claude Code -agenttikehitysympäristöstä (suomeksi)
+site_name: Claude Code Handbook
+site_description: Claude Code -agenttikehitysympäristöstä (suomeksi)
 site_author: Mikko Pohjola
 site_url: https://miporepo.github.io/claudecodecourse/
 repo_url: https://github.com/miporepo/claudecodecourse
@@ -58,7 +58,7 @@ nav:
       - LLM-mallin valinta:
           - Mallin valinta Claude Codessa: llm-mallin-valinta/claude-codessa.md
           - Vertailu ja suositukset: llm-mallin-valinta/vertailu.md
-  - Kurssi:
+  - Opas:
       - Arkkitehtuuri: arkkitehtuuri/arkkitehtuuri.md
       - Sub-agentit: sub-agents/index.md
       - Skills: skills/index.md
