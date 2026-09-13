@@ -1,6 +1,4 @@
-# Claude Code - Pieni Käytännön opas Claude Code kehitykseen
-
-**Käytäntöopas Claude Code -agenttikehitysympäristöstä suomeksi**
+#Opas  Claude Code kehitykseen
 
 Tämä dokumentaatio on laaja oppaasti sekä aloittelijalle että edistuneelle kehittäjälle, joka haluaa oppia Claude Codea käyttämään täysimääräisestä agenttikehittelyympäristöstä. Opas kattaa kontekstinhallinnan, erikoagentit, säännökset, hookit, MCP-työkalut ja headless-automatisoinnin.
 

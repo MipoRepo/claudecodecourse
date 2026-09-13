@@ -1,8 +1,8 @@
-# 1. Johdanto Claude Codeen
-
-> Tämä opas käsittelee **Claude Codea kehitysympäristönä**, eikä pelkkänä chat-käyttöliittymänä.
+# 1.0 Johdanto Claude Codeen
 
 ## 1.1 Mikä Claude Code on?
+
+Claude Code on **CLI-pohjainen kehitysympäristö**, jossa kielimalli toimii kuin ohjelmistokehittäjä, jolla on pääsy projektin rakenteeseen, tiedostoihin ja työkaluihin. Se ei ole “chatbot”, vaan agentti, joka voi:
 
 !!! abstract "Määritelmä"
 
@@ -17,7 +17,7 @@
 
 ### Tärkeimmät eroavaisuudet chat-käyttöliittymiin verrattuna
 
-| Ominaisuus | Chat-käyttöliittymä (web) | Claude Code (CLI Agent) |
+| Ominaisuus | Chat-käyttöliittymä (web/työpöytö) | Claude Code (CLI Agent) |
 |------------|--------------------------|------------------------|
 | Toimintalaajuus | ✅ vain tekstivastauksia | ✅ teksti + tiedostot + Bash + työkalut |
 | Projektiin integroituminen | ❌ ei pääsyä tiedostoihin | ✅ lukee koko projektin |
@@ -25,21 +25,8 @@
 | Hallinta | ❌ ei tarkkaa kontrollia | ✅ permission rules + hookit |
 | Headless-tila | ❌ ei tue | ✅ `claude -p` -tila |
 
-## 1.2 Videoaikaisen ja nykyisen terminologian ero
 
-| Videon termi/komento | Nykyinen dokumentaatio | Käytännön tulkinta |
-|---------------------|----------------------|-------------------|
-| `doc/.claude/agents` | `.claude/agents/` | Projektin custom sub-agentit |
-| `/re` | `/rewind` | Palauta checkpointiin |
-| `claude -continue` | `claude --continue` / `claude -c` | Jatka viimeisintä sessiota |
-| `claude -res NAME` | `claude --resume NAME` / `claude -r NAME` | Jatka nimettyä sessiota |
-
-!!! note "Tärkeä huomio"
-    Videon käyttämä lyhyt `/re`-komento on säilytetty, mutta virallisen dokumentaation
-    mukaan käytetään nykyään `/rewind`. Molemmissa lähteissä idea on sama: jatka
-    edellistä istuntoa tai palauta aikaisempiin tilaan.
-
-## 1.3 Mielenmalli
+## Claude Code -malli
 
 Claude Code voidaan ajatella kerroksisena kokonaisuutena:
 
@@ -59,6 +46,14 @@ Claude Code - pääsessio
   └── Worktrees                ← fyysisesti erotetut työskentelypuut
 ```
 
+## Miksi tämä on merkittävää? Claude Code muuttaa kehitystyön luonnetta:
+
+- Agentit voivat hoitaa kokonaisia kehitystehtäviä (debuggaus, refaktorointi, testien generointi).
+- Projektin sisäinen automaatio (hooks, permission rules) mahdollistaa turvallisen ja kontrolloidun työnkulun.
+- Headless-tila mahdollistaa CI/CD-integraatiot ja automaattiset tarkistukset.
+- Sub-agentit tuovat rinnakkaisen työn ja roolijaon (reviewer, debugger, security-agentti).
+- Käytännössä se on kuin tiimi kehittäjiä, jotka toimivat projektin sisällä — mutta agentteina.
+
 ### Tärkeä periaate
 
 > **Kielimalli tekee päätöksiä todennäköisyysperusteisesti, mutta hookit, permissionsäännöt, Git ja CI voivat tehdä kriittisistä kohdista deterministisiä.**
@@ -73,7 +68,13 @@ claude --permission-mode plan
 
 ### Esimerkkikomento
 
-> *Kartoita tämä repository. Älä muokkaa tiedostoja. Kerro: 1) arkkitehtuuri 2) entry pointit 3) build/test-komennot 3) riskialueet 5) ehdotus seuraavista muutoksista.*
+> *Kartoita tämä repository. Älä muokkaa tiedostoja. 
+> Kerro: 
+> 1) arkkitehtuuri 
+> 2) entry pointit 
+> 3) build/test-komennot 
+> 3) riskialueet 
+> 5) ehdotus seuraavista muutoksista.*
 
 Tämä on turvallinen tapa aloittaa — **plan-moodissa Claude voi vain lukea tiedostoja**, eikä missään nimessä muokata niitä.
 

@@ -77,8 +77,7 @@ Lisää `.env` aina `.gitignore`-tiedostoon:
 Ilmaismallit tunnistaa mallin nimen lopussa olevasta `:free`-päätteestä:
 
 ```text
-google/gemma-4-26b-a4b:free
-nex-agi/nex-n2.5-pro:free
+Laguna 2.1:free
 ```
 
 Ilmaismallien token-hinta on `$0`, mutta niiden käyttöä rajoitetaan pyyntömäärillä.

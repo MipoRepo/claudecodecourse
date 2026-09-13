@@ -30,11 +30,11 @@ Tavoitteena on saada enemmän automaatiota ilman, että turvallisuus, jäljitett
 Valitse alla olevista linkeistä:
 
 !!! tip "Aloittelijat"
-    Aloita [Teknologian perusteet → Aloittelijalle](teknologian-perusteet/aloitus.md),
-    jossa selvitetään mitä Claude Code pystyy ja miksi se eroaa tavallisesta ChatGPT:stä.
+    Aloita [Teknologian perusteet](teknologian-perusteet/aloitus.md),
+    jossa selvitetään mitä Claude Code pystyy ja miksi se eroaa esimerkiksi tavallisesta ChatGPT:stä.
 
 !!! advanced "Edistyneet käyttäjät"
-    Siirry suoraan [Luku 2: Arkkitehtuuri ja periaatteet](arkkitehtuuri/arkkitehtuuri.md),
+    Siirry suoraan [Luku 1: Arkkitehtuuri ja periaatteet](arkkitehtuuri/arkkitehtuuri.md),
     jossa tarkastellaan kerrosmallia ja permission engine -periaatteita.
 
 ---

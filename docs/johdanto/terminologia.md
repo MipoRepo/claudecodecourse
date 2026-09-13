@@ -1,17 +1,14 @@
-# 1.2 Videoaikaisen ja nykyisen terminologian ero
+# 1.2 Aikaisempien ja nykyisen terminologian eroja
 
 | Videon termi/komento | Nykyinen dokumentaatio | Käytännön tulkinta |
-|---------------------|----------------------|------------------|
-| `doc/.claude/agents` | `.claude/agents/` | Projektin custom sub-agentit |
+|---------------------|----------------------|-------------------|
 | `/re` | `/rewind` | Palauta checkpointiin |
 | `claude -continue` | `claude --continue` / `claude -c` | Jatka viimeisintä sessiota |
 | `claude -res NAME` | `claude --resume NAME` / `claude -r NAME` | Jatka nimettyä sessiota |
 
-!!! info "Tärkeitä huomioita"
-    - Videon käyttämä lyhyt `/re`-komento on säilytetty, mutta virallinen dokumentaatio
-      käyttää nykyään `/rewind`-nimitystä.
-    - Molemmissa lähteissä idea on sama: jatka edellistä istuntoa tai palauta aiempaan tilaan.
-    - Nimetty sessio voidaan jatkaa nimellä tai session ID:llä.
+!!! note "Tärkeä huomio"
+    Kyhyt `/re`-komento on säilytetty, mutta virallisen dokumentaation mukaan käytetään nykyään `/rewind`. 
+    Molemmissa lähteissä idea on sama: jatka edellistä istuntoa tai palauta aikaisempiin tilaan.
 
 ## Komentomerkinnät
 

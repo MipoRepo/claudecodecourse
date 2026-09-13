@@ -38,20 +38,6 @@ graph LR
 
 ---
 
-## Mitä tämä opas ei ole?
-
-Tämä ei ole:
-
-- 🎥 Videon kopio (transkriptio on aloitus, ei lopetus)
-- 📄 Yksinkertaistettuja ohjeita (kyse on hallitusta kehityksestä)
-- 🔓 Vapaata pääsyä kaikkiin oikeuksiin (turvallisuusrajoitus on tärkeä osa)
-
-Tämä **on**:
-
-- ✅ Selkeä viitekehys kaikille mekanismeille
-- ✅ Esimerkkien kirja (35 käytäntöä)
-- ✅ Turvallisuusrepertuaari (uhkamalli + riskit)
-
 ## Mitä opit?
 
 - **Claude Code** on agenttiympäristö, jossa kielimalli pystyy tekemään valtavan paljon.

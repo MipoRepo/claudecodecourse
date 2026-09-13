@@ -1,110 +1,177 @@
 # Teknologian perusteet: Edistuneelle
 
 !!! info "Kenelle tämä osio on kirjoitettu?"
-    Sinä tiedät paremmin terminaalista ja CLI:stä, ja haluat ymmärtää
-    Claude Code -agentin sisäisten mekanismien — context, permission engine, hookit ja sub-agentit.
-
-## Agentti vs. kääntäjä vs. CLI-työkalu
-
-Klassinen CLI-työkalu (esim. `git`) on **tila- tai komentopohjäinen**: yksi komento = yksi selkeästi määritelty toiminto. Agenttimallinen työkalu (kuten Claude Code) on **todennäköisyysperusteinen päätöksentekojärjestelmä** (LLM-agentti), jossa kielimalli päättää, mitä toimia tehdä.
-
-### Miksi tämä on tärkeä?
-
-- Kielimalli pystyy **yhdistelemään toisiinsa liittyviä tietoja** (context)
-- Se voi **iteroida** — kokeilla, tarkistaa, korjata
-- Se voi **delegoida** osan työstä sub-agenteille
-
-Mutta tämä tarkoittaa myös:
-
-- Päätökset ovat **epävarmoja** (todennäköisyysjakauma)
-- Työkalu- ja oikeusrajaukset ovat **elintärkeitä** turvallisuuden kannalta
-
-## Claude Code -agenttiarkkitehtuuri
-
-### Konteksti (context)
-
-- **CLAUDE.md**: pysyvä projekti- tai käyttäjätason konteksti
-- **Keskusteluloki (transcript)**: nykyisen istunnon keskusteluhistoria
-- **Työkalujen tulokset**: jokainen Read/Grep/Bash/Bash-tulos lisätään kontekstiin
-
-Tärkeä rajoitus: **context-ikkuna** on rajoitetun kokoinen — tyypillisesti 200k–1M tokenia. Kun se täyttyy, käynnistyy **compact** (tiivistys) tai istunto jaetaan uusiin osiin.
-
-### Permission engine
-
-Clauden käyttö oikeuksissa on **kerrostettu** järjestelmä:
-
-| Taso | Kuvaus | Käytännössä |
-|------|--------|-------------|
-| `plan` | Vain luku — ei kirjoita | Alkuanalyysi / turvallinen tarkastus |
-| `default` | Kysyy joka kirjoitustoimenpiteessä | Tyypillinen kehitystyö |
-| `acceptEdits` | Hyväksyy tiedostomuutokset automaattisesti | Nopeampi kirjoittelu |
-| `bypassPermissions` | Kaikki sallittu ilman kyselyä | Vain CI/testiympäristöön |
-
-**Säännökset arvioidaan tässä järjestyksessä:** `deny` → `ask` → `allow`
-
-### Hooks — deterministinen päätöksenteko
-
-Hookit ovat **shell-komentoja**, jotka suoritetaan tiettyä agentin elinkaaren tapahtumaa vastaen. Ne toimivat **ennen** permission-enginein arviointia (esim. PreToolUse), joka voi:
-
-- Estää toiminnon kokonaan (esim. estää vaarallisen komennon)
-- Lisätä auditointilokeja
-- Laukaista CI-jobeja
-
-Esimerkki:
-```json
-{
-  "hooks": {
-    "PreToolUse": [{
-      "matcher": "Bash",
-      "hooks": [{
-        "type": "command",
-        "command": "./.claude/hooks/lint-before-bash.sh"
-      }]
-    }]
-  }
-}
-```
-
-### Sub-agentit — eristettyjen kontekstien orkesterointi
-
-Sub-agentti saa:
-- Oman konteksti-ikkunansa
-- Oman system promptinsa
-- Rajoitetun työkalupinnansa
-- Halutessaan oman mallinsa (`haiku`, `sonnet`, `opus`)
-
-Tärkein turvallisuusperiaate: **sub-agenttia ei koskaan anneta laajoja oikeuksia "koska joku saattaa tulla tarvitsemaan"** — oikeuksia tulee antaa vain nimenomaiset tarvittavat.
-
-### MCP — ulkoisen tiedon integrointi
-
-Model Context Protocol mahdollistaa Clauden:
-
-- **Resurssien** lukemisen (tietokannat, tiedostot, API:t)
-- **Promptien** käyttämisen (esim. "anna vastine tähän kysymykseen")
-- **Työkalujen** kutsumisen (esim. "luo uusi GitHub PR")
-
-Turva vaatii:
-- Pienimmän tarvittavan oikeuden periaatetta (least privilege)
-- Ihmisen hyväksyntää korkean vaikutuksen toimille
-- Tuotanto- ja staging-ympäristöjen erottelua
+    Sinulle, joka hallitset komentorivin ja haluat ymmärtää Claude Coden
+    **sisäiset mekanismit**: context‑ikkunan, permission engine ‑kerrokset,
+    hookit, sub‑agentit ja MCP‑integraatiot.
 
 ---
 
-## Miksi tämä on tärkeä aloitettavaksi?
+## 1. Agentti, kääntäjä ja CLI‑työkalu — mikä ero?
 
-Kun opit näitä periaatteita, voit:
+Perinteinen CLI‑työkalu (kuten `git`) toimii **deterministisesti**:
+yksi komento → yksi tarkasti määritelty toiminto.
 
-| Tehty | Mahdollistaja | Lopputulos |
-|-------|---------------|------------|
-| CLAUDE.md | Context | Projekti “muistaa” säännöt automaattisesti |
-| Hooks | Determinismi | Kaikki commitit automaattisesti formatoidaan |
-| Sub-agentit | Eristys | Turvallinen koodin tarkastus ilman pääsession lupaa |
-| MCP | Ulkoiset tiedot | Tiedot Jirasta/GitHubista/seurantajärjestelmistä ilman kopioimista chatiin |
-| Worktrees | Erillisyys | Kaksi rinnakkaista kehityslinjaa ilman konflikteja |
+Claude Code on **LLM‑agentti**, joka toimii todennäköisyyspohjaisesti:
+
+- se päättää itse, mitä työkaluja käyttää
+- se yhdistää tietoa kontekstista
+- se voi iteroida ja korjata omaa työtään
+- se voi delegoida tehtäviä sub‑agenteille
+
+Tämä tuo valtavan joustavuuden — mutta myös sen, että
+**turvallisuus ja oikeusrajaukset ovat kriittisiä**.
+
+---
+
+## 2. Claude Code ‑agenttiarkkitehtuuri
+
+Claude Code koostuu viidestä keskeisestä mekanismista:
+
+1. **Context** — mitä agentti “näkee”
+2. **Permission Engine** — mitä agentti “saa tehdä”
+3. **Hooks** — deterministiset tarkistukset
+4. **Sub‑agentit** — eristetyt roolit ja kontekstit
+5. **MCP** — ulkoiset tiedot ja työkalut
+
+Alla selkeä erittely.
+
+---
+
+## 3. Context — agentin “näköaisti”
+
+Claude Coden konteksti muodostuu kolmesta osasta:
+
+### **CLAUDE.md**
+Pysyvä projektikohtainen konteksti:
+- säännöt
+- työtavat
+- rajoitukset
+- projektin periaatteet
+
+### **Transcript**
+Nykyisen istunnon keskusteluhistoria.
+
+### **Työkalujen tulokset**
+Kaikki Read/Grep/Glob/Edit/Bash/MCP‑tulokset lisätään kontekstiin.
+
+### **Context‑ikkunan rajoitus**
+Konteksti on rajallinen (200k–1M tokenia).  
+Kun se täyttyy:
+
+- Claude käynnistää **compact**‑tiivistyksen  
+- tai jakaa istunnon uusiin osiin
+
+---
+
+## 4. Permission Engine — mitä agentti saa tehdä?
+
+Permission Engine arvioi jokaisen toiminnon kerroksittain:
+
+| Taso | Kuvaus | Käyttö |
+|------|--------|--------|
+| **plan** | Vain luku | Alkuanalyysi |
+| **default** | Kysyy luvan kirjoituksille | Normaalikehitys |
+| **acceptEdits** | Hyväksyy kirjoitukset automaattisesti | Nopeampi työ |
+| **bypassPermissions** | Kaikki sallittu | CI/testiympäristö |
+
+### Arviointijärjestys:
+**deny → ask → allow**
+
+- **deny** pysäyttää toiminnon heti  
+- **ask** vaatii käyttäjän vahvistuksen  
+- **allow** suorittaa toiminnon
+
+---
+
+## 5. Hooks — deterministinen päätöksenteko
+
+Hookit ovat shell‑komentoja, jotka suoritetaan tiettyjen tapahtumien yhteydessä.
+
+Esimerkki: `PreToolUse` ennen työkalun käyttöä.
+
+Hook voi:
+
+- estää vaarallisen komennon
+- lisätä auditointilokeja
+- käynnistää CI‑jobeja
+- muokata pyyntöä ennen permission‑engineä
+
+### Esimerkki:
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./.claude/hooks/lint-before-bash.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
+
+## 6. Sub‑agentit — eristetyt kontekstit ja roolit
+
+Sub‑agentti on Claude Coden sisäinen “työntekijä”, joka toimii omassa eristetyssä ympäristössään.  
+Jokainen sub‑agentti saa:
+
+- **oman context‑ikkunan**  
+- **oman system‑promptin**  
+- **oman työkalupinnan** (vain ne työkalut, jotka sille annetaan)  
+- **halutessaan oman mallin** (haiku, sonnet, opus)
+
+### Turvallisuusperiaate
+
+> Sub‑agentille annetaan **vain ne oikeudet, joita se tarvitsee**.  
+> Ei koskaan “varmuuden vuoksi” laajoja oikeuksia.
+
+Tämä estää tilanteet, joissa sub‑agentti voisi vahingossa muokata projektia tai ajaa komentoja, joita sen ei pitäisi.
+
+---
+
+## 7. MCP — ulkoisen tiedon integrointi
+
+**Model Context Protocol (MCP)** on standardi, jonka avulla Claude Code voi käyttää ulkoisia resursseja hallitusti.
+
+MCP mahdollistaa:
+
+- **resurssien lukemisen** (tietokannat, API:t, tiedostot, ulkoiset palvelut)  
+- **promptien suorittamisen** (esim. “anna vastine tähän kysymykseen”)  
+- **työkalujen kutsumisen** (esim. “luo uusi GitHub PR”)
+
+### Turvaperiaatteet
+
+- **Least privilege** — anna vain pienin tarvittava oikeus  
+- **Ihmisen hyväksyntä** korkean vaikutuksen toimille  
+- **Staging/production‑ympäristöjen erottelu**  
+  (agentti ei saa koskea tuotantoon ilman erillistä lupaa)
+
+---
+
+## 8. Miksi tämä on tärkeää?
+
+Kun ymmärrät nämä mekanismit, voit rakentaa **hallittuja ja turvallisia agenttijärjestelmiä**, joissa Claude toimii kuin tiimin jäsen — mutta kontrolloidusti.
+
+| Tehty        | Mahdollistaja | Lopputulos |
+|--------------|---------------|------------|
+| **CLAUDE.md** | Context       | Projekti “muistaa” säännöt automaattisesti |
+| **Hooks**     | Determinismi  | Commitit formatoidaan automaattisesti |
+| **Sub‑agentit** | Eristys     | Turvallinen koodin tarkastus ilman pääsession lupaa |
+| **MCP**       | Ulkoiset tiedot | Jira/GitHub‑data ilman copy‑pastea |
+| **Worktrees** | Erillisyys    | Kaksi rinnakkaista kehityslinjaa ilman konflikteja |
 
 ---
 
 ## Seuraavaksi
 
-- [Luku 1: Johdanto Claude Codeen](../johdanto/mita-on-claude-code.md) — tarkempi terminologia
-- [Harjoitus 04: Headless-agentin työkalujen rajoittaminen](../harjoitukset/04-headless-työkalut.md) — harjoita `--tools`-rajausta
+- **Luku 1: Johdanto Claude Codeen** — tarkempi terminologia  
+  → [../johdanto/mita-on-claude-code.md](../johdanto/mita-on-claude-code.md)
+- **Harjoitus 04: Headless‑agentin työkalujen rajoittaminen** — käytännön `--tools`‑rajausharjoitus  
+  → [../harjoitukset/04-headless-agentin-tyokalurajaus.md](../harjoitukset/04-headless-agentin-tyokalurajaus.md)
+

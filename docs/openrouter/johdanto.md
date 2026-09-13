@@ -18,7 +18,7 @@ OMA SOVELLUS / AGENTTI / TYÖKALU
      Malli A  Malli B       Malli C
 ```
 
-Tämä mahdollistaa saman API-yhteyden käyttämisen useiden eri mallien kanssa. Mallia voidaan vaihtaa yleensä muuttamalla vain mallin tunnistetta.
+Tämä mahdollistaa saman API-yhteyden käyttämisen useiden eri mallien kanssa. Mallia voidaan vaihtaa yleensä muuttamalla vain **mallin tunnistetta**.
 
 ---
 
@@ -39,8 +39,7 @@ sk-or-v1-xxxxxxxxxxxxxxxx
 Määrittää, mitä tekoälymallia käytetään. Esimerkiksi:
 
 ```text
-nex-agi/nex-n2.5-pro:free
-google/gemma-4-26b-a4b:free
+ model: "poolside/laguna-s-2.1:free"
 ```
 
 ### Provider
@@ -62,7 +61,7 @@ Claude Code voidaan yhdistää OpenRouteriin Anthropic API -yhteensopivuuden kau
     "ANTHROPIC_BASE_URL": "https://openrouter.ai/api",
     "ANTHROPIC_AUTH_TOKEN": "sk-or-v1-xxxxxxxx",
     "ANTHROPIC_API_KEY": "",
-    "ANTHROPIC_MODEL": "nex-agi/nex-n2.5-pro:free"
+    "ANTHROPIC_MODEL": "poolside/laguna-s-2.1:free"
   }
 }
 ```
@@ -76,11 +75,15 @@ Claude Code voidaan yhdistää OpenRouteriin Anthropic API -yhteensopivuuden kau
 
 OpenRouterissa on sekä ilmaisia että maksullisia malleja.
 
-**Ilmaismallit** tunnistaa mallin nimen lopussa olevasta `:free`-päätteestä:
+**Ilmaismallit** tunnistaa mallin nimen lopussa olevasta `:free`-päätteestä
 
 ```text
-malli/nimi:free
+poolside/laguna-s-2.1:free
 ```
+
+### Mistä ilmaismallit löytyvät?
+Ilmaismalleja voi etsiä Models‑välilehdeltä käyttämällä hakutekijää: **:free**
+[OpenRouter – Models](https://openrouter.ai/models)
 
 Ilmaismallien käyttöä rajoitetaan kuitenkin pyyntömäärillä:
 
@@ -107,6 +110,26 @@ openrouter/auto
 Tässä tilassa OpenRouter valitsee mallin tehtävätyypin, käyttödatan ja kustannustason perusteella. Jos tavoitteena on käyttää aina tiettyä mallia, on parempi määrittää se suoraan.
 
 ---
+
+## OpenRouter Default Model – Ilmaismallin asettaminen oletukseksi
+
+OpenRouterin työtilassa (**Workspace**) on asetus nimeltä **Default Model**, joka määrittää:
+
+- mitä mallia sovellukset käyttävät oletuksena  
+- mitä mallia käytetään fallback‑mallina, jos pyydetty malli ei ole saatavilla  
+
+Voit avata työtilan malliasetukset täältä:
+
+[OpenRouter – Workspace Default Routing](https://openrouter.ai/workspaces/default/routing)
+
+### Miksi ilmaismalli kannattaa asettaa oletusmalliksi?
+
+Jos käytät OpenRouteria sovelluksissa, agenteissa tai CLI‑työkaluissa, on järkevää asettaa **ilmaismalli** oletukseksi, jotta:
+
+- **kutsut eivät kuluta krediittejä vahingossa**
+- **fallback‑malli ei vaihdu maksulliseen malliin**
+- **agentit ja skriptit pysyvät kustannusturvallisina**
+- **malli on aina saatavilla ilman rajoituksia maksullisten mallien suhteen**
 
 ## Seuraavaksi
 
