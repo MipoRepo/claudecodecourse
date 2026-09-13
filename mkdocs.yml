@@ -46,9 +46,9 @@ nav:
   - Etusivu: index.md
   - Johdanto:
       - Mitä on Claude Code?: johdanto/mita-on-claude-code.md
-      - Terminologia: johdanto/terminologia.md
       - LLM malli: johdanto/mielenmalli.md
       - Permission engine: johdanto/permission-engine.md
+      - Lähteiden merkinnät:johdanto/terminologia.md
   - Teknologian perusteet:
       - Aloittelijalle: teknologian-perusteet/aloitus.md
       - Edistyneelle: teknologian-perusteet/edistyneelle.md

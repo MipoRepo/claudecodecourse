@@ -1,16 +1,4 @@
-# 1.2 Aikaisempien ja nykyisen terminologian eroja
-
-| Videon termi/komento | Nykyinen dokumentaatio | Käytännön tulkinta |
-|---------------------|----------------------|-------------------|
-| `/re` | `/rewind` | Palauta checkpointiin |
-| `claude -continue` | `claude --continue` / `claude -c` | Jatka viimeisintä sessiota |
-| `claude -res NAME` | `claude --resume NAME` / `claude -r NAME` | Jatka nimettyä sessiota |
-
-!!! note "Tärkeä huomio"
-    Kyhyt `/re`-komento on säilytetty, mutta virallisen dokumentaation mukaan käytetään nykyään `/rewind`. 
-    Molemmissa lähteissä idea on sama: jatka edellistä istuntoa tai palauta aikaisempiin tilaan.
-
-## Komentomerkinnät
+# lähteiden merkinnät
 
 | Merkintä | Selitys | Esimerkki |
 |----------|---------|-----------|
