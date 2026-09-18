@@ -174,7 +174,7 @@ Suuri konteksti  +  hyvä reasoning  +  luotettava tool calling  =  hyvä agentt
         ↓
 10. ERROR RECOVERY
         ↓
-11. SUOMEN KIELI
+11. KIELIVAATIMUKSET (Esim. SUOMEN KIELI DOKUMENTOINTIA VARTEN)
         ↓
 12. NOPEUS
         ↓
