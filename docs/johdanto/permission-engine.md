@@ -1,4 +1,4 @@
-# 1.4 Permission Engine (Lupa‑moottori)
+# 1.3 Permission Engine (Lupa‑moottori)
 
 ## Johdanto
 

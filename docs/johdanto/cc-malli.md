@@ -1,4 +1,4 @@
-# 1.3 Claude Coden malli  
+# 1.2 Claude Coden arkkitehtuurimalli  
 
 Claude Code ei ole pelkkä komentorivityökalu, vaan **kerroksinen agenttiarkkitehtuuri**, jossa jokainen osa hoitaa oman vastuualueensa. Malli auttaa ymmärtämään, miten Claude Code käsittelee tehtäviä, miten konteksti rakentuu ja miten determinismi ja todennäköisyyspohjainen päättely erotellaan toisistaan.
 
