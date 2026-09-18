@@ -8,7 +8,7 @@ Claude Code ‑opas on suunniteltu sekä aloittelijoille että kokeneille kehitt
 
 Mukana on myös selkeä ja konkreettinen ohje OpenRouter‑rajapinnan käyttämiseen MML‑mallien kanssa — suora väylä, jonka kautta saat päivittäin jopa 50 API‑kutsua eri malleille täysin ilmaiseksi (tai jopa 1000 kutsua noin 13 dollarilla). OpenRouter tarjoaa lisäksi täysin ilmaisia LLM‑malleja, joiden avulla voit kokeilla, testata ja rakentaa ilman kustannuspaineita. Tämä tekee oppaasta erinomaisen työkalun kaikille, jotka haluavat kehittää ja iteratiivisesti testata agenttiratkaisuja nopeasti ja kustannustehokkaasti.
 
-Opas syntyi omista muistiinpanoistani ja käytännön kokeiluista. Toivon, että se tarjoaa sinulle yhtä paljon oivalluksia ja hyötyä kuin minulle sen kokoamisen aikana. 
+Opas syntyi omista muistiinpanoistani ja käytännön kokeiluista. Toivon, että se tarjoaa sinulle yhtä paljon oivalluksia ja hyötyä kuin minulle sen kokoamisen aikana. Tämä julkaisu on vielä beta 1.0 ‑versio, joten sisältöä tarkennetaan ja kehitetään edelleen.
 
 ## Mitä tässä oppaassa opit?
 

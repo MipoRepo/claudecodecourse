@@ -11,6 +11,8 @@ extra_javascript:
 copyright: '© 2026 <a href="https://github.com/MipoRepo">Mikko Pohjola</a>. All rights reserved.'
 theme:
   name: material
+  logo: assets/diagrams/images/logo.png
+
   features:
     - navigation.tabs
     - navigation.tabs.sticky
@@ -48,7 +50,6 @@ nav:
       - Mitä on Claude Code?: johdanto/mita-on-claude-code.md
       - LLM malli: johdanto/mielenmalli.md
       - Permission engine: johdanto/permission-engine.md
-      - Lähteiden merkinnät:johdanto/terminologia.md
   - Teknologian perusteet:
       - Aloittelijalle: teknologian-perusteet/aloitus.md
       - Edistyneelle: teknologian-perusteet/edistyneelle.md
