@@ -8,6 +8,8 @@ extra_css:
   - css/extra.css
 extra_javascript:
   - js/extra.js
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 copyright: '© 2026 <a href="https://github.com/MipoRepo">Mikko Pohjola</a>. All rights reserved.'
 theme:
   name: material
@@ -44,23 +46,34 @@ markdown_extensions:
   - footnotes
   - toc:
       permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
 nav:
   - Etusivu: index.md
   - Johdanto:
       - Mitä on Claude Code?: johdanto/mita-on-claude-code.md
       - Arkkitehtuurimalli: johdanto/cc-malli.md
-      - Permission engine: johdanto/permission-engine.md
   - Teknologian perusteet:
-      - Aloittelijalle: teknologian-perusteet/aloitus.md
-      - Edistyneelle: teknologian-perusteet/edistyneelle.md
-      - OpenRouter:
-        - Johdanto OpenRouteriin: openrouter/johdanto.md
-        - API-avaimet ja ilmaiskäyttö: openrouter/api-avaimet.md
+      - Mitä on tekoäly?: teknologian-perusteet/mita-on-tekoaly.md
+      - Mitä LLM‑mallit ovat?: teknologian-perusteet/mita-on-llm-mallit.md
+      - Mikä on tekoälyavusteinen koodaus?: teknologian-perusteet/aloitus.md
+      - Claude Coden sisäinen arkkitehtuuri: teknologian-perusteet/edistyneelle.md
+      - LLM:n tekninen ja matemaattinen pohja: teknologian-perusteet/matemaattinen-perusta.md
       - LLM-mallin valinta:
         - Mallin valinta Claude Codessa: llm-mallin-valinta/claude-codessa.md
         - Vertailu ja suositukset: llm-mallin-valinta/vertailu.md
+      - OpenRouter:
+        - Johdanto OpenRouteriin: openrouter/johdanto.md
+        - API-avaimet ja ilmaiskäyttö: openrouter/api-avaimet.md
+      
   - Opas:
       - Arkkitehtuuri: arkkitehtuuri/arkkitehtuuri.md
+      - Permission Engine: permission-engine/permission-engine.md
       - Sub-agentit: sub-agents/index.md
       - Skills: skills/index.md
       - Hooks: hooks/index.md

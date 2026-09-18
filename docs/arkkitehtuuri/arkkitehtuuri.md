@@ -1,6 +1,6 @@
-# 2. Arkkitehtuuri ja toimintaperiaatteet
+# 1. Arkkitehtuuri ja toimintaperiaatteet
 
-## 2.1 Kerrosmalli (Layer model)
+## 1.1 Kerrosmalli (Layer model)
 
 ```
 PROJECT REPO
@@ -40,7 +40,7 @@ Claude Code runtime
     Se käytetään usein salaisten ympäristömuuttujien (esim. API-avaimien) säilyttämiseen,
     eikä sitä tulisi koskaan commitata versionhallintaan.
 
-## 2.2 Konteksti vs. toimet (Action)
+## 1.2 Konteksti vs. toimet (Action)
 
 | Mekanismi | Päätehtävä | Milloin käytetään? | Mitä se ei ole? |
 |-----------|------------|---------------------|----------------|
@@ -50,7 +50,7 @@ Claude Code runtime
 | Hook | Deterministinen tapahtumankäsittely | Automaattiset laatu- ja turvallisuustarkistukset | Ei korvaa versionhallintaa |
 | MCP | Pääsy ulkoiseen työkaluun/dataan | GitHub, Jira, Notion, monitoring, meeting notes | Ei ole automaattisesti turvallinen |
 
-## 2.3 Permission engine (Lupa-moottori)
+## 1.3 Permission engine (Lupa-moottori)
 
 Claudessa on **kerrosmallinen** lupajärjestelmä:
 
