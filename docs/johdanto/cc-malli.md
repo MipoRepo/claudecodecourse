@@ -3,6 +3,7 @@
 Claude Code ei ole pelkkä komentorivityökalu, vaan **kerroksinen agenttiarkkitehtuuri**, jossa jokainen osa hoitaa oman vastuualueensa. Malli auttaa ymmärtämään, miten Claude Code käsittelee tehtäviä, miten konteksti rakentuu ja miten determinismi ja todennäköisyyspohjainen päättely erotellaan toisistaan.
 
 Tämä rakenne on tärkeä, koska se mahdollistaa:
+
 - turvallisen ja hallitun automaation  
 - selkeän roolijaon eri agenttien välillä  
 - projektin sisäisen pysyvän kontekstin  
