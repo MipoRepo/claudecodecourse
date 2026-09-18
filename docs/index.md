@@ -20,22 +20,15 @@ Tavoitteena on saada enemmän automaatiota ilman, että turvallisuus, jäljitett
 
 | Osa | Kuvaus |
 |-----|--------|
-| **Teknologian perusteet** | Lyhyt johdanto sekä aloittelijalle että edistuneemmalle käyttäjälle |
-| **Luvut 1–13** | Claude Code edistynyt käyttö opiskelumeteriaalit |
-| **Liitteet A–D** | Komennot, projektirakenne, lähteet ja käytännön esimerkit |
+| **Teknologian perusteet** | Lyhyt johdanto tekoälyyn, agenttiseen kehitykseen niin aloittelijalle että edistyneemmälle käyttäjälle |
+| **Opas: luvut 1–13** | Claude Code opiskelumeteriaalit |
+| **Liitteet A–D** | Komennot, lähteet ja käytännön esimerkit |
 | **Harjoitukset** | 35 itsenäistä harjoitusta ratkaisuilla |
 
 ## Aloita tästä
 
-Valitse alla olevista linkeistä:
-
-!!! tip "Aloittelijat"
-    Lue ensin [Johdanto](johdanto/mita-on-claude-code.md), jonka jälkeen siirry [Teknologian perusteisiin](teknologian-perusteet/aloitus.md),
-    jossa selvitetään mihin Claude Code pystyy ja miksi se eroaa esimerkiksi tavallisesta ChatGPT:stä.
-
-!!! advanced "Edistyneet käyttäjät"
-    Siirry suoraan [Luku 1: Arkkitehtuuri ja periaatteet](arkkitehtuuri/arkkitehtuuri.md),
-    jossa tarkastellaan kerrosmallia ja permission engine -periaatteita.
+!!! tip "Suositeltu aloitusjärjestys"
+    Lue ensin [Johdanto](johdanto/mita-on-claude-code.md), jonka jälkeen siirry [Teknologian perusteisiin](teknologian-perusteet/aloitus.md), jossa selvitetään mihin Claude Code pystyy ja miksi se eroaa esimerkiksi tavallisesta ChatGPT:stä.
 
 ---
 
