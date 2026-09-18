@@ -1,8 +1,8 @@
-# Claude Coden sisäinen arkkitehtuuri — lyhyesti
+#  Claude Code ja viisi keskeistä mekanismia
 
-Claude Code ei ole pelkkä komentorivityökalu, vaan kerroksinen agenttiarkkitehtuuri. Sen toiminta perustuu viiteen mekanismiin, jotka yhdessä määrittävät, mitä agentti näkee, mitä se saa tehdä, miten se tekee päätöksiä ja miten se käyttää ulkoisia resursseja.
+Claude Codea voi ajatella kuin **projektissa työskentelevänä analysoivana järjestelmänä**, joka käyttää viittä erillistä mekanismia tehdäkseen päätöksiä turvallisesti ja ennustettavasti. Nämä mekanismit ovat **rakenteellisia osia**, jotka määrittävät mitä tietoa järjestelmä käyttää ja millä oikeuksilla se toimii.
 
-!!! tip "Aloittelijalle: Miten Claude Coden arkkitehtuuri kannattaa ajatella?"
+!!! tip "Claude Coden arkkitehtuurin viisi keskeistä mekanismia."
     Claude Codea voi ajatella kuin **projektissa työskentelevänä analysoivana
     järjestelmänä**, joka käyttää viittä eri “tietolähdettä” ja “turvakerrosta”
     tehdäkseen päätöksiä.
@@ -29,25 +29,8 @@ Claude Code ei ole pelkkä komentorivityökalu, vaan kerroksinen agenttiarkkiteh
     Näiden mekanismien ansiosta Claude Code voi toimia tehokkaasti ja
     autonomisesti — mutta aina hallitusti ja ennustettavasti.
 
-
-## 1. Context — mitä agentti näkee
-Context on agentin “näköaisti”. Se koostuu projektin pysyvistä säännöistä (CLAUDE.md), istunnon keskusteluhistoriasta ja työkalujen tuottamista tuloksista. Konteksti on rajallinen, joten sitä tiivistetään automaattisesti.
-
-## 2. Permission Engine — mitä agentti saa tehdä
-Permission Engine määrittää agentin oikeudet: lukea, kysyä lupaa tai kirjoittaa suoraan. Tämä kerros estää ei‑toivotut muutokset ja varmistaa hallitun automaation.
-
-## 3. Hooks — automaattiset tarkistukset
-Hookit ovat deterministisiä tarkistuksia, jotka suoritetaan ennen tiettyjä toimintoja. Niillä voidaan estää vaarallisia komentoja, lisätä auditointia tai muokata pyyntöjä ennen kuin agentti toimii.
-
-## 4. Sub‑agentit — eristetyt roolit ja kontekstit
-Sub‑agentit ovat erillisiä “työntekijöitä”, joilla on omat kontekstit ja rajatut oikeudet. Ne mahdollistavat turvallisen rinnakkaisen työn ilman, että pääagentti saa liikaa valtaa.
-
-## 5. MCP — ulkoisten tietolähteiden integraatio
-Model Context Protocol yhdistää Claude Coden ulkoisiin järjestelmiin, kuten tietokantoihin, GitHubiin ja Jiraan. MCP toimii hallitusti ja noudattaa vähimmän oikeuden periaatetta.
-
----
-
 ## Miksi tämä arkkitehtuuri on tärkeä?
+
 Nämä viisi mekanismia muodostavat hallitun ja turvallisen agenttialustan, jossa:
 
 - agentti voi toimia itsenäisesti  
@@ -56,4 +39,4 @@ Nämä viisi mekanismia muodostavat hallitun ja turvallisen agenttialustan, joss
 - tehtävät voidaan jakaa erillisiin rooleihin  
 - projektin säännöt pysyvät aina mukana kontekstissa
 
-Claude Code toimii näin kuin tiimin jäsen — mutta kontrolloidusti ja ennustettavasti.
+**Claude Coden eri mekanismit toimivat näin kuin tiimin jäsenet — kontrolloidusti ja ennustettavasti.**

@@ -1,149 +1,109 @@
-# LLM-mallin valinta Claude Codessa
+# LLM‑mallin valinta Claude Codessa
 
-Kun Claude Codea käytetään OpenRouterin kautta, LLM-mallin valinta ei ole sama asia kuin parhaan keskustelumallin valitseminen.
+Tässä oppaassa Claude Codea käytetään **OpenRouterin kautta**, joka tarjoaa pääsyn useisiin eri LLM‑malleihin yhden rajapinnan kautta. Claude Code ei ole keskustelumalli, vaan **agenttiharnessi**, joka käyttää LLM:ää päätöksentekoon ja työkalujen ohjaamiseen.
 
-Claude Code toimii **agenttiharnessina**, joka käyttää LLM:ää päätöksentekoon ja hyödyntää työkaluja esimerkiksi tiedostojen lukemiseen, muuttamiseen, komentojen suorittamiseen ja projektin tutkimiseen.
+Siksi mallin valinta ei ole sama asia kuin “paras chattimalli”, vaan kyse on siitä, miten hyvin malli toimii **agenttikäytössä**.
 
-Siksi mallin pitää olla paitsi hyvä koodaamaan ja perustelemaan myös **yhteensopiva Claude Coden työkalujen ja OpenRouterin API-rajapinnan kanssa**.
+## Miksi tavallinen LLM‑vertailu ei riitä?
 
----
+Perinteinen LLM‑vertailu keskittyy:
 
-## Arkkitehtuuri: Claude Code + OpenRouter + LLM
-
-```text
-┌─────────────────────────┐
-│       CLAUDE CODE       │
-│                         │
-│  Agenttiharness         │
-│  Tools                  │
-│  File operations        │
-│  Shell                  │
-│  Git                    │
-│  MCP                    │
-└────────────┬────────────┘
-             │
-             │ Anthropic Messages API
-             ▼
-┌─────────────────────────┐
-│       OPENROUTER        │
-│                         │
-│  API / routing          │
-│  Provider selection     │
-│  Model routing          │
-└────────────┬────────────┘
-             │
-             ▼
-┌─────────────────────────┐
-│           LLM           │
-│                         │
-│  Reasoning              │
-│  Coding                 │
-│  Tool calling           │
-│  Planning               │
-│  Context handling       │
-└─────────────────────────┘
-```
-
-!!! important "Keskeinen periaate"
-    **Claude Code on agentin toimintaympäristö. LLM toimii agentin päätöksenteon ytimenä.**
-    
-    > Hyvä keskustelumalli ei automaattisesti ole hyvä agenttimalli.
-
----
-
-## Miksi tavallinen LLM-vertailu ei riitä?
-
-Tavallisessa LLM-arvioinnissa katsotaan:
-
-- päättelykykyä
-- koodaustaitoa
-- kielitaitoa
-- konteksti-ikkunan kokoa
-- nopeutta
-- benchmark-tuloksia
+- päättelyyn  
+- koodinlaatuun  
+- kielitaitoon  
+- konteksti‑ikkunaan  
+- nopeuteen  
 
 Agenttikäytössä tarvitaan lisäksi:
 
-- **tool calling** — työkalujen käyttäminen (tiedostot, bash, MCP)
-- oikeamuotoiset JSON-argumentit työkalukutsuille
-- JSON Schema -yhteensopivuus
-- tiedostojen käsittely useilla operaatioilla
-- komentojen suorittaminen
-- monen tiedoston samanaikainen muutos
-- virheistä palautuminen
-- työn verifiointi
-- ohjeiden pitkäjänteinen noudattaminen
+- **luotettava tool calling**  
+- oikeamuotoiset JSON‑argumentit  
+- virheistä palautuminen  
+- monen tiedoston samanaikainen käsittely  
+- suunnitelmallinen toiminta (ei suoraa “koodaa ja toivo parasta”)  
+- oman työn verifiointi  
+- pitkäjänteinen ohjeiden noudattaminen  
+
+Nämä ominaisuudet erottavat **agenttimallit** tavallisista keskustelumalleista.
 
 ---
 
-## Tool calling — tärkein yksittäinen ominaisuus
+## Tool calling — tärkein yksittäinen vaatimus
 
-Claude Code -agentissa **tool calling on käytännössä pakollinen ominaisuus**.
+Claude Code käyttää työkaluja jatkuvasti:
 
-OpenRouterin mallikohtaisista tiedoista kannattaa tarkistaa:
+- tiedostojen lukeminen  
+- tiedostojen muokkaaminen  
+- komentojen suorittaminen  
+- projektin rakenteen tutkiminen  
 
-```text
-tools         = YES  ← tärkein
-tool_choice   = YES
-structured_outputs = YES  (hyödyllinen)
+Siksi mallin täytyy tukea:
+
+```
+tools = YES
+tool_choice = YES
+structured_outputs = YES (hyödyllinen)
 ```
 
-Jos mallilta puuttuu tool calling -tuki, sitä ei kannata valita Claude Code -agentiksi.
+Ilman tool callingia malli ei voi toimia agenttina.
 
-### Tool calling -tuki ei silti takaa yhteensopivuutta
+### Tool calling ‑tuki ei yksin riitä
 
-Malli voi OpenRouterin tietojen perusteella tukea function calling -ominaisuutta, mutta silti epäonnistua Claude Codessa. Ongelma voi syntyä missä tahansa kerroksessa:
+Vaikka malli tukee tool callingia, se voi silti epäonnistua:
 
-```text
-Claude Code  →  Tool schema
-OpenRouter   →  API / schema compatibility
-LLM          →  Actual tool execution
-```
+- se ei muodosta oikeaa JSON‑rakennetta  
+- se ei noudata schemaa  
+- se ei ymmärrä monivaiheista työkaluketjua  
+- se ei verifioi omaa työtään  
+- se ei osaa jatkaa virheestä  
 
-### Kolme eri yhteensopivuustasoa
-
-1. **Malli tukee tool callingia** — `tools = YES`
-2. **OpenRouter tukee mallin tool callingia** — varmistettava erikseen
-3. **Claude Code + OpenRouter + kyseinen malli toimii yhdessä** — ratkaiseva käytännön testi
-
-!!! tip "Kohta 3 ratkaisee"
-    Tekninen dokumentaatio on vasta lähtökohta. Todellinen käyttökelpoisuus selviää vain testaamalla.
+Siksi mallin yhteensopivuus on **testattava käytännössä**.
 
 ---
 
-## Claude Coden asetukset OpenRouteria varten
+## Mallin valinnan hierarkia (tiivistetty)
 
-```json
-{
-  "env": {
-    "ANTHROPIC_BASE_URL": "https://openrouter.ai/api",
-    "ANTHROPIC_AUTH_TOKEN": "YOUR_OPENROUTER_KEY",
-    "ANTHROPIC_MODEL": "YOUR_MODEL"
-  }
-}
+Claude Code arvioi mallin soveltuvuutta seuraavassa järjestyksessä:
+
+```
+1. API‑yhteensopivuus
+2. Tool calling
+3. Tool‑schema‑yhteensopivuus
+4. Agenttikäyttäytyminen
+5. Reasoning
+6. Coding
+7. Context‑ikkuna
+8. Instruction following
+9. Verification
+10. Error recovery
+11. Kielivaatimukset (esim. suomenkielinen dokumentointi)
+12. Nopeus
+13. Kustannus
+14. Saatavuus / rate limits
 ```
 
-Claude Code tarjoaa useita tapoja valita käytettävä malli:
-
-- `/model`-komento interaktiivisessa sessiossa
-- `--model`-parametri käynnistyksen yhteydessä
-- `ANTHROPIC_MODEL`-ympäristömuuttuja
+Jos malli epäonnistuu kohdissa **1–3**, sitä ei voi käyttää agenttina.
 
 ---
 
 ## Mitä hyvältä agenttimallilta vaaditaan?
 
-Hyvä agenttimalli pystyy suorittamaan toimintaketjun:
+Hyvä agenttimalli pystyy suorittamaan koko toimintaketjun:
 
-```text
+```
 TASK → Explore → Understand → Plan → Modify → Verify → Report
 ```
 
-Agentin ei pitäisi hypätä suoraan muuttamaan tiedostoja ymmärtämättä ensin projektin rakennetta.
+Agentin ei pitäisi hypätä suoraan muokkaamaan tiedostoja, vaan sen tulee:
 
-### Context window
+- tutkia projektia  
+- ymmärtää rakenteen  
+- suunnitella muutokset  
+- toteuttaa ne työkaluilla  
+- tarkistaa työnsä  
+- raportoida selkeästi  
 
-Pitkissä agenttitehtävissä tarvitaan riittävä konteksti-ikkuna. Suuri context window on hyödyllinen etenkin kun agentti käsittelee suurta koodipohjaa, useita tiedostoja tai dokumentaatiota.
+### Suuri konteksti + hyvä päättely + luotettava tool calling
 
 ```
 Suuri konteksti  +  hyvä reasoning  +  luotettava tool calling  =  hyvä agentti
@@ -151,91 +111,70 @@ Suuri konteksti  +  hyvä reasoning  +  luotettava tool calling  =  hyvä agentt
 
 ---
 
-## Mallin valinnan hierarkia Claude Codessa
-
-```text
- 1. API-YHTEENSOPIVUUS
-        ↓
- 2. TOOL CALLING
-        ↓
- 3. TOOL-SCHEMA-YHTEENSOPIVUUS
-        ↓
- 4. AGENTTIKÄYTTÄYTYMINEN
-        ↓
- 5. REASONING
-        ↓
- 6. CODING
-        ↓
- 7. CONTEXT
-        ↓
- 8. INSTRUCTION FOLLOWING
-        ↓
- 9. VERIFICATION
-        ↓
-10. ERROR RECOVERY
-        ↓
-11. KIELIVAATIMUKSET (Esim. SUOMEN KIELI DOKUMENTOINTIA VARTEN)
-        ↓
-12. NOPEUS
-        ↓
-13. KUSTANNUS
-        ↓
-14. SAATAVUUS / RATE LIMITS
-```
-
-Jos malli epäonnistuu kohdissa 1–3, myöhemmillä ominaisuuksilla ei ole käytännössä merkitystä.
-
----
-
-## Lopullinen tarkistuslista
-
-### API
-
-```text
-[ ] OpenRouter tukee mallia
-[ ] Anthropic Messages API toimii
-[ ] Autentikointi toimii
-[ ] Model ID on oikea
-```
+## Lopullinen tarkistuslista mallin valintaan
 
 ### Tool calling
 
-```text
+```
 [ ] tools
 [ ] tool_choice
-[ ] JSON Schema
-[ ] Tool-argumentit muodostuvat oikein
-[ ] Tool-tulokset käsitellään oikein
+[ ] JSON Schema -yhteensopivuus
+[ ] Oikeat argumentit työkaluille
+[ ] Oikea tulosten käsittely
 ```
 
 ### Agenttikäyttäytyminen
 
-```text
-[ ] Osaa suunnitella ennen toimintaa
-[ ] Osaa käyttää työkaluja
-[ ] Osaa lukea tiedostoja
-[ ] Osaa muokata tiedostoja
-[ ] Osaa käyttää shelliä
-[ ] Osaa tehdä multi-file-muutoksia
-[ ] Osaa jatkaa virheestä
-[ ] Osaa tarkistaa oman työnsä
+```
+[ ] Suunnittelee ennen toimintaa
+[ ] Käyttää työkaluja oikein
+[ ] Lukee ja muokkaa tiedostoja
+[ ] Suorittaa komentoja hallitusti
+[ ] Tekee multi-file-muutoksia
+[ ] Palautuu virheistä
+[ ] Verifioi oman työnsä
 ```
 
 ### Luotettavuus
 
-```text
-[ ] Sama testi onnistuu toistuvasti
+```
+[ ] Toistettavat tulokset
 [ ] Ei jää silmukkaan
-[ ] Ei tee tarpeettomia muutoksia
+[ ] Ei tee turhia muutoksia
 [ ] Ei keksi tiedostojen sisältöjä
-[ ] Ei väitä tehneensä muutoksia, joita ei tehnyt
-[ ] Tarkistaa omat muutoksensa
+[ ] Ei väitä tehneensä muutoksia joita ei tehnyt
 ```
 
 ---
 
-## Seuraavaksi
+## Claude Code + OpenRouter + LLM — kokonaisuus
 
-- [Vertailu ja suositukset](vertailu.md) — käytännön testausohje ja mallien pisteytys
-- [Johdanto OpenRouteriin](../openrouter/johdanto.md) — OpenRouterin perusteet
-- [API-avaimet ja ilmaiskäyttö](../openrouter/api-avaimet.md) — API-avaimen luominen ja käyttörajojen hallinta
+```mermaid
+flowchart TD
+    subgraph CC["CLAUDE CODE"]
+        direction TB
+        A1["Agenttiharness"]
+        A2["Tools (read/edit/bash)"]
+        A3["Project analysis"]
+        A4["Planning & verification"]
+    end
+
+    subgraph OR["OPENROUTER"]
+        direction TB
+        B1["Model routing"]
+        B2["Provider selection"]
+    end
+
+    subgraph LLM["LLM"]
+        direction TB
+        C1["Reasoning"]
+        C2["Coding"]
+        C3["Tool calling"]
+        C4["Context handling"]
+    end
+
+    CC --> OR
+    OR --> LLM
+```
+
+

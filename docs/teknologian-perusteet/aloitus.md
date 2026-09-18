@@ -1,10 +1,4 @@
-# Teknologian perusteet: Aloittelijalle
-
-!!! info "Kenelle tämä osio on kirjoitettu?"
-    Tämä osio on tarkoitettu sinulle, joka teet kurssia ensimmäistä kertaa
-    ja haluat ymmärtää keskeiset perusteet ennen syvemmälle teknologiaan siirtymistä.
-
-## Mikä on tekoälyavusteinen koodaus?
+# Mitä on tekoälyavusteinen koodaus?
 
 Kuvitellaan, että sinulla on erittäin älykäs ohjelmoijaystävä. Tämä ystävä voi:
 

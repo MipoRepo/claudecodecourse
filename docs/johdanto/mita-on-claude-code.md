@@ -1,6 +1,4 @@
-# Johdanto Claude Codeen
-
-## 1.1 Mikä Claude Code on?
+# 1. Mikä Claude Code on?
 
 Claude Code on **CLI-pohjainen kehitysympäristö**, jossa kielimalli toimii kuin ohjelmistokehittäjä suoraan päätelaitteessasi (terminal). Se ei ole vain perinteinen tekstipohjainen "chatbot", vaan autonominen agentti, joka kykenee toimimaan suoraan projektisi koodikannassa.
 
