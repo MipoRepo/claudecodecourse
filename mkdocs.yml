@@ -62,9 +62,10 @@ nav:
         - Mitä on tekoäly?: teknologian-perusteet/mita-on-tekoaly.md
         - Mitä LLM‑mallit ovat?: teknologian-perusteet/mita-on-llm-mallit.md
         - LLM:n tekninen ja matemaattinen pohja: teknologian-perusteet/matemaattinen-perusta.md
+        - Uusi työnjako: teknologian-perusteet/uusi-tyonjako.md
       - Tekoälyavusteinen ohjelmointi:
         - Mitä on tekoälyavusteinen koodaus?: teknologian-perusteet/aloitus.md
-        - Claude Coden ja viisi mekanismia: teknologian-perusteet/edistyneelle.md
+        - Claude Code ja viisi mekanismia: teknologian-perusteet/edistyneelle.md
       - LLM-mallin valinta:
         - Mallin valinta Claude Codessa: llm-mallin-valinta/claude-codessa.md
         - Vertailu ja suositukset: llm-mallin-valinta/vertailu.md

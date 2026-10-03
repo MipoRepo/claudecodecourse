@@ -22,7 +22,7 @@ Tavoitteena on saada enemmän automaatiota ilman, että turvallisuus, jäljitett
 |-----|--------|
 | **Teknologian perusteet** | Lyhyt johdanto tekoälyyn, agenttiseen kehitykseen niin aloittelijalle että edistyneemmälle käyttäjälle |
 | **Opas: luvut 1–13** | Claude Code opiskelumeteriaalit |
-| **Liitteet A–D** | Komennot, lähteet ja käytännön esimerkit |
+| **Liitteet A–D** | Komennot, esimerkkiprojektin rakenne, lähteet ja käytännön esimerkit|
 | **Harjoitukset** | 35 itsenäistä harjoitusta ratkaisuilla |
 
 ## Aloita tästä
