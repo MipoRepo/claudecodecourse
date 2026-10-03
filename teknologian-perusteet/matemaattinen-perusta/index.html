@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Pieni käytäntön opas Claude Code -agenttikehitysympäristöstä (suomeksi)">
+        <meta name="description" content="Opas Claude Code -agenttikehitysympäristöstä (suomeksi)">
       
       
         <meta name="author" content="Mikko Pohjola">
       
       
-        <link rel="canonical" href="https://miporepo.github.io/claudecodecourse/johdanto/permission-engine/">
+        <link rel="canonical" href="https://miporepo.github.io/claudecodecourse/teknologian-perusteet/matemaattinen-perusta/">
       
       
-        <link rel="prev" href="../mielenmalli/">
+        <link rel="prev" href="../mita-on-llm-mallit/">
       
       
-        <link rel="next" href="../../teknologian-perusteet/aloitus/">
+        <link rel="next" href="../uusi-tyonjako/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Permission engine - Claude Code Course</title>
+        <title>LLM:n tekninen ja matemaattinen pohja - Claude Code Handbook</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#14-permission-engine-lupa-moottori" class="md-skip">
+        <a href="#miten-llm-toimii-teknisesti" class="md-skip">
           Skip to content
         </a>
       
@@ -98,10 +98,9 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Claude Code Course" class="md-header__button md-logo" aria-label="Claude Code Course" data-md-component="logo">
+    <a href="../.." title="Claude Code Handbook" class="md-header__button md-logo" aria-label="Claude Code Handbook" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="../../assets/diagrams/images/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -112,13 +111,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Claude Code Course
+            Claude Code Handbook
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Permission engine
+              LLM:n tekninen ja matemaattinen pohja
             
           </span>
         </div>
@@ -242,13 +241,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../mita-on-claude-code/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../johdanto/mita-on-claude-code/" class="md-tabs__link">
           
   
   
@@ -256,6 +253,40 @@
 
         </a>
       </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../mita-on-tekoaly/" class="md-tabs__link">
+          
+  
+  
+  Teknologian perusteet
+
+        </a>
+      </li>
+    
+  
+
     
   
 
@@ -272,7 +303,7 @@
           
   
   
-  Kurssi
+  Opas
 
         </a>
       </li>
@@ -328,13 +359,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Claude Code Course" class="md-nav__button md-logo" aria-label="Claude Code Course" data-md-component="logo">
+    <a href="../.." title="Claude Code Handbook" class="md-nav__button md-logo" aria-label="Claude Code Handbook" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="../../assets/diagrams/images/logo.png" alt="logo">
 
     </a>
-    Claude Code Course
+    Claude Code Handbook
   </label>
   
     <div class="md-nav__source">
@@ -382,6 +412,93 @@
       
   
   
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Johdanto
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Johdanto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../johdanto/mita-on-claude-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mikä on Claude Code?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -403,17 +520,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
   <span class="md-ellipsis">
     
   
-    Johdanto
+    Teknologian perusteet
   
 
     
@@ -424,12 +541,69 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Johdanto
+    Teknologian perusteet
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tekoäly
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tekoäly
   
 
           </label>
@@ -442,14 +616,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../mita-on-claude-code/" class="md-nav__link">
+      <a href="../mita-on-tekoaly/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Mitä on Claude Code?
+    Mitä on tekoäly?
   
 
     
@@ -470,42 +644,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../terminologia/" class="md-nav__link">
+      <a href="../mita-on-llm-mallit/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Terminologia
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../mielenmalli/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    LLM malli
+    Mitä LLM‑mallit ovat?
   
 
     
@@ -542,7 +688,7 @@
   <span class="md-ellipsis">
     
   
-    Permission engine
+    LLM:n tekninen ja matemaattinen pohja
   
 
     
@@ -560,7 +706,7 @@
   <span class="md-ellipsis">
     
   
-    Permission engine
+    LLM:n tekninen ja matemaattinen pohja
   
 
     
@@ -586,22 +732,44 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#14-permission-engine-lupamoottori" class="md-nav__link">
+  <a href="#1-tokenointi-teksti-muutetaan-numeroiksi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.4 Permission Engine (Lupa‑moottori)
+        1. Tokenointi — teksti muutetaan numeroiksi
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1.4 Permission Engine (Lupa‑moottori)">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-embedding-tila-tokenit-muutetaan-vektoreiksi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Embedding-tila — tokenit muutetaan vektoreiksi
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-transformer-arkkitehtuuri-attention-mekanismi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Transformer-arkkitehtuuri — Attention-mekanismi
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Transformer-arkkitehtuuri — Attention-mekanismi">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#kerrosmallinen-lupajarjestelma" class="md-nav__link">
+  <a href="#mita-matriisit-q-k-ja-v-tarkoittavat" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kerrosmallinen lupajärjestelmä
+        Mitä matriisit Q, K ja V tarkoittavat?
       
     </span>
   </a>
@@ -609,21 +777,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#tarkea-periaate-jarjestys-ratkaisee" class="md-nav__link">
+  <a href="#miten-kaava-toimii-vaihe-vaiheelta" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tärkeä periaate: järjestys ratkaisee
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vertauskuva-aloittelijalle" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Vertauskuva aloittelijalle
+        Miten kaava toimii vaihe vaiheelta?
       
     </span>
   </a>
@@ -636,10 +793,88 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#paatospuu" class="md-nav__link">
+  <a href="#4-mallin-kerrokset-vektorien-muokkausta" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Päätöspuu
+        4. Mallin kerrokset — vektorien muokkausta
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Mallin kerrokset — vektorien muokkausta">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kerroksen-matemaattinen-rakenne" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kerroksen matemaattinen rakenne
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mita-kerroksen-sisalla-tapahtuu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mitä kerroksen sisällä tapahtuu?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#informaation-abstraktiotason-kasvu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Informaation abstraktiotason kasvu
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-todennakoisyysjakauma-mika-token-tulee-seuraavaksi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Todennäköisyysjakauma — mikä token tulee seuraavaksi?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Todennäköisyysjakauma — mikä token tulee seuraavaksi?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#esimerkki-seuraavan-sanan-valinta-syvien-kerrosten-perusteella" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Esimerkki: Seuraavan sanan valinta syvien kerrosten perusteella
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-sampling-miten-token-valitaan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Sampling — miten token valitaan?
       
     </span>
   </a>
@@ -647,10 +882,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#permission-moodit" class="md-nav__link">
+  <a href="#7-koko-prosessi-tiivistettyna" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Permission moodit
+        7. Koko prosessi tiivistettynä
       
     </span>
   </a>
@@ -658,24 +893,30 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#esimerkkipaatospuu" class="md-nav__link">
+  <a href="#8-miksi-tama-on-tarkeaa-claude-codessa" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Esimerkkipäätöspuu
+        8. Miksi tämä on tärkeää Claude Codessa?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Miksi tämä on tärkeää Claude Codessa?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ennustettavuuden-ja-turvallisuuden-hallinta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ennustettavuuden ja turvallisuuden hallinta
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#seuraavaksi" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Seuraavaksi
-      
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -694,98 +935,15 @@
   
   
   
-    
-    
-    
-    
-      
-      
-        
-          
-          
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
-        
-          
-          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Teknologian perusteet
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_5">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Teknologian perusteet
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
-      <a href="../../teknologian-perusteet/aloitus/" class="md-nav__link">
+      <a href="../uusi-tyonjako/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Aloittelijalle
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../teknologian-perusteet/edistyneelle/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Edistyneelle
+    Uusi työnjako
   
 
     
@@ -830,17 +988,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
         
           
-          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="">
             
   
   
   <span class="md-ellipsis">
     
   
-    OpenRouter
+    Tekoälyavusteinen ohjelmointi
   
 
     
@@ -851,12 +1009,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_6">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
             <span class="md-nav__icon md-icon"></span>
             
   
-    OpenRouter
+    Tekoälyavusteinen ohjelmointi
   
 
           </label>
@@ -869,14 +1027,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../openrouter/johdanto/" class="md-nav__link">
+      <a href="../aloitus/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Johdanto OpenRouteriin
+    Mitä on tekoälyavusteinen koodaus?
   
 
     
@@ -897,14 +1055,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../openrouter/api-avaimet/" class="md-nav__link">
+      <a href="../edistyneelle/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    API-avaimet ja ilmaiskäyttö
+    Claude Code ja viisi mekanismia
   
 
     
@@ -949,10 +1107,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
         
           
-          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
             
   
   
@@ -970,8 +1128,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1045,6 +1203,125 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenRouter
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    OpenRouter
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../openrouter/johdanto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Johdanto OpenRouteriin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../openrouter/api-avaimet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API-avaimet ja ilmaiskäyttö
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1072,17 +1349,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    Kurssi
+    Opas
   
 
     
@@ -1093,12 +1370,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Kurssi
+    Opas
   
 
           </label>
@@ -1119,6 +1396,34 @@
     
   
     Arkkitehtuuri
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../permission-engine/permission-engine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permission Engine
   
 
     
@@ -1460,10 +1765,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_13" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_14" >
         
           
-          <label class="md-nav__link" for="__nav_3_13" id="__nav_3_13_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_14" id="__nav_4_14_label" tabindex="0">
             
   
   
@@ -1481,8 +1786,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_13_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_13">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_14">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1639,10 +1944,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   
@@ -1660,8 +1965,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2713,22 +3018,44 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#14-permission-engine-lupamoottori" class="md-nav__link">
+  <a href="#1-tokenointi-teksti-muutetaan-numeroiksi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.4 Permission Engine (Lupa‑moottori)
+        1. Tokenointi — teksti muutetaan numeroiksi
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1.4 Permission Engine (Lupa‑moottori)">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-embedding-tila-tokenit-muutetaan-vektoreiksi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Embedding-tila — tokenit muutetaan vektoreiksi
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-transformer-arkkitehtuuri-attention-mekanismi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Transformer-arkkitehtuuri — Attention-mekanismi
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Transformer-arkkitehtuuri — Attention-mekanismi">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#kerrosmallinen-lupajarjestelma" class="md-nav__link">
+  <a href="#mita-matriisit-q-k-ja-v-tarkoittavat" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kerrosmallinen lupajärjestelmä
+        Mitä matriisit Q, K ja V tarkoittavat?
       
     </span>
   </a>
@@ -2736,21 +3063,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#tarkea-periaate-jarjestys-ratkaisee" class="md-nav__link">
+  <a href="#miten-kaava-toimii-vaihe-vaiheelta" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tärkeä periaate: järjestys ratkaisee
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vertauskuva-aloittelijalle" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Vertauskuva aloittelijalle
+        Miten kaava toimii vaihe vaiheelta?
       
     </span>
   </a>
@@ -2763,10 +3079,88 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#paatospuu" class="md-nav__link">
+  <a href="#4-mallin-kerrokset-vektorien-muokkausta" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Päätöspuu
+        4. Mallin kerrokset — vektorien muokkausta
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Mallin kerrokset — vektorien muokkausta">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kerroksen-matemaattinen-rakenne" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kerroksen matemaattinen rakenne
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mita-kerroksen-sisalla-tapahtuu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mitä kerroksen sisällä tapahtuu?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#informaation-abstraktiotason-kasvu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Informaation abstraktiotason kasvu
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-todennakoisyysjakauma-mika-token-tulee-seuraavaksi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Todennäköisyysjakauma — mikä token tulee seuraavaksi?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Todennäköisyysjakauma — mikä token tulee seuraavaksi?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#esimerkki-seuraavan-sanan-valinta-syvien-kerrosten-perusteella" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Esimerkki: Seuraavan sanan valinta syvien kerrosten perusteella
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-sampling-miten-token-valitaan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Sampling — miten token valitaan?
       
     </span>
   </a>
@@ -2774,10 +3168,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#permission-moodit" class="md-nav__link">
+  <a href="#7-koko-prosessi-tiivistettyna" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Permission moodit
+        7. Koko prosessi tiivistettynä
       
     </span>
   </a>
@@ -2785,24 +3179,30 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#esimerkkipaatospuu" class="md-nav__link">
+  <a href="#8-miksi-tama-on-tarkeaa-claude-codessa" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Esimerkkipäätöspuu
+        8. Miksi tämä on tärkeää Claude Codessa?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Miksi tämä on tärkeää Claude Codessa?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ennustettavuuden-ja-turvallisuuden-hallinta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ennustettavuuden ja turvallisuuden hallinta
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#seuraavaksi" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Seuraavaksi
-      
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2826,151 +3226,320 @@
   
 
 
-<h1 id="14-permission-engine-lupa-moottori">1.4 Permission Engine (Lupa-moottori)<a class="headerlink" href="#14-permission-engine-lupa-moottori" title="Permanent link">&para;</a></h1>
-<h3 id="14-permission-engine-lupamoottori">1.4 Permission Engine (Lupa‑moottori)<a class="headerlink" href="#14-permission-engine-lupamoottori" title="Permanent link">&para;</a></h3>
-<h4 id="kerrosmallinen-lupajarjestelma">Kerrosmallinen lupajärjestelmä<a class="headerlink" href="#kerrosmallinen-lupajarjestelma" title="Permanent link">&para;</a></h4>
-<p>Claude käyttää kerrosmallista lupajärjestelmää, jossa jokainen pyyntö (esim. tiedoston luku, API‑kutsu, komentojen suoritus) arvioidaan <strong>kolmessa vaiheessa</strong> selkeässä järjestyksessä:</p>
-<ol>
-<li><strong>deny (estä)</strong>  </li>
-<li>Ensimmäisenä tarkistetaan, onko olemassa sääntö, joka <strong>nimenomaisesti kieltää</strong> toiminnon.  </li>
-<li>Jos jokin sääntö sanoo “tätä ei saa tehdä”, pyyntö <strong>pysäytetään heti</strong>.  </li>
-<li>
-<p>Deny‑säännöt ovat vahvimpia: ne voittavat kaikki myöhemmät “ask”‑ ja “allow”‑säännöt.</p>
-</li>
-<li>
-<p><strong>ask (kysy)</strong>  </p>
-</li>
-<li>Jos mitään suoraa kieltoa ei ole, tarkistetaan, onko toiminto sellainen, että siitä pitää <strong>kysyä erikseen lupa</strong>.  </li>
-<li>Tällöin järjestelmä ei tee mitään automaattisesti, vaan pyytää käyttäjältä tai konfiguraatiolta vahvistuksen:  <ul>
-<li>esim. “Sallitaanko pääsy tähän kansioon?”  </li>
-</ul>
-</li>
-<li>
-<p>Ask‑kerros on kuin “varmistusvaihe”: se ei kiellä, mutta ei myöskään salli ilman tietoista päätöstä.</p>
-</li>
-<li>
-<p><strong>allow (salli)</strong>  </p>
-</li>
-<li>Jos pyyntöä ei ole kielletty (deny) eikä siitä tarvitse kysyä erikseen (ask), se siirtyy <strong>allow‑kerrokseen</strong>.  </li>
-<li>Täällä tarkistetaan, onko toiminto <strong>sallittu oletuksena</strong> tai jonkin positiivisen säännön perusteella.  </li>
-<li>Jos mikään ei estä eikä vaadi lisäkysymystä, toiminto <strong>hyväksytään ja suoritetaan</strong>.</li>
-</ol>
-<h4 id="tarkea-periaate-jarjestys-ratkaisee">Tärkeä periaate: järjestys ratkaisee<a class="headerlink" href="#tarkea-periaate-jarjestys-ratkaisee" title="Permanent link">&para;</a></h4>
-<ul>
-<li><strong>Ensin etsitään kieltoja (deny)</strong> → jos löytyy, peli päättyy siihen.  </li>
-<li><strong>Vasta sitten kysytään (ask)</strong> → jos sääntö vaatii vahvistusta, toiminto riippuu vastauksesta.  </li>
-<li><strong>Lopuksi sallitaan (allow)</strong> → jos mikään ei estä eikä vaadi kysymistä, toiminto menee läpi.</li>
-</ul>
-<p>Tämä kerrosmalli varmistaa, että:
-- vaaralliset tai ei‑toivotut toiminnot pysäytetään heti (deny),
-- epäselvissä tilanteissa käyttäjältä kysytään (ask),
-- turvalliset ja arkiset toiminnot voivat tapahtua sujuvasti (allow).</p>
+<h1 id="miten-llm-toimii-teknisesti">Miten LLM toimii teknisesti?<a class="headerlink" href="#miten-llm-toimii-teknisesti" title="Permanent link">&para;</a></h1>
+<p>Suuri kielimalli (LLM) ei "ymmärrä" tekstiä ihmisen tavoin. Sen toiminta perustuu matemaattiseen optimointiin, vektorilaskentaan ja todennäköisyysjakaumiin. </p>
+<p>Alla on tekninen, mutta aloittelijalle suunnattu läpikäynti siitä, mitä mallin sisällä tapahtuu. Tavoitteena ei ole opetella jokaista kaavaa ulkoa, vaan luoda selkeä ajatus ja intuitio siitä matemaattisesta konseptista, jolla teksti muuttuu numeroidun avaruuden kautta järkevältä kuullostavaksi kieleksi.</p>
 <hr />
-<h4 id="vertauskuva-aloittelijalle">Vertauskuva aloittelijalle<a class="headerlink" href="#vertauskuva-aloittelijalle" title="Permanent link">&para;</a></h4>
-<p>Ajattele Permission Engineä kuin <strong>kerrostettua ovijärjestelmää toimistossa</strong>:</p>
+<h2 id="1-tokenointi-teksti-muutetaan-numeroiksi">1. Tokenointi — teksti muutetaan numeroiksi<a class="headerlink" href="#1-tokenointi-teksti-muutetaan-numeroiksi" title="Permanent link">&para;</a></h2>
+<p>LLM ei käsittele sanoja, vaan <strong>tokeneita</strong>. Tokeni voi olla:</p>
 <ul>
-<li>
-<p><strong>Deny‑kerros = turvamies ovella</strong><br />
-  Jos turvamies näkee, että sinulla ei ole kulkulupaa tai olet väärässä paikassa, hän sanoo heti:  </p>
-<blockquote>
-<p>“Et voi mennä sisään.”<br />
-  Edes esimies ei voi ohittaa tätä ilman, että sääntöjä muutetaan.</p>
-</blockquote>
-</li>
-<li>
-<p><strong>Ask‑kerros = vastaanotto / info</strong><br />
-  Jos turvamies ei estä sinua, mutta olet menossa huoneeseen, johon pääsyä ei ole merkitty selvästi, vastaanotto kysyy:  </p>
-<blockquote>
-<p>“Onko sinulla lupa mennä tähän neuvotteluhuoneeseen?”<br />
-  Vasta kun joku vahvistaa, sinut päästetään sisään.</p>
-</blockquote>
-</li>
-<li>
-<p><strong>Allow‑kerros = avoin toimistotila</strong><br />
-  Kun olet alueella, johon sinulla on kulkulupa, voit liikkua vapaasti:  </p>
-<blockquote>
-<p>“Tähän avotilaan voit tulla ilman erillistä lupaa.”  </p>
-</blockquote>
-</li>
+<li>sana  </li>
+<li>sanan osa  </li>
+<li>yksittäinen merkki  </li>
 </ul>
-<p>Claude toimii samalla logiikalla:<br />
-ensin tarkistetaan, <strong>onko tämä kielletty</strong>, sitten <strong>pitääkö tästä kysyä</strong>, ja vasta lopuksi <strong>sallitaanko tämä automaattisesti</strong>.</p>
-<h2 id="paatospuu">Päätöspuu<a class="headerlink" href="#paatospuu" title="Permanent link">&para;</a></h2>
-<pre><code class="language-mermaid">flowchart TD
-    A[Tool call] --&gt; B{Hook?}
-    B --&gt;|Estä| C[STOP]
-    B --&gt;|Ei| D{Deny rule?}
-    D --&gt;|Kyllä| C
-    D --&gt;|Ei| E[Permission mode]
-    E --&gt; F{Allow rule?}
-    F --&gt;|Kyllä| G[EXECUTE]
-    F --&gt;|Ei| H[Ask user / callback]
-
-    style C fill:#e74c3c, color:#fff
-    style G fill:#27ae60, color:#fff
-    style H fill:#f39c12, color:#fff
-</code></pre>
-<h2 id="permission-moodit">Permission moodit<a class="headerlink" href="#permission-moodit" title="Permanent link">&para;</a></h2>
+<p>Jokainen tokeni muutetaan <strong>kokonaisluvuksi</strong> (ID).  </p>
+<p>Esimerkiksi:</p>
 <table>
 <thead>
 <tr>
-<th>Moodi</th>
-<th>Kuvaus</th>
-<th>Käyttöesim</th>
+<th>Teksti</th>
+<th>Token</th>
+<th>ID</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>default</code></td>
-<td>Kysyy joka kirjoitustoimenpiteessä</td>
-<td>Normaalikehitys</td>
+<td>"kissa"</td>
+<td>"kis"</td>
+<td>15342</td>
 </tr>
 <tr>
-<td><code>acceptEdits</code></td>
-<td>Hyväksyy tiedostomuutokset automaattisesti</td>
-<td>Nopeampi kirjoittelu</td>
-</tr>
-<tr>
-<td><code>dontAsk</code></td>
-<td>Ei kysy mitään</td>
-<td>Automatisoitu testaus</td>
-</tr>
-<tr>
-<td><code>plan</code></td>
-<td>Rajoittuu vain read-only -työkaluihin</td>
-<td>Alkuanalyysi</td>
-</tr>
-<tr>
-<td><code>bypassPermissions</code></td>
-<td>Kaikki sallittu ilman kyselyä</td>
-<td>Vain CI/testiympäristö</td>
+<td>"kissa"</td>
+<td>"sa"</td>
+<td>981</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition warning">
-<p class="admonition-title">VAROITUS 15</p>
-<p><code>bypassPermissions</code> antaa erittäin laajat oikeudet ja vaatii erityistä varovaisuutta.
-Käytä vain <strong>kontrolloiduissa ympäristöissä</strong>, joissa kaikki operaatiot ovat hyväksyttävissä.</p>
-</div>
-<h2 id="esimerkkipaatospuu">Esimerkkipäätöspuu<a class="headerlink" href="#esimerkkipaatospuu" title="Permanent link">&para;</a></h2>
-<pre><code>Tool call
-  │
-  ├─ Hook?          → Estä? → STOP
-  │
-  ├─ Deny rule?     → Kyllä? → STOP
-  │
-  ├─ Permission mode → tarkista (default / acceptEdits / dontAsk / plan / bypass)
-  │
-  └─ Allow rule?    → Kyllä? → EXECUTE
-                    → Ei? → Interactive approval / callback
-</code></pre>
+<p>Mallin sisällä kaikki teksti on <strong>numeroita</strong>, ei kirjaimia.</p>
 <hr />
-<h2 id="seuraavaksi">Seuraavaksi<a class="headerlink" href="#seuraavaksi" title="Permanent link">&para;</a></h2>
+<h2 id="2-embedding-tila-tokenit-muutetaan-vektoreiksi">2. Embedding-tila — tokenit muutetaan vektoreiksi<a class="headerlink" href="#2-embedding-tila-tokenit-muutetaan-vektoreiksi" title="Permanent link">&para;</a></h2>
+<p>Pelkkä numero-ID (kuten <em>kissa</em> = 1024) ei vielä kerro tietokoneelle mitään sanan merkityksestä tai sen suhteesta muihin sanoihin. Tietokoneelle luvut 1024 ja 1025 ovat vain peräkkäisiä kokonaislukuja, vaikka ne edustaisivat sanoja <em>"kissa"</em> ja <em>"lentokone"</em>.</p>
+<p>Jotta malli voisi ymmärtää sanojen välisiä merkityssuhteita, jokainen token-ID muunnetaan <strong>vektoriksi</strong> (moniulotteiseksi koordinaatiksi): </p>
+<div class="arithmatex">\[v = \text{embedding}(\text{token})\]</div>
+<p>missä <span class="arithmatex">\(v\)</span> on vektori, eli pitkä lista liukulukuja (esim. 1 024, 4 096 tai 12 288 lukua). Tämä vektori sijoittaa sanan moniulotteiseen merkitys- eli vektoriavaruuteen (<span class="arithmatex">\(\mathbb{R}^d\)</span>). </p>
+<p>Vektoriavaruudessa samankaltaisia asioita tarkoittavat sanat (kuten <em>"kissa"</em> ja <em>"koira"</em>) päätyvät lähelle toisiaan, kun taas aivan eri kontekstiin kuuluvat sanat (kuten <em>"auto"</em>) sijoittuvat kauemmas.</p>
+<blockquote>
+<p><strong>Käsitepankki: Embedding (Vektorointi)</strong></p>
 <ul>
-<li><a href="../../arkkitehtuuri/arkkitehtuuri/">Luku 1: Arkkitehtuuri</a></li>
+<li><strong>Embedding-vektori:</strong> Numeerinen esitysmuoto, joka koodaa sanan perusmerkityksen koordinaateiksi moniulotteiseen avaruuteen.</li>
+<li><strong>Avaruuden dimensio (<span class="arithmatex">\(d\)</span>):</strong> Vektorin pituus (esim. 4 096 lukua), joka määrittää, kuinka monta eri merkitysominaisuutta malli voi kerralla koodata yhteen sanaan.</li>
+<li><strong>Kosini-similaarisuus:</strong> Matemaattinen mittari, jolla arvioidaan kahden vektorin välistä kulmaa eli sanojen merkityksellistä läheisyyttä.</li>
+</ul>
+</blockquote>
+<p>Esimerkiksi:</p>
+<ul>
+<li>"kissa" → [0.12, −0.44, 0.91, …]  </li>
+<li>"koira" → [0.10, −0.40, 0.88, …]</li>
+</ul>
+<p>Jos kaksi vektoria ovat lähellä toisiaan, sanat ovat <strong>merkitykseltään lähellä</strong>. Embedding‑tila on siis <strong>matemaattinen kartta</strong>, jossa merkitykset ovat pisteitä.</p>
+<div class="md-hero">
+  <img src="../../assets/diagrams/images/embedding-avaruus-token-vektori.png"
+       alt="Embedding-tila: tokenit vektoreiksi">
+</div>
+
+<h2 id="3-transformer-arkkitehtuuri-attention-mekanismi">3. Transformer-arkkitehtuuri — Attention-mekanismi<a class="headerlink" href="#3-transformer-arkkitehtuuri-attention-mekanismi" title="Permanent link">&para;</a></h2>
+<p>Pelkät embedding-vektorit kertovat sanojen yleisen perusmerkityksen, mutta ne eivät vielä ota huomioon lauseen kontekstia. Esimerkiksi sana <em>"kissa"</em> tarkoittaa eri asiaa lauseessa <em>"Kissa istuu matolla"</em> kuin lauseessa <em>"Kissa nostettiin nosturilla"</em>.</p>
+<p>Transformerin ydin on <strong>Attention-mekanismi</strong> (huomiomekanismi), joka mahdollistaa sanojen välisen vuorovaikutuksen. Se laskee, <strong>kuinka paljon huomiota kunkin sanan tulee kiinnittää tekstin muihin sanoihin</strong> luodakseen tilanteeseen sopivan kontekstivektorin.</p>
+<p>Attention perustuu matriisilaskentaan:</p>
+<div class="arithmatex">\[\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V\]</div>
+<hr />
+<h3 id="mita-matriisit-q-k-ja-v-tarkoittavat">Mitä matriisit Q, K ja V tarkoittavat?<a class="headerlink" href="#mita-matriisit-q-k-ja-v-tarkoittavat" title="Permanent link">&para;</a></h3>
+<p>Attention-mekanismissa jokaisesta syötevektorista muodostetaan kolme eri roolia edustavaa matriisia lineaarimuunnoksilla (painokerroimilla):</p>
+<ul>
+<li><strong>Q (Query / Kysely):</strong> Määrittelee, mitä tietoa nykyinen sana <strong>etsii</strong> muilta sanoilta (esim. <em>"Koira"</em> etsii tekijää tai toimintaa).</li>
+<li><strong>K (Key / Avain):</strong> Määrittelee, mitä tietoa sana <strong>tarjoaa</strong> muille sanoille (esim. <em>"Auto"</em> tarjoaa kategoriaa 'kulkuneuvo' ja <em>"pihaan"</em> tarjoaa paikkaa).</li>
+<li><strong>V (Value / Arvo):</strong> Sisältää sanan <strong>varsinaisen sisällön/informaation</strong>, joka siirretään muille sanoille, jos kysely ja avain täsmäävät.</li>
 </ul>
 <hr />
-<p><em>Lähde: [S2] Features Overview, [S10] Permissions</em></p>
+<h3 id="miten-kaava-toimii-vaihe-vaiheelta">Miten kaava toimii vaihe vaiheelta?<a class="headerlink" href="#miten-kaava-toimii-vaihe-vaiheelta" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Pistetulo (<span class="arithmatex">\(QK^T\)</span>):</strong> Lasketaan yhtensopivuus eli "osuma" Queryn ja Keyn välillä. Mitä suurempi pistetulo, sitä enemmän sanojen merkitykset liittyvät toisiinsa (esim. <em>koira</em> <span class="arithmatex">\(\rightarrow\)</span> <em>haukkuu</em> saa suuren arvon).</li>
+<li><strong>Skaalaus (<span class="arithmatex">\(\sqrt{d_k}\)</span>):</strong> Tulos jaetaan avaimen dimension neliöjuurella (<span class="arithmatex">\(d_k\)</span>). Tämä estää arvojen kasvattamisen liian suuriksi syvissä verkoissa ja pitää laskennan numeerisesti stabiilina.</li>
+<li><strong>Softmax:</strong> Muuntaa pistetulokset todennäköisyyksiksi (0–1 eli 0–100 %), joiden summa on aina 1. Tämä muodostaa varsinaisen <strong>attention-painojakauman</strong>.</li>
+<li><strong>Painotettu summa (<span class="arithmatex">\(\cdot V\)</span>):</strong> Saadut painokertoimet kerrotaan Value-matriisilla (<span class="arithmatex">\(V\)</span>). Lopputuloksena saadaan uusi vektori, joka yhdistää sanan oman merkityksen ja kontekstin muista sanoista.</li>
+</ol>
+<blockquote>
+<p><strong>Käsitepankki: Attention-mekanismi</strong></p>
+<ul>
+<li><strong>Self-Attention (Itsehuomio):</strong> Mekanismi, jossa sarjan jokainen sana vertaa itseään samanaikaisesti kaikkiin muihin saman sarjan sanoihin.</li>
+<li><strong>Query, Key, Value (Q, K, V):</strong> Hakukonevertaus: <em>Query</em> on hakusana, <em>Key</em> on hakutuloksen otsikko/avainsana ja <em>Value</em> on sivun varsinainen sisältö.</li>
+<li><strong>Skaalattu piste-attensio:</strong> Laskentatapa, jossa yhteensopivuus lasketaan piste tulolla ja tasataan jakamalla vektorin pituuden neliöjuurella.</li>
+</ul>
+</blockquote>
+<h2 id="4-mallin-kerrokset-vektorien-muokkausta">4. Mallin kerrokset — vektorien muokkausta<a class="headerlink" href="#4-mallin-kerrokset-vektorien-muokkausta" title="Permanent link">&para;</a></h2>
+<p>Transformer-mallissa on kymmeniä tai jopa satoja <strong>kerroksia</strong>. Jokaisen kerroksen tehtävänä on ottaa vastaan edellisen kerroksen tuottamat vektorit ja rikastaa niiden sisältämää informaatiota matemaattisilla muunnoksilla.</p>
+<p>Vektorit eivät siis pysy samoina läpi verkon, vaan niiden arvot (koordinaatit numeroavaruudessa) muuttuvat kerros kerrokselta.</p>
+<blockquote>
+<p><strong>Käsitepankki: Peruskäsitteet</strong></p>
+<ul>
+<li><strong>Vektori (<span class="arithmatex">\(\vec{h}\)</span>):</strong> Pitkä lista numeroita (esim. 4096 liukulukua), joka edustaa tiettyä tekstitokenia eli sanaa tai sen osaa.</li>
+<li><strong>Representaatio:</strong> Vektorin numeerinen sisältö ja sen edustama "merkitys" tietyssä kerroksessa.</li>
+<li><strong>Attention (Itsehuomio):</strong> Mekanismi, joka laskee vektorien välisiä suhteita ja siirtää toisiinsa liittyviä vektoreita lähemmäs toisiaan numeroavaruudessa.</li>
+</ul>
+</blockquote>
+<hr />
+<h3 id="kerroksen-matemaattinen-rakenne">Kerroksen matemaattinen rakenne<a class="headerlink" href="#kerroksen-matemaattinen-rakenne" title="Permanent link">&para;</a></h3>
+<p>Jokainen Transformer-kerros suorittaa sarjan täsmällisiä matemaattisia operaatioita. Yksinkertaistettuna yhden kerroksen laskenta esitetään 
+yhtälöllä: <strong>$<span class="arithmatex">\(\vec{h}_{i+1} = f(\text{Attention}(\vec{h}_i)) + g(\vec{h}_i)\)</span>$</strong></p>
+<p><strong>Yhtälön osat:</strong>
+* <span class="arithmatex">\(\vec{h}_i\)</span> = Kerroksen <span class="arithmatex">\(i\)</span> <strong>syötevektori</strong> (edellisen kerroksen lopputulos).
+* <span class="arithmatex">\(\text{Attention}(\vec{h}_i)\)</span> = <strong>Huomiomekanismi</strong>, joka suhteuttaa syötevektorin kaikkiin muihin lauseen vektoreihin.
+* <span class="arithmatex">\(f(\dots)\)</span> = <strong>Feed-forward-verkko</strong> (FFN), joka tekee vektorille pistekohtaisia lineaarisia ja ei-lineaarisia muunnoksia.
+* <span class="arithmatex">\(g(\vec{h}_i)\)</span> = <strong>Residual-yhteys</strong> (skip-connection), joka tuo alkuperäisen syötteen sellaisenaan laskun lopputulokseen.
+* <span class="arithmatex">\(\vec{h}_{i+1}\)</span> = Kerroksen <strong>tulostevektori</strong>, joka siirtyy seuraavalle kerrokselle <span class="arithmatex">\(i+1\)</span>.</p>
+<hr />
+<h3 id="mita-kerroksen-sisalla-tapahtuu">Mitä kerroksen sisällä tapahtuu?<a class="headerlink" href="#mita-kerroksen-sisalla-tapahtuu" title="Permanent link">&para;</a></h3>
+<p>Yksittäisessä kerroksessa suoritetaan järjestyksessä seuraavat vaiheet:</p>
+<ol>
+<li><strong>Attention (Huomio):</strong> Vektorit suhteutetaan toisiinsa. Attention laskee, kuinka paljon kukin token vaikuttaa muihin tokeneihin ja seuraavan sanan ennustamiseen.</li>
+<li><strong>Normalisointi:</strong> Laskennan numeeriset arvot vakautetaan, jotta verkon oppiminen pysyy tasaisena eikä numeroarvojen suuruus karkaa hallinnasta.</li>
+<li><strong>Lineaariset muunnokset &amp; Ei-lineaariset aktivaatiot (<span class="arithmatex">\(f\)</span>):</strong> Vektoreille tehdään matriisituloja (lineaarisuus) ja niihin sovelletaan aktivaatiofunktioita (epälineaarisuus), jotta malli kykenee oppimaan monimutkaisia, ei-suoraviivaisia riippuvuuksia.</li>
+<li><strong>Residual-yhteys (<span class="arithmatex">\(g\)</span>):</strong> Osa edellisen kerroksen alkuperäisestä tiedosta yhdistetään suoraan uuteen tulokseen (<span class="arithmatex">\(+ g(\vec{h}_i)\)</span>). Tämä estää alkuperäisen tiedon "unohtumisen" syvissä verkoissa.</li>
+</ol>
+<blockquote>
+<p><strong>Käsitepankki: Laskentavaiheet</strong></p>
+<ul>
+<li><strong>Feed-forward-verkko (<span class="arithmatex">\(f\)</span>):</strong> Tiheä neuroverkkokerros, joka käsittelee jokaisen vektorin yksitellen ja poimii siitä syvempiä piirteitä.</li>
+<li><strong>Ei-lineaarinen aktivaatiofunktio:</strong> Matemaattinen funktio (esim. GELU tai ReLU), joka mahdollistaa monimutkaisten syy-seuraussuhteiden mallintamisen pelkän suoran kertoimen sijaan.</li>
+<li><strong>Residual-yhteys (<span class="arithmatex">\(g\)</span>):</strong> "Oikopolku", joka lisää kerroksen syötteen sellaisenaan kerroksen tulokseen. Se takaa, että tieto virtaa vääristymättä satojen kerrosten läpi.</li>
+</ul>
+</blockquote>
+<hr />
+<h3 id="informaation-abstraktiotason-kasvu">Informaation abstraktiotason kasvu<a class="headerlink" href="#informaation-abstraktiotason-kasvu" title="Permanent link">&para;</a></h3>
+<p>Verkon alussa vektorit edustavat vain yksittäisiä sanamuotoja. Mitä syvemmälle verkossa edetään, sitä enemmän vektoripisteet ryhmittyvät ja niiden sisältämä tieto muuttuu abstraktimmaksi:</p>
+<div class="arithmatex">\[\text{yksittäiset sanat} \longrightarrow \text{syntaktiset rakenteet} \longrightarrow \text{lausekonteksti} \longrightarrow \text{kokonaislogiikka}\]</div>
+<p>Malli ei siis "aja ajatuksiaan" tai käsittele tietoa tekstinä, vaan se muokkaa vektoreiden koordinaatteja siten, että esimerkiksi kerroksella 40 jokainen vektori kantaa mukanaan koko tekstikontekstin ja syy-seuraussuhteet.</p>
+<pre class="mermaid"><code>flowchart TB
+    subgraph L0["1. Kerros 0: Syötevektorit (h₀)"]
+        direction TB
+        subgraph R1["Lause 1"]
+            direction LR
+            A1["1: kissa"] -.- A2["2: istuu"] -.- A3["3: matolla"]
+        end
+        subgraph R2["Lause 2"]
+            direction LR
+            A4["4: koira"] -.- A5["5: haukkuu"] -.- A6["6: sohvalla"]
+        end
+        subgraph R3["Lause 3"]
+            direction LR
+            A7["7: auto"] -.- A8["8: ajaa"] -.- A9["9: pihaan"]
+        end
+        R1 ~~~ R2 ~~~ R3
+    end
+
+    L0 ==&gt; Step["&lt;b&gt;Mitä tapahtuu jokaisessa kerroksessa? (hᵢ → hᵢ₊₁)&lt;/b&gt;&lt;br/&gt;1. Attention suhteuttaa vektorit toisiinsa&lt;br/&gt;2. Feed-Forward (f) muuntaa vektoria&lt;br/&gt;3. Residual-yhteys (g) säilyttää vanhaa tietoa"]
+
+    Step ==&gt; L40
+
+    subgraph L40["2. Kerros 40: Abstraktit vektoriryppäät (h₄₀)"]
+        direction TB
+
+        subgraph BigCluster["LEMMIKIT JA SISÄTILA (Samankaltaiset vektorit)"]
+            direction LR
+            subgraph Sub1["Kissa-alue"]
+                C1["• kissa&lt;br/&gt;• istuu&lt;br/&gt;• matolla"]
+            end
+            subgraph Sub2["Koira-alue"]
+                C2["• koira&lt;br/&gt;• haukkuu&lt;br/&gt;• sohvalla"]
+            end
+            Sub1 ---|Lähellä toisiaan| Sub2
+        end
+
+        subgraph FarCluster["KULKUNEUVO JA ULKOILMA"]
+            C3["• auto&lt;br/&gt;• ajaa&lt;br/&gt;• pihaan"]
+        end
+
+        BigCluster -.-|Kaukana toisistaan| FarCluster
+    end</code></pre>
+<hr />
+<h2 id="5-todennakoisyysjakauma-mika-token-tulee-seuraavaksi">5. Todennäköisyysjakauma — mikä token tulee seuraavaksi?<a class="headerlink" href="#5-todennakoisyysjakauma-mika-token-tulee-seuraavaksi" title="Permanent link">&para;</a></h2>
+<p>Kun kerrokset ovat käsitelleet kontekstin, malli tuottaa <strong>todennäköisyysjakauman</strong> kaikista mahdollisista tokeneista:</p>
+<div class="arithmatex">\[
+P(token_i \mid \text{context}) = \text{softmax}(W\vec{h})
+\]</div>
+<h3 id="esimerkki-seuraavan-sanan-valinta-syvien-kerrosten-perusteella">Esimerkki: Seuraavan sanan valinta syvien kerrosten perusteella<a class="headerlink" href="#esimerkki-seuraavan-sanan-valinta-syvien-kerrosten-perusteella" title="Permanent link">&para;</a></h3>
+<p>Kun kerroksella 40 vektorit ovat ryhmittyneet ja koko tekstikonteksti (<em>kissa istuu matolla</em>, <em>koira on sohvalla</em> ja <em>auto ajaa pihaan</em>) on yhdistetty, malli laskee todennäköisyydet seuraavalle tokenille:</p>
+<table>
+<thead>
+<tr>
+<th>Token (seuraava sana)</th>
+<th>Todennäköisyys</th>
+<th>Selitys</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"haukkuu"</td>
+<td><strong>0.58</strong></td>
+<td>Koira reagoi pihaan ajavaan autoon</td>
+</tr>
+<tr>
+<td>"juoksee"</td>
+<td><strong>0.24</strong></td>
+<td>Aktiivinen reaktio ulkotapahtumaan</td>
+</tr>
+<tr>
+<td>"nukkuu"</td>
+<td><strong>0.05</strong></td>
+<td>Epätodennäköinen, koska auto saapui pihaan</td>
+</tr>
+<tr>
+<td>"ajaa"</td>
+<td><strong>0.01</strong></td>
+<td>Ei sovi koiran toiminnaksi tässä kontekstissa</td>
+</tr>
+</tbody>
+</table>
+<p>Malli ei tee tietoisia päätöksiä, vaan laskee satojen kerrosten avulla kaikille tuntemilleen sanoille todennäköisyydet.
+Sanan valinta tapahtuu poimimalla yksi token tästä lasketusta jakaumasta onnenpyörän tavoin (näytteenotto).</p>
+<hr />
+<h2 id="6-sampling-miten-token-valitaan">6. Sampling — miten token valitaan?<a class="headerlink" href="#6-sampling-miten-token-valitaan" title="Permanent link">&para;</a></h2>
+<p>Kun malli on laskenut todennäköisyydet jokaiselle sanalle, varsinainen poiminta tehdään <strong>sampling-menetelmällä</strong>. Se määrittää, kuinka tiukasti noudatetaan suurinta todennäköisyyttä ja kuinka paljon satunnaisuudelle annetaan tilaa:</p>
+<p><strong>Greedy (Ahne valinta):</strong> Järjestelmä valitsee aina kaikkein todennäköisimmän tokenin. Tulos on täysin deterministinen (sama syöte tuottaa aina täsmälleen saman vastauksen), mutta teksti voi muuttua toistavaksi tai tylsäksi.</p>
+<p><strong>Top-p (Nucleus sampling):</strong> Järjestelmä ryhmittelee todennäköisimmät sanat paremmuusjärjestykseen ja leikkaa hännän pois kun tietty raja (p) täyttyy. Token poimitaan satunnaisesti tämän laadukkaan kärkijoukon sisältä, mikä lisää luonnollista vaihtelua.</p>
+<p><strong>Temperature (Lämpötila):</strong> Parametri, joka skaalaa todennäköisyysjakaumaa ennen poimintaa:
+  * <strong>Matala temperature (esim. 0.2):</strong> Terävöittää eroja. Korkean todennäköisyyden sanat saavat entistä suuremman painoarvon <span class="arithmatex">\(\rightarrow\)</span> varma, looginen ja konservatiivinen teksti.
+  * <strong>Korkea temperature (esim. 0.8):</strong> Tasoittaa eroja. Pienemmän todennäköisyyden sanat saavat suuremman mahdollisuuden toteutua <span class="arithmatex">\(\rightarrow\)</span> luova, yllättävä tai jopa satunnainen teksti.</p>
+<blockquote>
+<p><strong>Käsitepankki: Näytteenottomenetelmät (Sampling)</strong></p>
+<ul>
+<li><strong>Sampling (Näytteenotto):</strong> Tapa, jolla järjestelmä poimii seuraavan tokenin lasketusta todennäköisyysjakaumasta (painotettu satunnaisuus).</li>
+<li><strong>Temperature (Lämpötila):</strong> Parametri, joka muokkaa todennäköisyysjakauman muotoa ennen poimintaa (tasoittaa tai terävöittää eroja).</li>
+<li><strong>Top-p (Nucleus sampling):</strong> Menetelmä, joka rajaa poiminnan vain niihin sanoihin, joiden yhteistodennäköisyys saavuttaa tietyn kynnyksen (esim. parhaat 90 %).</li>
+</ul>
+</blockquote>
+<hr />
+<h2 id="7-koko-prosessi-tiivistettyna">7. Koko prosessi tiivistettynä<a class="headerlink" href="#7-koko-prosessi-tiivistettyna" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart TD
+    %% Tyylimäärittelyt
+    classDef inputStyle fill:#e1f5fe,stroke:#0288d1,stroke-width:2px,color:#01579b;
+    classDef processStyle fill:#f3e5f5,stroke:#8e24aa,stroke-width:2px,color:#4a148c;
+    classDef mathStyle fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#e65100;
+    classDef outputStyle fill:#e8f5e9,stroke:#388e3c,stroke-width:2px,color:#1b5e20;
+    classDef loopStyle fill:#fce4ec,stroke:#d81b60,stroke-width:2px,color:#880e4f;
+
+    subgraph InputStage["1. Syötteen käsittely"]
+        A["Teksti&lt;br/&gt;&lt;b&gt;&lt;/b&gt; 'Kissa istuu matolla, koira...'"]:::inputStyle --&gt; B["Tokenit&lt;br/&gt;[102, 405, 891, 103...]"]:::inputStyle
+        B --&gt; C["Vektorit&lt;br/&gt;[0.12, -0.85, 0.43...]"]:::inputStyle
+    end
+
+    subgraph LayerStage["2. Kerrokset &amp; Vektoriavaruus"]
+        C --&gt; D["Attention suhteuttaa&lt;br/&gt; Koira liittyy autoon ja pihaan"]:::processStyle
+        D --&gt; E["Kerrokset muokkaavat vektoreita&lt;br/&gt; Lemmikki- ja piha-klusterit"]:::processStyle
+    end
+
+    subgraph OutputStage["3. Ennustus &amp; Näytteenotto"]
+        E --&gt; F["Malli tuottaa todennäköisyysjakauman&lt;br/&gt; 'haukkuu': 58 %, 'juoksee': 24 %"]:::mathStyle
+        F --&gt; G["Valitaan / poimitaan seuraava token&lt;br/&gt; Poimitaan 'haukkuu'"]:::outputStyle
+    end
+
+    subgraph LoopStage["4. Autoregressiivinen silmukka"]
+        G --&gt; H{"Onko teksti valmis?"}:::loopStyle
+        H -- "Ei" --&gt; I["Lisätään token syötteeseen&lt;br/&gt; '...koira haukkuu'"]:::loopStyle
+        I -.-&gt; A
+        H -- "Kyllä" --&gt; J["Valmis vastaus"]:::outputStyle
+    end</code></pre>
+<p><strong>LLM ei siis “ymmärrä” tekstiä — se optimoi vektoreita ja laskee todennäköisyyksiä</strong>.</p>
+<hr />
+<h2 id="8-miksi-tama-on-tarkeaa-claude-codessa">8. Miksi tämä on tärkeää Claude Codessa?<a class="headerlink" href="#8-miksi-tama-on-tarkeaa-claude-codessa" title="Permanent link">&para;</a></h2>
+<p>Claude Code suorittaa monimutkaisia ohjelmistokehityksen tehtäviä automaattisesti:</p>
+<ul>
+<li><strong>Lukee projektin tiedostoja</strong> ja hahmottaa koodikantaa</li>
+<li><strong>Analysoi kontekstia</strong> ja tunnistaa riippuvuuksia</li>
+<li><strong>Tekee suunnitelmia</strong> arkkitehtuurimuutoksille</li>
+<li><strong>Valitsee työkaluja</strong> (kuten <code>bash</code>, <code>git</code> tai tiedostoeditori)</li>
+<li><strong>Tuottaa koodia</strong> ja kirjoittaa uusia toiminnallisuuksia</li>
+<li><strong>Korjaa virheitä</strong> ajo- ja testiaikaisten logien perusteella</li>
+</ul>
+<p>Koska koko tämä ketju perustuu <strong>LLM:n matemaattiseen ennustamiseen ja todennäköisyyspohjaiseen näytteenottoon — ei tietoiseen harkintaan tai inhimilliseen päättelyyn</strong> — järjestelmän ympärille tarvitaan tiukat suojamekanismit. </p>
+<p>Malli ei "tiedä" tekevänsä virhettä tai ajavansa vaarallista komentoa, vaan se poimii seuraavan toiminnon todennäköisyysjakaumasta kontekstin perusteella.</p>
+<hr />
+<h3 id="ennustettavuuden-ja-turvallisuuden-hallinta">Ennustettavuuden ja turvallisuuden hallinta<a class="headerlink" href="#ennustettavuuden-ja-turvallisuuden-hallinta" title="Permanent link">&para;</a></h3>
+<p>Jotta todennäköisyyksiin pohjaava järjestelmä pysyy turvallisena ja hallittavana tuotantoympäristössä, käytetään seuraavia rakenneratkaisuja:</p>
+<table>
+<thead>
+<tr>
+<th>Mekanismi</th>
+<th>Tehtävä ja merkitys</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Determinismi (<em>Hooks &amp; Permissions</em>)</strong></td>
+<td>Ennustamattoman näytteenoton rajoittaminen. Varmistetaan kriittisten komentojen ajaminen aina vahvistuksen tai kiinteiden sääntöjen kautta.</td>
+</tr>
+<tr>
+<td><strong>Eristys (<em>Sub-agents</em>)</strong></td>
+<td>Monimutkaisten tehtävien jakaminen erillisiin alakokoonpanoihin, jotta yksittäisen harha-ennusteen vaikutusalue jää mahdollisimman pieneksi.</td>
+</tr>
+<tr>
+<td><strong>Rajatut oikeudet</strong></td>
+<td>Minimoidaan vahinkopotentiaali (vastaavasti kuin tekoälyn näytteenoton rajat eli <em>Top-p</em> rajataan). Kielletään pääsy järjestelmän kriittisiin osiin ilman eksplisiittistä lupaa.</td>
+</tr>
+<tr>
+<td><strong>Kontekstin hallinta</strong></td>
+<td>Ennustelaadun ylläpito. Siivotaan irrelevantti tieto syötteestä, jotta Attention-mekanismi ei kiinnitä huomiota väärään tietoon ja nosta virheellisten ratkaisujen todennäköisyyksiä.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Käsitepankki: Autonomisten LLM-agenttien turvallisuus</strong></p>
+<ul>
+<li><strong>Deterministinen hakanen (Hook):</strong> Ulkopuolinen koodisääntö, joka tarkistaa ja pysäyttää mallin ehdottaman toiminnon ennen sen suorittamista.</li>
+<li><strong>Konteksti-ikkunan puhdistus:</strong> Tarpeettoman historian karsiminen, jolla estetään mallin ajautuminen "hallusinaatiokierteeseen" pitkissä koodaussessioissa.</li>
+<li><strong>Sub-agentit:</strong> Erikoistuneet LLM-instanssit, joilla on vain tietty osatehtävä ja tiukasti rajatut lukuoikeudet.</li>
+</ul>
+</blockquote>
 
 
 
@@ -3036,6 +3605,10 @@ Käytä vain <strong>kontrolloiduissa ympäristöissä</strong>, joissa kaikki o
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../js/extra.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

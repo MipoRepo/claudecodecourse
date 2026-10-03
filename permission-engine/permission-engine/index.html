@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Pieni käytäntön opas Claude Code -agenttikehitysympäristöstä (suomeksi)">
+        <meta name="description" content="Opas Claude Code -agenttikehitysympäristöstä (suomeksi)">
       
       
         <meta name="author" content="Mikko Pohjola">
       
       
-        <link rel="canonical" href="https://miporepo.github.io/claudecodecourse/johdanto/mielenmalli/">
+        <link rel="canonical" href="https://miporepo.github.io/claudecodecourse/permission-engine/permission-engine/">
       
       
-        <link rel="prev" href="../terminologia/">
+        <link rel="prev" href="../../arkkitehtuuri/arkkitehtuuri/">
       
       
-        <link rel="next" href="../permission-engine/">
+        <link rel="next" href="../../sub-agents/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>LLM malli - Claude Code Course</title>
+        <title>Permission Engine - Claude Code Handbook</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#13-claude-coden-mielenmalli" class="md-skip">
+        <a href="#2-permission-engine-lupa-moottori" class="md-skip">
           Skip to content
         </a>
       
@@ -98,10 +98,9 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Claude Code Course" class="md-header__button md-logo" aria-label="Claude Code Course" data-md-component="logo">
+    <a href="../.." title="Claude Code Handbook" class="md-header__button md-logo" aria-label="Claude Code Handbook" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="../../assets/diagrams/images/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -112,13 +111,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Claude Code Course
+            Claude Code Handbook
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              LLM malli
+              Permission Engine
             
           </span>
         </div>
@@ -242,13 +241,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../mita-on-claude-code/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../johdanto/mita-on-claude-code/" class="md-tabs__link">
           
   
   
@@ -267,12 +264,44 @@
   
     
     
+      
+  
+  
+  
+  
+    
+    
       <li class="md-tabs__item">
+        <a href="../../teknologian-perusteet/mita-on-tekoaly/" class="md-tabs__link">
+          
+  
+  
+  Teknologian perusteet
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../../arkkitehtuuri/arkkitehtuuri/" class="md-tabs__link">
           
   
   
-  Kurssi
+  Opas
 
         </a>
       </li>
@@ -328,13 +357,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Claude Code Course" class="md-nav__button md-logo" aria-label="Claude Code Course" data-md-component="logo">
+    <a href="../.." title="Claude Code Handbook" class="md-nav__button md-logo" aria-label="Claude Code Handbook" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="../../assets/diagrams/images/logo.png" alt="logo">
 
     </a>
-    Claude Code Course
+    Claude Code Handbook
   </label>
   
     <div class="md-nav__source">
@@ -382,31 +410,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   
@@ -424,7 +447,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -442,14 +465,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../mita-on-claude-code/" class="md-nav__link">
+      <a href="../../johdanto/mita-on-claude-code/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Mitä on Claude Code?
+    Mikä on Claude Code?
   
 
     
@@ -463,197 +486,37 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../terminologia/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Terminologia
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    LLM malli
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    LLM malli
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#arkkitehtuurinakyma" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Arkkitehtuurinäkymä
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tarkein-periaate" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tärkein periaate
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#selitys" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Selitys
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
+          </ul>
+        </nav>
       
     </li>
   
 
-              
-            
-              
-                
+    
+      
+      
   
   
   
   
-    <li class="md-nav__item">
-      <a href="../permission-engine/" class="md-nav__link">
+    
+    
+    
+    
+      
+      
         
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Permission engine
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
       
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
       
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
-        
-          
-          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
@@ -671,12 +534,236 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
   
     Teknologian perusteet
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tekoäly
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tekoäly
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teknologian-perusteet/mita-on-tekoaly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mitä on tekoäly?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teknologian-perusteet/mita-on-llm-mallit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mitä LLM‑mallit ovat?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teknologian-perusteet/matemaattinen-perusta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM:n tekninen ja matemaattinen pohja
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teknologian-perusteet/uusi-tyonjako/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Uusi työnjako
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tekoälyavusteinen ohjelmointi
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tekoälyavusteinen ohjelmointi
   
 
           </label>
@@ -696,7 +783,7 @@
   <span class="md-ellipsis">
     
   
-    Aloittelijalle
+    Mitä on tekoälyavusteinen koodaus?
   
 
     
@@ -724,7 +811,7 @@
   <span class="md-ellipsis">
     
   
-    Edistyneelle
+    Claude Code ja viisi mekanismia
   
 
     
@@ -759,139 +846,17 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
         
           
-          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    OpenRouter
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_6">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    OpenRouter
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../openrouter/johdanto/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Johdanto OpenRouteriin
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../openrouter/api-avaimet/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    API-avaimet ja ilmaiskäyttö
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-          
-          
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
-        
-          
-          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
             
   
   
@@ -909,8 +874,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -984,15 +949,8 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
+              
+                
   
   
   
@@ -1011,17 +969,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    Kurssi
+    OpenRouter
   
 
     
@@ -1032,12 +990,140 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Kurssi
+    OpenRouter
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../openrouter/johdanto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Johdanto OpenRouteriin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../openrouter/api-avaimet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API-avaimet ja ilmaiskäyttö
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Opas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Opas
   
 
           </label>
@@ -1066,6 +1152,153 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permission Engine
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permission Engine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#21-johdanto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Johdanto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-kerrosmallinen-lupajarjestelma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Kerrosmallinen lupajärjestelmä
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Kerrosmallinen lupajärjestelmä">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-deny-esta-ylin-prioriteetti" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Deny (Estä) — Ylin prioriteetti
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-ask-kysy-varmistusvaihe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Ask (Kysy) — Varmistusvaihe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-allow-salli-automaattinen-suoritus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Allow (Salli) — Automaattinen suoritus
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-vertauskuva-aloittelijalle-kolmitasoinen-kulkuoikeus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Vertauskuva aloittelijalle: Kolmitasoinen kulkuoikeus
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1392,17 +1625,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_13" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_14" >
         
           
-          <label class="md-nav__link" for="__nav_3_13" id="__nav_3_13_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_14" id="__nav_4_14_label" tabindex="">
             
   
   
@@ -1420,8 +1656,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_13_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_13">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_14">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1578,10 +1814,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   
@@ -1599,8 +1835,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2652,10 +2888,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#arkkitehtuurinakyma" class="md-nav__link">
+  <a href="#21-johdanto" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Arkkitehtuurinäkymä
+        2.1 Johdanto
       
     </span>
   </a>
@@ -2663,21 +2899,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tarkein-periaate" class="md-nav__link">
+  <a href="#22-kerrosmallinen-lupajarjestelma" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tärkein periaate
+        2.2 Kerrosmallinen lupajärjestelmä
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Kerrosmallinen lupajärjestelmä">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-deny-esta-ylin-prioriteetti" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Deny (Estä) — Ylin prioriteetti
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#selitys" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#2-ask-kysy-varmistusvaihe" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Selitys
+        2. Ask (Kysy) — Varmistusvaihe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-allow-salli-automaattinen-suoritus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Allow (Salli) — Automaattinen suoritus
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-vertauskuva-aloittelijalle-kolmitasoinen-kulkuoikeus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Vertauskuva aloittelijalle: Kolmitasoinen kulkuoikeus
       
     </span>
   </a>
@@ -2704,78 +2979,162 @@
   
 
 
-<h1 id="13-claude-coden-mielenmalli">1.3 Claude Coden mielenmalli<a class="headerlink" href="#13-claude-coden-mielenmalli" title="Permanent link">&para;</a></h1>
-<h2 id="arkkitehtuurinakyma">Arkkitehtuurinäkymä<a class="headerlink" href="#arkkitehtuurinakyma" title="Permanent link">&para;</a></h2>
-<p>Käyttäjä antaa <strong>promptin tai tehtävän</strong>. Tämä kulkee:</p>
+<h1 id="2-permission-engine-lupa-moottori">2. Permission Engine (Lupa-moottori)<a class="headerlink" href="#2-permission-engine-lupa-moottori" title="Permanent link">&para;</a></h1>
+<h2 id="21-johdanto">2.1 Johdanto<a class="headerlink" href="#21-johdanto" title="Permanent link">&para;</a></h2>
+<p>Claude Coden <strong>Permission Engine</strong> on kerroksinen lupajärjestelmä, joka määrittää, mitä toimintoja agentti saa suorittaa projektissa. </p>
+<p>Jokainen agentin ehdottama toiminto — kuten tiedoston luku, koodin kirjoitus, Bash-komennon suoritus tai MCP-kutsu — kulkee aina <strong>kolmen peräkkäisen kerroksen</strong> läpi tässä ehdottomassa järjestyksessä:</p>
 <ol>
-<li><strong>CLAUDE.md + säännöt</strong> → projekti- ja käyttäjäkonteksti</li>
-<li><strong>Skills</strong> → toistettavat työprosessit</li>
-<li><strong>Sub-agents</strong> → erillinen konteksti ja erikoistunut rooli</li>
-<li><strong>Hooks</strong> → deterministiset tarkistukset tapahtumiin</li>
-<li><strong>MCP</strong> → ulkoiset työkalut ja tietolähteet</li>
-<li><strong>Worktrees</strong> → fyysisesti eristetyt työskentelypuut</li>
+<li><strong>Deny (Estä):</strong> Estetään toiminto välittömästi ilman käyttäjältä kysymistä.</li>
+<li><strong>Ask (Kysy):</strong> Pysäytetään suoritus ja pyydetään käyttäjältä eksplisiittinen hyväksyntä.</li>
+<li><strong>Allow (Salli):</strong> Sallitaan toiminnon suoritus automaattisesti.</li>
 </ol>
-<pre><code class="language-mermaid">graph TD
-    A[Käyttäjä] --&gt; B[prompt / tehtävä]
-    B --&gt; C[Claude Code - pääsessio]
-
-    C --&gt; D[CLAUDE.md + säännöt]
-    C --&gt; E[Skills]
-    C --&gt; F[Sub-agents]
-    C --&gt; G[Hooks]
-    C --&gt; H[MCP - ulkoiset työkalut]
-    C --&gt; I[Worktrees - erilliset checkoutit]
-
-    style C fill:#3498db, color:#fff
-    style D fill:#e74c3c, color:#fff
-    style E fill:#9b59b6, color:#fff
-    style F fill:#f39c12, color:#fff
-    style G fill:#27ae60, color:#fff
-    style H fill:#1abc9c, color:#fff
-    style I fill:#e67e22, color:#fff
-</code></pre>
-<h2 id="tarkein-periaate">Tärkein periaate<a class="headerlink" href="#tarkein-periaate" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p><strong>Kielimalli tekee päätöksiä todennäköisyysperusteisesti, mutta hookit, permissionsäännöt, Git ja CI voivat tehdä kriittisistä kohdista deterministisiä.</strong></p>
-</blockquote>
-<p>Claude Code toimii parhaiten, kun nämä vastuut <strong>erotellaan</strong> toisistaan.</p>
-<h2 id="selitys">Selitys<a class="headerlink" href="#selitys" title="Permanent link">&para;</a></h2>
+<hr />
+<h2 id="22-kerrosmallinen-lupajarjestelma">2.2 Kerrosmallinen lupajärjestelmä<a class="headerlink" href="#22-kerrosmallinen-lupajarjestelma" title="Permanent link">&para;</a></h2>
+<p>Tarkistusjärjestys <code>Deny → Ask → Allow</code> takaa <strong>deterministisen turvallisuuden</strong>: vaaralliset toiminnot pysäytetään välittömästi, epäselvissä tilanteissa siirretään päätös ihmiselle ja ennalta turvalliset rutiinit etenevät sujuvasti.</p>
+<h3 id="1-deny-esta-ylin-prioriteetti">1. Deny (Estä) — Ylin prioriteetti<a class="headerlink" href="#1-deny-esta-ylin-prioriteetti" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Tarkistetaan ensimmäisenä, onko toiminto määritelty <strong>kielletyksi</strong>.</li>
+<li>Jos kielto löytyy, pyyntö pysäytetään välittömästi.</li>
+<li><em>Deny</em>-säännöt ovat ehdottomia: ne voittavat aina <em>Ask</em>- ja <em>Allow</em>-säännöt.</li>
+</ul>
+<h3 id="2-ask-kysy-varmistusvaihe">2. Ask (Kysy) — Varmistusvaihe<a class="headerlink" href="#2-ask-kysy-varmistusvaihe" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Jos suoraa kieltoa ei ole, tarkistetaan, vaatiiko toiminto <strong>ihmisen vahvistuksen</strong>.</li>
+<li>Agentti ei suorita komentoa automaattisesti, vaan näyttää käyttäjälle vahvistuspyynnön.</li>
+<li>Tämä estää hallitsemattomat tai odottamattomat sivuvaikutukset.</li>
+</ul>
+<h3 id="3-allow-salli-automaattinen-suoritus">3. Allow (Salli) — Automaattinen suoritus<a class="headerlink" href="#3-allow-salli-automaattinen-suoritus" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Jos pyyntöä ei ole kielletty eikä se vaadi erillistä vahvistusta, se siirtyy <em>Allow</em>-kerrokseen.</li>
+<li>Toiminto hyväksytään ja suoritetaan taustalla ilman keskeytyksiä.</li>
+</ul>
+<hr />
+<h2 id="23-vertauskuva-aloittelijalle-kolmitasoinen-kulkuoikeus">2.3 Vertauskuva aloittelijalle: Kolmitasoinen kulkuoikeus<a class="headerlink" href="#23-vertauskuva-aloittelijalle-kolmitasoinen-kulkuoikeus" title="Permanent link">&para;</a></h2>
+<p>Ajattele Permission Engineä kuin <strong>kolmitasoista turvatarkastusta toimistossa</strong>:</p>
+<ul>
+<li><strong>Deny = Turvamies ovella:</strong><br />
+  Jos sinulla on porttikielto tai kulkulupasi puuttuu, sinut käännytetään heti takaisin. Et pääse pidemmälle, vaikka sinulla olisi kutsu.</li>
+<li><strong>Ask = Vastaanotto:</strong><br />
+  Jos alueelle menolle ei ole suoraa estettä, mutta kyseessä on vierailijakohde, vastaanotto soittaa isännälle ja kysyy luvan ennen pääsyä.</li>
+<li><strong>Allow = Avoin toimistotila:</strong><br />
+  Kun olet ohittanut turvamiehen ja saanut tarvittaessa luvan vastaanotosta, voit liikkua sallitulla alueella vapaasti.</li>
+</ul>
+<p>Claude Code toimii täsmälleen samalla logiikalla: se tarkistaa aina ensin <strong>"onko tämä kielletty?"</strong>, sitten <strong>"pitääkö tästä kysyä?"</strong>, ja vasta lopuksi <strong>"suoritetaanko tämä automaattisesti?"</strong>.</p>
+<hr />
 <table>
 <thead>
 <tr>
-<th>Mekanismi</th>
-<th>Miksi se on tärkeä?</th>
+<th>Käytännön esimerkki: Miten lupa-moottori käsittelee eri komentoja</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>CLAUDE.md</strong></td>
-<td>Tarjoaa <strong>pysyvän</strong> kontekstin</td>
+<td><strong>Määritellyt säännöt:</strong><br><em> </em><em>Deny (Estä):</em><em> <code>rm -rf *</code> ja <code>.env</code>-tiedostojen muokkaus<br></em> <strong>Allow (Salli):</strong> <code>npm test</code> ja <code>src/</code>-kansion lukeminen<br><em> </em><em>Oletus:</em><em> Kaikki muut toiminnot vaativat vahvistuksen (</em><em>Ask</em>*).</td>
 </tr>
 <tr>
-<td><strong>Skills</strong></td>
-<td>Automatisoi <strong>toistuvat työt</strong></td>
+<td><strong>Tapaus 1: Vaarallinen komento (<code>rm -rf build</code>)</strong><br><br>1. <strong>Deny:</strong> Täsmää kiellettyyn komentokaavaan <code>rm -rf *</code>.<br>2. <strong>Tulos:</strong> <strong>Pysäytetty välittömästi.</strong> Komentoa ei ajeta, eikä käyttäjältä kysytä. Agentti saa ilmoituksen, että toiminto on kielletty.</td>
 </tr>
 <tr>
-<td><strong>Sub-agents</strong></td>
-<td>Jaa työ eri <strong>konteksteihin</strong></td>
+<td><strong>Tapaus 2: Rutiininomainen automaattitesti (<code>npm test</code>)</strong><br><br>1. <strong>Deny:</strong> Ei kieltoa.<br>2. <strong>Ask:</strong> Ei vaadi erillistä kysymystä.<br>3. <strong>Allow:</strong> Täsmää sallittujen komentojen listaan.<br>4. <strong>Tulos:</strong> <strong>Suoritetaan automaattisesti.</strong> Testit ajetaan taustalla keskeyttämättä kehittäjän työvuoa.</td>
 </tr>
 <tr>
-<td><strong>Hooks</strong></td>
-<td>Tarjoaa <strong>determinististä</strong> tarkistusta</td>
+<td><strong>Tapaus 3: Uuden kirjaston asennus (<code>npm install lodash</code>)</strong><br><br>1. <strong>Deny:</strong> Ei kieltoa.<br>2. <strong>Ask:</strong> Komennolle ei ole suoraa automaattilupaa, joten se pysähtyy tähän kerrokseen.<br>3. <strong>Tulos:</strong> <strong>Kysytään käyttäjältä.</strong> Päätteelle ilmestyy vahvistuspyyntö:<br></td>
 </tr>
 <tr>
-<td><strong>MCP</strong></td>
-<td>Avaa <strong>ulkoiset tiedot</strong></td>
-</tr>
-<tr>
-<td><strong>Worktrees</strong></td>
-<td>Erottaa <strong>fyysisesti</strong> koodit</td>
+<td><strong><em>Claude Code wants to run: npm install lodash <br> [Allow once] [Allow for session] [Deny]<br></em></strong></td>
 </tr>
 </tbody>
 </table>
 <hr />
-<p><em>Lähde: [S2] Features Overview</em></p>
+<h1 id="kaytannon-esimerkki-cicd-putken-korjaaminen-ja-turvallisuus">Käytännön esimerkki: CI/CD-putken korjaaminen ja turvallisuus<a class="headerlink" href="#kaytannon-esimerkki-cicd-putken-korjaaminen-ja-turvallisuus" title="Permanent link">&para;</a></h1>
+<h2 id="1-projektin-lupasaannot-claudesettingsjson">1. Projektin lupasäännöt (<code>.claude/settings.json</code>)<a class="headerlink" href="#1-projektin-lupasaannot-claudesettingsjson" title="Permanent link">&para;</a></h2>
+<p>Kehitystiimi on määritellyt ohjelmistoprojektin juureen seuraavan konfiguraation:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"deny"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">"Bash(git push*)"</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">"Edit(.env*)"</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"allow"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">"Bash(npm test)"</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">"Bash(npm run lint)"</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">"Read(src/**)"</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Tärkeä huomio: Asetustiedostojen tallennuspaikka ja laajuus</strong></p>
+<p><strong>Käyttäjäkohtainen (Globaali)</strong>
+* <strong>Tallennuspaikka:</strong> Käyttäjän kotihakemisto (<code>~/.claude.json</code>)
+* <strong>Pätevyys:</strong> Kaikissa tietokoneellasi ajettavissa projekteissa.
+* <strong>Git-versiointi:</strong> Ei versioida (henkilökohtainen konekohtainen asetus).</p>
+<p><strong>Projektikohtainen (Tiimi)</strong>
+* <strong>Tallennuspaikka:</strong> Projektin juurihakemisto (<code>.claude/settings.json</code>)
+* <strong>Pätevyys:</strong> Vain kyseisessä koodiprojektissa kaikille tiimin kehittäjille.
+* <strong>Git-versiointi:</strong> Kyllä (tallennetaan Gitiin ja jaetaan tiimin kesken).</p>
+</blockquote>
+<hr />
+<h2 id="2-tilanne-ja-agentin-tehtava">2. Tilanne ja agentin tehtävä<a class="headerlink" href="#2-tilanne-ja-agentin-tehtava" title="Permanent link">&para;</a></h2>
+<p>Kehittäjä antaa Claude Coodelle tehtävän:
+"Korjaa epäonnistuva yksikkötesti ja varmista, että koodi menee läpi linteristä."</p>
+<p>Tämän tehtävän aikana agentti pyytää suorittamaan neljä eri toimintoa.</p>
+<hr />
+<h2 id="3-toimintojen-kasittely-permission-enginessa">3. Toimintojen käsittely Permission Enginessä<a class="headerlink" href="#3-toimintojen-kasittely-permission-enginessa" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Vaihe</th>
+<th>Agentin ehdottama toiminto</th>
+<th>Permission Engining tarkistusketju</th>
+<th>Lopullinen päätös ja seuraus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Koodin lukeminen</td>
+<td>Read(src/utils/calculator.js)</td>
+<td>1. Deny: Ei täsmää kieltoihin.<br>2. Ask: Ei vaadi vahvistusta.<br>3. Allow: Täsmää sääntöön Read(src/**).</td>
+<td>Sallittu automaattisesti<br>Agentti lukee tiedostonsisällön viiveettä.</td>
+</tr>
+<tr>
+<td>2. Testien ajaminen</td>
+<td>Bash(npm test)</td>
+<td>1. Deny: Ei täsmää kieltoihin.<br>2. Ask: Ei vaadi vahvistusta.<br>3. Allow: Täsmää sääntöön Bash(npm test).</td>
+<td>Sallittu automaattisesti<br>Testit ajetaan taustalla ja agentti näkee virheilmoituksen.</td>
+</tr>
+<tr>
+<td>3. Ympäristömuuttujien lukeminen</td>
+<td>Edit(.env.local)</td>
+<td>1. Deny: Täsmää kieltoon Edit(.env*).</td>
+<td>Estetty välittömästi<br>Toiminto pysähtyy eka kerrokseen. Agentti saa virheilmoituksen ja etsii korjauksen muualta.</td>
+</tr>
+<tr>
+<td>4. Muutosten vienti etäpalvelimelle</td>
+<td>Bash(git push origin main)</td>
+<td>1. Deny: Täsmää kieltoon Bash(git push*).</td>
+<td>Estetty välittömästi<br>Agentti ei voi vahingossakaan viestiä koodia tuotantoon.</td>
+</tr>
+<tr>
+<td>5. Uuden korjaustiedoston luonti</td>
+<td>Write(src/utils/calculator.test.js)</td>
+<td>1. Deny: Ei täsmää kieltoihin.<br>2. Ask: Ei automaattilupaa, siirtyy kyselyvaiheeseen.</td>
+<td>Kysytään käyttäjältä<br>Päätteelle ilmestyy vahvistuspyyntö ihmiselle.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-kayttajan-nakema-vahvistuspyynto-vaihe-5">4. Käyttäjän näkemä vahvistuspyyntö (Vaihe 5)<a class="headerlink" href="#4-kayttajan-nakema-vahvistuspyynto-vaihe-5" title="Permanent link">&para;</a></h2>
+<p>Kun toiminto pysähtyy Ask-kerrokseen, kehittäjän päätteelle tulostuu seuraava valikko:</p>
+<div class="highlight"><pre><span></span><code>Claude Code wants to write to a file:
+  File: src/utils/calculator.test.js
+
+Do you want to allow this action?
+  [y] Yes (Allow once)
+  [s] Session (Allow for this session)
+  [n] No (Deny)
+</code></pre></div>
+<p>Jos kehittäjä valitsee y tai s, tiedosto kirjoitetaan ja agentti jatkaa työtään. Jos kehittäjä valitsee n, toiminto estetään ja agentti mukauttaa toimintaansa vastauksen perusteella.</p>
 
 
 
@@ -2841,6 +3200,10 @@
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../js/extra.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

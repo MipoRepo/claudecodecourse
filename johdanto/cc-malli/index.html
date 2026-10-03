@@ -12,7 +12,7 @@
         <meta name="author" content="Mikko Pohjola">
       
       
-        <link rel="canonical" href="https://miporepo.github.io/claudecodecourse/johdanto/terminologia/">
+        <link rel="canonical" href="https://miporepo.github.io/claudecodecourse/johdanto/cc-malli/">
       
       
       
@@ -25,7 +25,7 @@
     
     
       
-        <title>lähteiden merkinnät - Claude Code Handbook</title>
+        <title>1.2 Claude Coden arkkitehtuurimalli - Claude Code Handbook</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lahteiden-merkinnat" class="md-skip">
+        <a href="#12-claude-coden-arkkitehtuurimalli" class="md-skip">
           Skip to content
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              lähteiden merkinnät
+              1.2 Claude Coden arkkitehtuurimalli
             
           </span>
         </div>
@@ -2748,6 +2748,47 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#arkkitehtuurinakyma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arkkitehtuurinäkymä
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarkein-periaate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tärkein periaate
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selitys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Selitys
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2766,130 +2807,90 @@
   
 
 
-<h1 id="lahteiden-merkinnat">lähteiden merkinnät<a class="headerlink" href="#lahteiden-merkinnat" title="Permanent link">&para;</a></h1>
+<h1 id="12-claude-coden-arkkitehtuurimalli">1.2 Claude Coden arkkitehtuurimalli<a class="headerlink" href="#12-claude-coden-arkkitehtuurimalli" title="Permanent link">&para;</a></h1>
+<p>Claude Code ei ole pelkkä komentorivityökalu, vaan <strong>kerroksinen agenttiarkkitehtuuri</strong>, jossa jokainen osa hoitaa oman vastuualueensa. Malli auttaa ymmärtämään, miten Claude Code käsittelee tehtäviä, miten konteksti rakentuu ja miten determinismi ja todennäköisyyspohjainen päättely erotellaan toisistaan.</p>
+<p>Tämä rakenne on tärkeä, koska se mahdollistaa:</p>
+<ul>
+<li>turvallisen ja hallitun automaation  </li>
+<li>selkeän roolijaon eri agenttien välillä  </li>
+<li>projektin sisäisen pysyvän kontekstin  </li>
+<li>ulkoisten työkalujen ja tietolähteiden integroinnin  </li>
+<li>rinnakkaisen kehityksen ilman sotkua  </li>
+</ul>
+<p>Alla oleva malli kuvaa Claude Coden sisäisen toimintalogiikan.</p>
+<hr />
+<h2 id="arkkitehtuurinakyma">Arkkitehtuurinäkymä<a class="headerlink" href="#arkkitehtuurinakyma" title="Permanent link">&para;</a></h2>
+<p>Käyttäjä antaa <strong>promptin tai tehtävän</strong>. Tämä kulkee seuraavan arkkitehtuurin läpi:</p>
+<ol>
+<li>
+<p><strong>CLAUDE.md + säännöt</strong><br />
+   Pysyvä projektikohtainen konteksti, joka määrittää agentin toimintaperiaatteet.</p>
+</li>
+<li>
+<p><strong>Skills</strong><br />
+   Toistettavat, deterministiset työprosessit (esim. refaktorointi, analyysi, auditointi).</p>
+</li>
+<li>
+<p><strong>Sub-agents</strong><br />
+   Erilliset agentit omalla kontekstilla ja roolilla (reviewer, debugger, researcher).</p>
+</li>
+<li>
+<p><strong>Hooks</strong><br />
+   Deterministiset tarkistukset ja automaatiot, jotka suoritetaan tapahtumien yhteydessä.</p>
+</li>
+<li>
+<p><strong>MCP</strong><br />
+   Ulkoiset työkalut ja tietolähteet (API:t, tietokannat, hakutyökalut, integraatiot).</p>
+</li>
+<li>
+<p><strong>Worktrees</strong><br />
+   Fyysisesti eristetyt työskentelypuut, jotka mahdollistavat rinnakkaisen kehityksen.</p>
+</li>
+</ol>
+<hr />
+<h2 id="tarkein-periaate">Tärkein periaate<a class="headerlink" href="#tarkein-periaate" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p><strong>Kielimalli tekee päätöksiä todennäköisyysperusteisesti, mutta hookit, permissionsäännöt, Git ja CI voivat tehdä kriittisistä kohdista deterministisiä.</strong></p>
+</blockquote>
+<p>Claude Code toimii parhaiten, kun nämä vastuut <strong>erotellaan</strong> toisistaan.</p>
+<hr />
+<h2 id="selitys">Selitys<a class="headerlink" href="#selitys" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Merkintä</th>
-<th>Selitys</th>
-<th>Esimerkki</th>
+<th>Mekanismi</th>
+<th>Miksi se on tärkeä?</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>[S1]</code></td>
-<td>Käyttäjän videotranskriptio</td>
-<td>Perusrakenne, esimerkit</td>
+<td><strong>CLAUDE.md</strong></td>
+<td>Tarjoaa <strong>pysyvän</strong> kontekstin ja projektin perussäännöt</td>
 </tr>
 <tr>
-<td><code>[S2]</code></td>
-<td>Features Overview</td>
-<td>Laajennusmalli</td>
+<td><strong>Skills</strong></td>
+<td>Automatisoi <strong>toistuvat työt</strong> deterministisesti</td>
 </tr>
 <tr>
-<td><code>[S3]</code></td>
-<td>Subagents</td>
-<td>Custom sub-agentit</td>
+<td><strong>Sub-agents</strong></td>
+<td>Jaa työn eri <strong>konteksteihin ja rooleihin</strong></td>
 </tr>
 <tr>
-<td><code>[S4]</code></td>
-<td>Checkpointing</td>
-<td><code>/rewind</code></td>
+<td><strong>Hooks</strong></td>
+<td>Tarjoaa <strong>determinististä</strong> tarkistusta ja automaatiota</td>
 </tr>
 <tr>
-<td><code>[S5]</code></td>
-<td>Sessions</td>
-<td><code>--resume</code>, nimeäminen</td>
+<td><strong>MCP</strong></td>
+<td>Avaa pääsyn <strong>ulkoisiin tietoihin ja työkaluihin</strong></td>
 </tr>
 <tr>
-<td><code>[S6]</code></td>
-<td>Parallel agents</td>
-<td>Rinnakkaiset istunnot</td>
-</tr>
-<tr>
-<td><code>[S7]</code></td>
-<td>Configuration</td>
-<td>Asetukset</td>
-</tr>
-<tr>
-<td><code>[S8]</code></td>
-<td>Skills</td>
-<td>Custom commands</td>
-</tr>
-<tr>
-<td><code>[S9]</code></td>
-<td>Quickstart</td>
-<td>Aloittaminen</td>
-</tr>
-<tr>
-<td><code>[S10]</code></td>
-<td>Permissions</td>
-<td>Permission-moodit</td>
-</tr>
-<tr>
-<td><code>[S11]</code></td>
-<td>Hooks reference</td>
-<td>Hook-tapahtumat</td>
-</tr>
-<tr>
-<td><code>[S12]</code></td>
-<td>Hooks guide</td>
-<td>Hook-esimerkit</td>
-</tr>
-<tr>
-<td><code>[S13]</code></td>
-<td>MCP</td>
-<td>MCP-asennus</td>
-</tr>
-<tr>
-<td><code>[S14]</code></td>
-<td>Granola MCP</td>
-<td>Granola-esimerkki</td>
-</tr>
-<tr>
-<td><code>[S15]</code></td>
-<td>MCP specification</td>
-<td>MCP-spesifikaatio</td>
-</tr>
-<tr>
-<td><code>[S16]</code></td>
-<td>MCP server overview</td>
-<td>MCP-serverit</td>
-</tr>
-<tr>
-<td><code>[S17]</code></td>
-<td>MCP tools security</td>
-<td>Työkaluturvallisuus</td>
-</tr>
-<tr>
-<td><code>[S18]</code></td>
-<td>CLI reference</td>
-<td>CLI-viite</td>
-</tr>
-<tr>
-<td><code>[S19]</code></td>
-<td>Worktrees</td>
-<td>Worktree-tuki</td>
-</tr>
-<tr>
-<td><code>[S20]</code></td>
-<td>Plugin/Hook reference</td>
-<td>Viitteet</td>
-</tr>
-<tr>
-<td><code>[S21]</code></td>
-<td>Headless</td>
-<td>Headless-moodi</td>
-</tr>
-<tr>
-<td><code>[S22]</code></td>
-<td>Best Practices</td>
-<td>Parhaat käytännöt</td>
+<td><strong>Worktrees</strong></td>
+<td>Erottaa <strong>fyysisesti</strong> koodin ja mahdollistaa rinnakkaisen työn</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<p><em>Lähde: Esimerkki 01 [S1], [S2]</em></p>
+<p><em>Lähde: [S2] Features Overview</em></p>
 
 
 
