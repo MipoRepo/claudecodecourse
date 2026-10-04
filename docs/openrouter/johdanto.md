@@ -2,9 +2,9 @@
 
 ## Mikä OpenRouter on?
 
-[OpenRouter](https://openrouter.ai/) on palvelu, joka tarjoaa yhden API-rajapinnan useiden eri tekoälymallien käyttämiseen.
+[OpenRouter](https://openrouter.ai/) on palvelu, joka tarjoaa yhden yhtenäisen API-rajapinnan useiden eri tekoälymallien käyttämiseen.
 
-Sen sijaan, että jokaiselle mallipalvelulle tarvitsisi rakentaa erillinen integraatio, OpenRouter toimii välikerroksena:
+Sen sijaan, että jokaiselle mallitarjoajalle (kuten Anthropic, OpenAI tai Google) tarvitsisi rakentaa ja ylläpitää erillistä integraatiota, OpenRouter toimii älykkäänä välikerroksena sovelluksesi ja tekoälymallien välillä.
 
 ```text
 OMA SOVELLUS / AGENTTI / TYÖKALU
@@ -18,7 +18,26 @@ OMA SOVELLUS / AGENTTI / TYÖKALU
      Malli A  Malli B       Malli C
 ```
 
-Tämä mahdollistaa saman API-yhteyden käyttämisen useiden eri mallien kanssa. Mallia voidaan vaihtaa yleensä muuttamalla vain **mallin tunnistetta**.
+Tämä mahdollistaa saman API-yhteyden hyödyntämisen useiden eri mallien kanssa. Käytettävää mallia voidaan vaihtaa joko:
+
+* **muuttamalla vain mallin tunnistetta** (`model: "provider/model-name"`) pyynnön konfiguraatiossa, tai
+* **luomalla ja käyttämällä erillisiä malli- tai sovelluskohtaisia API-avaimia**, joille on asetettu OpenRouterin hallinnassa tiettyjä mallirajoituksia, budjettirajoja tai sovelluskohtaisia tunnisteita.
+
+---
+
+## API-kutsujen seuranta ja ilmaiskäyttö
+
+OpenRouter toimii kaikkien pyyntöjen **keskitettynä valvonta- ja hallintakerroksena**. Se seuraa reaaliaikaisesti kaikkea liikennettä, token-määriä sekä mallikohtaista suorituskykyä.
+
+Ilmaismalleja käytettäessä valvontalogiikassa on kriittinen ero maksullisiin malleihin verrattuna:
+
+* **Maksulliset mallit:** Veloitus perustuu kulutettuihin prompt- ja completion-tokeneihin. Token-kulutus määrittelee käytön hinnan.
+* **Ilmaismallit ($0 / token):** Koska token-pohjaista veloitusta ei ole, **API-kutsujen seuranta toimii käytön kovana viimeisenä rajana**. OpenRouter valvoo tiukasti kutsujen kokonaismäärää:
+  * **RPM (Requests Per Minute):** Kuinka monta kutsua voit lähettää minuutissa.
+  * **RPD (Requests Per Day):** Kuinka monta kutsua voit lähettää vuorokaudessa (esim. 50 tai 1 000 kutsua/vrk tilityypistä riippuen).
+* **Käytön läpinäkyvyys:** Kaikki kutsuhistoriat, kutsutiheydet ja token-määrät tallentuvat OpenRouterin hallintapaneeliin (*Dashboard*). Näet sieltä suoraan, kuinka lähellä vuorokautista kutsu-rajaa agenttisi tai sovelluksesi liikkuu.
+
+Tämä tekee ilmaiskäytöstä täysin turvallista: kun API-kutsujen vuorokautinen raja tulee täyteen, pyynnöt tyssäävät hallitusti virhekoodiin (429 Too Many Requests) ilman pelkoa yllättävistä kuluista tai luvattomasta laskutuksesta.
 
 ---
 
@@ -118,9 +137,7 @@ OpenRouterin työtilassa (**Workspace**) on asetus nimeltä **Default Model**, j
 - mitä mallia sovellukset käyttävät oletuksena  
 - mitä mallia käytetään fallback‑mallina, jos pyydetty malli ei ole saatavilla  
 
-Voit avata työtilan malliasetukset täältä:
-
-[OpenRouter – Workspace Default Routing](https://openrouter.ai/workspaces/default/routing)
+---
 
 ### Miksi ilmaismalli kannattaa asettaa oletusmalliksi?
 
@@ -131,7 +148,4 @@ Jos käytät OpenRouteria sovelluksissa, agenteissa tai CLI‑työkaluissa, on j
 - **agentit ja skriptit pysyvät kustannusturvallisina**
 - **malli on aina saatavilla ilman rajoituksia maksullisten mallien suhteen**
 
-## Seuraavaksi
-
-- [API-avaimet ja ilmaiskäyttö](api-avaimet.md) — ohjeet API-avaimen luomiseen, suojaamiseen ja ilmaismallien käyttöön
-- [LLM-mallin valinta Claude Codessa](../llm-mallin-valinta/claude-codessa.md) — miten valita sopiva malli agenttikäyttöön
+---

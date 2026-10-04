@@ -1,6 +1,10 @@
 # 1. Arkkitehtuuri ja toimintaperiaatteet
 
+Nykyaikainen tekoälyavusteinen ohjelmistokehitys ei perustu yksittäiseen erilliseen työkaluun, vaan modulaariseen järjestelmäarkkitehtuuriin. Tässä luvussa tarkastellaan, miten tekoälymallit, sovellusrajapinnat ja kehitysympäristöt kytkeytyvät toisiinsa hallittavaksi ja turvalliseksi kokonaisuudeksi.
+
 ## 1.1 Kerrosmalli (Layer model)
+
+Jotta tekoälyagenttien toimintaa ja riippuvuuksia voidaan hallita tehokkaasti, ohjelmistoarkkitehtuuri jaetaan selkeisiin vastuualueisiin. Kerrosmalli erottaa toisistaan käyttölittymän, reititys- ja valvontakerroksen sekä taustalla vaikuttavat kielimallit.
 
 ```
 PROJECT REPO
@@ -42,6 +46,38 @@ Claude Code runtime
 
 ## 1.2 Konteksti vs. toimet (Action)
 
+Kielimallipohjaisissa järjestelmissä ja agenttiarkkitehtuureissa on kriittistä erottaa toisistaan **passiivinen tietoisuus** (konteksti) ja **aktiivinen vaikuttaminen** (toimet/action). 
+
+Tekoäly ei tee mitään itsenäisesti reaaliajassa, vaan sen koko toiminta pohjautuu syötteenä annetun kontekstin käsittelyyn ja sen perusteella muodostettuihin suorituspyyntöihin.
+
+---
+
+### Konteksti (Context Window)
+
+Konteksti muodostaa mallin "työmuistin". Se sisältää kaiken sen datan, jonka perusteella malli tekee seuraavan tilastollisen ennustuksensa:
+
+* **Järjestelmäohjeet (System Prompt):** Roolitus, toimintasäännöt ja reunaehdot.
+* **Keskusteluhistoria:** Aiemmat viestit, pyynnöt ja annetut vastaukset.
+* **Luettu koodi ja tiedostot:** Työalueelta ladatut tiedostosisällöt, virhelogit ja rajapintakuvaukset.
+
+---
+
+### Toimet (Action / Tool Use)
+
+Toimet ovat agentin keino vaikuttaa ulkopuoliseen maailmaan eli järjestelmän tilaan. Kielimalli ei suorita koodia tai muokkaa tiedostoja suoraan, vaan se ilmoittaa rakenteisella muodolla (esim. JSON/JSON-schema) aikeensa suorittaa komennon. 
+
+Suorittava sovelluskehys (kuten Claude Code) lukee tämän aikeen ja toteuttaa sen:
+
+* **Tiedostojärjestelmätoiminnot:** Tiedostojen luominen, lukeminen, muokkaaminen ja poistaminen.
+* **Komentorivikomennot (CLI):** Koodin kääntäminen, testien ajaminen tai Git-komennot.
+* **API-kutsut:** Ulkopuolisten palveluiden kyselyt ja datan haku.
+
+---
+
+### Ihminen validoijana
+
+Agenttijärjestelmässä kriittisin rajapinta syntyy kontekstin ja toimen väliin. Ennen kuin mallin ehdottama **toimi (action)** toteutetaan kehitysympäristössä, ihmisen kehittäjän tehtävänä on toimia semanttisena validoijana ja hyväksyä tai hylätä ehdotettu toimenpide.
+
 | Mekanismi | Päätehtävä | Milloin käytetään? | Mitä se ei ole? |
 |-----------|------------|---------------------|----------------|
 | CLAUDE.md | Pysyvä projekti- tai tiimikonteksti | Projekti- tai tiimikohtaiset säännöt, arkkitehtuuri, build/test-ohjeet | Ei ole hyvä paikka pitkille työprosesseille |
@@ -52,12 +88,29 @@ Claude Code runtime
 
 ## 1.3 Permission engine (Lupa-moottori)
 
-Claudessa on **kerrosmallinen** lupajärjestelmä:
+Koodausagentille annettava vapaus suorittaa komentoja (kuten luoda tiedostoja, ajaa komentoja tai muokata koodia) vaatii aina hallintamekanismin. Claude Coden turvallisuusmalli pohjautuu **kerrosmaiseen lupa-moottoriin (Permission engine)**, joka arvioi jokaisen ehdotetun toimenpiteen (*action*) deterministisesti ennen sen toteuttamista.
 
-1. `Hook?` — Estä (STOP)
-2. `Deny rule?` — Jos kyllä, STOP
-3. `Permission mode` — tarkista
-4. `Allow rule?` — Jos kyllä, EXECUTE
+Malli arvioi toimenpidesyötteen järjestyksessä ja pysäyttää suorituksen heti ensimmäisen ehdon täyttyessä:
+
+1. **Hook-tarkistus (`Hook?`)**
+   Ennen minkään sisäänrakennetun säännön arviointia ajetaan mukautetut skriptit ja järjestelmäkoukut (*hooks*). Jos hook palauttaa virheen tai estotilan, suoritus keskeytetään välittömästi (**STOP**).
+
+2. **Kielto-sääntö (`Deny rule?`)**
+   Järjestelmä tarkistaa, täyttääkö toimenpide jonkin eksplisiittisesti määritellyistä kieltosäännöistä (esim. kriittisten tiedostojen muokkauskielto tai vaaralliset komennot). Jos kyllä, suoritus pysähtyy (**STOP**).
+
+3. **Lupa-tila (`Permission mode`)**
+   Järjestelmä tarkistaa aktiivisen suoritustilan ja sen edellyttämän turvallisuustason. Tila määrittää, vaaditaanko toimenpiteelle ihmisen manuaalinen vahvistus vai sallitaanko automaattinen arviointi.
+
+4. **Sallinta-sääntö (`Allow rule?`)**
+   Viimeisenä tarkistetaan, löytyykö toimenpiteelle täsmäävä sallintasääntö (*allow rule*) tai ihmisen antama hyväksyntä. Jos kyllä, komento suoritetaan (**EXECUTE**).
+
+---
+
+### Lupa-moottorin merkitys kehitystyössä
+
+Kerrosmaisen arvioinnin ansiosta kehittäjä voi määritellä tarkat rajamarkkerit sille, mitä toimia agentti saa suorittaa itsenäisesti (esim. luku- ja testikomennot) ja mitkä vaativat aina eksplisiittisen vahvistuksen (esim. tuotantodatan poistaminen tai vaaralliset CLI-komennot).
+
+Tämä tekee agentin toiminnasta turvallista, ennustettavaa ja auditoitavaa.
 
 ```
 Tool call
@@ -81,7 +134,7 @@ Tool call
 | `plan` | Rajoittuu vain read-only -työkaluihin |
 | `bypassPermissions` | Kaikki sallittu ilman kyselyä |
 
-## Esimerkki 03: Read-only analyysi
+## Esimerkki 01: Read-only analyysi
 
 **Plan-moodi** sopii ensimmäiseen arkkitehtuurikierrokseen, kun haluat nähdä
 muutossuunnitelman ennen kuin tiedostoja kosketaan.
@@ -90,7 +143,7 @@ muutossuunnitelman ennen kuin tiedostoja kosketaan.
 claude --permission-mode plan
 ```
 
-## Esimerkki 04: Rajaa headless-agentin työkalut
+## Esimerkki 02: Rajaa headless-agentin työkalut
 
 Headless-ajossa voit antaa tarkat työkalut, joita agentti saa käyttää:
 
@@ -109,13 +162,3 @@ claude -p "Analysoi build-loki" --tools "Read"
     **turvallista paikallista konfiguraatiota**.
 
 ---
-
-## Seuraavaksi
-
-- [Luku 3: Custom Sub-Agents](../sub-agents/index.md)
-- [Harjoitus 01: Ensimmäinen read-only työ](../harjoitukset/01-read-only-tyo.md)
-
----
-
-*Lähde: [S2] Features Overview, [S10] Permissions*
-

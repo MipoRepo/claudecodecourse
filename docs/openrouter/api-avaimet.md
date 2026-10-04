@@ -222,8 +222,3 @@ Toimi välittömästi:
 ```
 
 ---
-
-## Seuraavaksi
-
-- [Johdanto OpenRouteriin](johdanto.md) — yleiskatsaus OpenRouteriin
-- [LLM-mallin valinta Claude Codessa](../llm-mallin-valinta/claude-codessa.md) — miten valita sopiva malli

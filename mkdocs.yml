@@ -69,9 +69,6 @@ nav:
       - LLM-mallin valinta:
         - Mallin valinta Claude Codessa: llm-mallin-valinta/claude-codessa.md
         - Vertailu ja suositukset: llm-mallin-valinta/vertailu.md
-      - OpenRouter:
-        - Johdanto OpenRouteriin: openrouter/johdanto.md
-        - API-avaimet ja ilmaiskäyttö: openrouter/api-avaimet.md
       
   - Opas:
       - Arkkitehtuuri: arkkitehtuuri/arkkitehtuuri.md
@@ -92,6 +89,9 @@ nav:
           - Liite B (rakenne): liitteet/liite-b-projektarakenne.md
           - Liite C (lähteet): liitteet/liite-c-lähteet.md
           - Liite D (esimerkit): liitteet/liite-d-esimerkit/index.md
+  - OpenRouter:
+      - Johdanto OpenRouteriin: openrouter/johdanto.md
+      - API-avaimet ja ilmaiskäyttö: openrouter/api-avaimet.md
   - Harjoitukset:
       - Kaikki harjoitukset: harjoitukset/index.md
       - 01. Ensimmäinen read-only työ: harjoitukset/01-read-only-tyo.md
