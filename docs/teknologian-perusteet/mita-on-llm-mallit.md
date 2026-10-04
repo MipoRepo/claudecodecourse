@@ -1,114 +1,78 @@
-# Mitä LLM‑mallit ovat?
+# Mitä LLM-mallit eli laajat kielimallit ovat?
 
-LLM‑mallit (*Large Language Models*) ovat suuria neuroverkkoja, jotka on koulutettu käsittelemään ja tuottamaan luonnollista kieltä. Ne eivät ole tietoisia järjestelmiä, vaan matemaattisia funktioita, jotka ennustavat, mikä sana, lause tai koodirakenne todennäköisesti tulee seuraavaksi.
+LLM (*Large Language Model*) on suuri neuroverkko, joka on koulutettu käsittelemään ja tuottamaan luonnollista kieltä sekä koodia. Kuten edellisessä luvussa todettiin, kyseessä ei ole tietoinen järjestelmä, vaan matemaattinen malli, joka laskee todennäköisyyksiä seuraavalle tokenille (sanalle, sananosalle tai merkille).
 
-LLM:n voi ajatella järjestelmänä, joka on oppinut:
+LLM on oppinut valtavasta datamäärästä muun muassa:
 
-- kielen rakenteet  
-- ohjelmointikielten syntaksin  
-- tekstin logiikan  
-- yleisiä tietoja maailmasta  
-- tapoja ratkaista ongelmia  
-
-Mutta se ei tee tätä ihmisen tavoin — vaan **tilastollisesti**.
+- kielen rakenteet ja kielioppisäännöt
+- ohjelmointikielten syntaksin ja yleisimmät suunnittelumallit
+- tekstin ja koodin sisäisen logiikan
+- yleistietoa maailmasta ja ongelmanratkaisutavoista
 
 ---
 
-## Aloittelijalle: LLM vertauskuvana
+## Vertauskuva aloittelijalle
 
-> **LLM on kuin erittäin kielitaitoinen ystävä, joka ei ajattele kuten ihminen — vaan ennustaa, mitä pitäisi sanoa seuraavaksi.**
+> **LLM on kuin erittäin kielitaitoinen ja lukenut työpari, joka ei ajattele kuten ihminen — vaan ennustaa, mitä pitäisi sanoa seuraavaksi.**
 
-Kuvittele, että tämä ystävä on lukenut valtavasti tekstiä. Hän ei muista kirjoja sanasta sanaan, mutta hän tietää, miten lauseet yleensä jatkuvat.
+Kuvittele, että tämä työpari on lukenut läpi lähes kaiken verkosta löytyvän koodin ja tekstin. Hän ei muista tiedostoja sanasta sanaan, mutta tietää tarkasti, miten lauseet ja koodirivit yleensä jatkuvat.
 
-Kun sanot:
+Kun pyydät sitä suorittamaan tehtävän:
 
-> “Kirjoita funktio, joka laskee kahden luvun summan…”
+> ”Kirjoita funktio, joka laskee kahden luvun summan…”
 
-Hän ei mieti matemaattisesti, mitä summa tarkoittaa. Hän vain **ennustaa**, että miljoonissa esimerkeissä seuraa jotain tämän kaltaista:
+Malli ei mieti matemaattisesti, mitä summa käsitteenä tarkoittaa. Se **ennustaa**, että näiden sanojen jälkeen todennäköisin jatko on seuraavanlainen koodirakenne:
 
 ```python
 def laske_summa(a, b):
     return a + b
 ```
 
-LLM ei siis “ymmärrä” maailmaa — se **arvaa todennäköisimmän jatkon**.
+LLM ei siis varsinaisesti muista koulutusdataansa eikä hae vastauksia tietokannasta — se **arvaa todennäköisimmän jatkon** oppimiensa kaavojen perusteella.
 
 ---
 
-# Miten LLM oppii?
+# Miten LLM oppii ja toimii?
 
-LLM koulutetaan valtavalla tekstimäärällä. Koulutuksen aikana se oppii useita perusmekanismeja:
+LLM koulutetaan valtavalla teksti- ja koodimäärällä. Sen toiminta perustuu muutamaan keskeiseen tekniseen mekanismiin:
 
 ### **Tokenointi**  
-Teksti pilkotaan pieniin yksiköihin (tokeneihin), jotka voivat olla sanoja, sanan osia tai merkkejä.
+Syyteksti pilkotaan pieniin yksiköihin eli *tokeneihin*. Token voi olla kokonainen sana, sanan osa tai yksittäinen merkki.
 
-### **Embedding‑tila**  
-Jokainen token muutetaan matemaattiseksi vektoriksi. Tämä vektori kuvaa tokenin merkitystä suhteessa muihin — kuin piste kartalla.
+### **Embedding-tila (Vektorikenttä)**  
+Jokainen token muutetaan matemaattiseksi vektoriksi. Vektori kuvaa tokenin merkitystä suhteessa muihin sanoihin — kuin piste moniulotteisella kartalla, jossa samankaltaiset käsiteet ovat lähellä toisiaan.
 
-### **Transformer‑arkkitehtuuri**  
-LLM:n ydin on *attention‑mekanismi*, joka laskee, mihin tekstin osiin kannattaa “kiinnittää huomiota”.
+### **Transformer-arkkitehtuuri ja Attention**  
+Mallin ydin on *attention-mekanismi* (huomiomekanismi), jonka avulla malli laskee, mihin syötteen osiin sen kannattaa kiinnittää huomiota kunkin uuden tokenin kohdalla.
 
 ### **Todennäköisyysjakaumat**  
-Malli laskee, mikä token on todennäköisin seuraavaksi. Se ei “tiedä”, vaan **ennustaa**.
+Malli laskee syötteen perusteella todennäköisyysjakauman kaikille tuntemilleen tokeneille ja valitsee niistä seuraavan.
 
-### **Sampling**  
-Malli valitsee seuraavan tokenin menetelmällä, kuten:
-
-- **greedy** — valitaan todennäköisin  
-- **temperature** — lisätään satunnaisuutta  
-- **top‑p** — valitaan todennäköisimmän joukon sisältä  
-
----
-
-# Mitä LLM ei ole?
-
-LLM ei ole:
-
-- tietoinen  
-- looginen samalla tavalla kuin ihminen  
-- varma totuuksista  
-- täydellinen tietolähde  
-- virheetön  
-
-LLM ei “muista” koulutusdataa suoraan, eikä se “tiedä” asioita. Se tuottaa vastauksia **tilastollisen mallin** perusteella.
+### **Näytteenotto (Sampling)**  
+Malli valitsee seuraavan tokenin annetun strategian mukaisesti:
+- **Greedy:** Valitaan aina kaikkein todennäköisin token (eniten deterministinen).
+- **Temperature:** Säädetään vastauksen yllätyksellisyyttä. Korkeampi arvo lisää luovuutta ja satunnaisuutta, alhaisempi pitää vastauksen tarkkana.
+- **Top-p (Nucleus sampling):** Rajataan valinta tiettyyn todennäköisimpien tokenien joukkoon.
 
 ---
 
-# Miksi LLM‑mallit ovat hyödyllisiä ohjelmistokehityksessä?
+# Miksi LLM on niin tehokas ohjelmistokehityksessä?
 
-LLM pystyy:
+Kielimalli on poikkeuksellisen hyödyllinen kehittäjälle, koska se pystyy:
 
-- ymmärtämään koodia ja sen rakenteita  
-- selittämään virheitä  
-- ehdottamaan ratkaisuja  
-- kirjoittamaan ja muokkaamaan koodia  
-- analysoimaan projektin kokonaisuutta  
-- keskustelemaan luonnollisella kielellä  
-- yhdistämään tietoa eri lähteistä  
-
-Tämä tekee siitä erinomaisen työkalun ohjelmistokehityksen avuksi — mutta vain, kun sitä käytetään hallitusti ja ihmisen ohjauksessa.
+- ymmärtämään ja selittämään koodikantoja
+- paikallistamaan virheitä (debugging) ja ehdottamaan korjauksia
+- kirjoittamaan, refaktoroimaan ja dokumentoimaan koodia
+- yhdistämään tietoa eri tiedostoista ja rajapinnoista
+- keskustelemaan ratkaisuista luonnollisella kielellä
 
 ---
 
-# LLM Claude Coden sisällä
+# LLM osana Claude Codea
 
-Claude Code ei ole itse LLM -malli. Se on **agenttiarkkitehtuuri**, joka käyttää LLM‑mallia moottorinaan.
+On tärkeää ymmärtää, että **Claude Code ei itse ole LLM**. Claude Code on **agenttiympäristö**, joka käyttää taustalla olevaa LLM-mallia (kuten Claude 3.7 Sonnetia) moottorinaan.
 
-LLM tuottaa:
+Työnjako toimii seuraavasti:
 
-- päätökset  
-- suunnitelmat  
-- analyysit  
-- tool‑kutsut  
-- koodimuutokset  
-
-Mutta Claude Code:
-
-- hallitsee käyttöoikeudet  
-- eristää työtilat  
-- ohjaa agentteja  
-- valvoo determinismiä  
-- integroi ulkoiset työkalut  
-- varmistaa turvallisuuden  
-
-Siksi LLM‑mallin ymmärtäminen on välttämätöntä ennen Claude Coden arkkitehtuuria.
+* **LLM (Moottori):** Tekee analyysit, laatii suunnitelmat, päättää mitä työkaluja kutsutaan ja tuottaa koodimuutosehdotukset.
+* **Claude Code (Agenttiympäristö):** Hallitsee käyttöoikeuksia, eristää työtilat, ajaa komentoja suoraan järjestelmässä, valvoo toiminnan turvallisuutta ja integroi ulkoiset työkalut kehitysympäristöösi.

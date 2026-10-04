@@ -1,56 +1,54 @@
-# Pohdinta: Tekoälyn ja ihmisen uusi työnjako ohjelmoinnissa
+# Tekoälyn ja ihmisen uusi työnjako ohjelmoinnissa
 
-### Ingressi
-Koodauksen uusi jännite syntyy kolmen todellisuuden törmäyksestä: **ihmisen merkitykset**, **koneen ehdoton determinismi** ja **kielimallien tilastollinen ennustaminen**. Agentit yhdistävät nämä maailmat, mutta samalla ne haastavat perinteisen vastuunjaon: kuka päättää merkityksestä, millä ehdoilla ennuste hyväksytään toiminnaksi ja miten säilytämme inhimillisen legitimiteetin, kun koneet tekevät yhä enemmän päätöksiä puolestamme?
+Koodauksen uusi jännite syntyy kolmen eri todellisuuden törmäyksestä: **ihmisen merkityksistä**, **koneen ehdottomasta determinismistä** ja **kielimallien tilastollisesta ennustamisesta**. 
 
----
-
-### Kolme todellisuutta
-- **Ihmisen maailma**  
-  Merkityksiin ja kontekstiin perustuvat tavoitteet, eettiset rajat ja liiketoiminta-arvo.
-
-- **Koneen maailma**  
-  Deterministinen suoritus, toistettavuus ja nollatoleranssi syntaksivirheille.
-
-- **Tekoälyn maailma**  
-  Tilastollinen ennustaminen ja distributionaalinen semantiikka, joka tuottaa toimivia ehdotuksia ilman inhimillistä ymmärrystä.
+Tekoälyagentit yhdistävät nämä maailmat, mutta haastavat samalla perinteisen vastuunjaon: Kuka päättää koodin lopullisesta merkityksestä? Millä ehdoilla tilastollinen ennuste hyväksytään toiminnaksi? Miten säilytämme inhimillisen päätöksentekovallan, kun koneet tekevät yhä enemmän mikropäätöksiä puolestamme?
 
 ---
 
-### Semanttinen validointi Ratkaisu ja riski
-**Semanttinen validointi** sitoo agentin ennusteet ihmisen tarkoituksiin ja on välttämätön, jotta teknisesti toimiva koodi palvelee oikeaa ongelmaa. Samalla validointi siirtää järjestelmän kriittisen kohdan ihmiselle: arvioinnin laatu ja kontekstin ymmärrys muodostuvat pullonkaulaksi. Validointi on siis sekä ratkaisu että uusi haaste — ellei sille rakenneta instituutioita, mittareita ja tukimekanismeja, se jää seremonialliseksi.
+## Kolme todellisuutta
+
+* **Ihmisen maailma:** Merkityksiin ja kontekstiin perustuvat tavoitteet, eettiset rajat ja liiketoiminta-arvo.
+* **Koneen maailma:** Deterministinen suoritus, täydellinen toistettavuus ja nollatoleranssi syntaksivirheille.
+* **Tekoälyn maailma:** Tilastollinen ennustaminen ja distributionaalinen semantiikka, joka tuottaa toimivia ehdotuksia ilman inhimillistä tietoisuutta tai ymmärrystä.
 
 ---
 
-### Uusi työnjako
-- **Agentit** hoitavat rutiinit, toistuvat tehtävät ja deterministisen vianetsinnän; ne skaalautuvat ja tuottavat vaihtoehtoja nopeasti.  
-- **Ihmiset** ottavat vastuun intentioista, kontekstista, organisaation vaatimuksista ja eettisestä arvioinnista.  
-Kehittäjän arvo siirtyy kohti kontekstin muotoilua, semanttista validointia ja päätöksentekoa.
+## Semanttinen validointi: Ratkaisu ja riski
+
+**Semanttinen validointi** sitoo agentin tuottamat ennusteet ihmisen alkuperäisiin tavoitteisiin. Se on välttämätön vaihe, jotta teknisesti virheetön koodi palvelee myös oikeaa liiketoimintaongelmaa.
+
+Samalla validointi siirtää järjestelmän kriittisen pulmapisteen ihmiselle: ihmisen tekemän arvioinnin laadusta ja kontekstin ymmärryksestä muodostuu uusi kehityksen pullonkaula. Validointi on siis sekä ratkaisu että uusi haaste — ellei sille rakenneta selvää prosessia, mittareita ja tukimekanismeja, se riskeeraa jäädä vain muodolliseksi kumileimaukseksi.
 
 ---
 
-### Luottamuksen rakennuspalikat
-- **Iteratiivinen palautesilmukka**  
-  Pienet askeleet, jatkuva palaute ja täsmentävät kysymykset estävät virheiden juurtumisen.
+## Uusi työnjako
 
-- **Selitettävyys ja abstraktiot**  
-  Agentin valintojen lyhyet perustelut ja tiivistetyt abstraktiot tekevät arvioinnista mahdollisen ilman, että ihmisen tarvitsee ymmärtää jokaista mikropäätöstä.
-
-- **Turvakaiteet ja hyväksyntäportit**  
-  Teknisten ja prosessuaalisten rajojen avulla estetään peruuttamattomat toimet ilman ihmisen hyväksyntää.
-
-- **Mittarit ja auditointi**  
-  Semanttisten tavoitteiden mitattavuus, jäljitettävyys ja riippumaton auditointi ylläpitävät legitimiteettiä.
+* **Agentit** hoitavat rutiinit, toistuvat tehtävät ja deterministisen vianetsinnän. Ne skaalautuvat ja tuottavat vaihtoehtoisia ratkaisuja nopeasti.
+* **Ihmiset** ottavat vastuun intentioista, laajemmasta kontekstista, organisaation vaatimuksista ja eettisestä arvioinnista.
+* **Kehittäjän arvo** siirtyy koodin rivikohtaisesta kirjoittamisesta kohti kontekstin muotoilua (prompt engineering / context engineering), semanttista validointia ja arkkitehtuuripäätöksiä.
 
 ---
 
-### Johtopäätökset ja jatkokysymykset
-Siirtymä ei poista ohjelmoijaa vaan muuttaa hänen tehtävänsä: koodin tuottaminen jää koneelle, ihmisen tehtäväksi jää tarkoituksen asettaminen ja lopullinen arviointi. Tämä edellyttää uusia taitoja, prosesseja ja instituutioita — selitettävyys, mitattavat hyväksymiskriteerit ja kerrostettu validointi ovat välttämättömiä.
+## Luottamuksen rakennuspalikat
 
-Kolme keskeistä jatkokysymystä ohjaavat työtä eteenpäin:  
-- **Miten teemme semanttisen validoinnin mitattavaksi?**  
-- **Miten jaamme vastuun organisaatiossa?**  
-- **Millä ehdoilla ihmisen viimeinen sana säilyttää merkityksensä ilman, että se muuttuu seremonialliseksi hyväksynnäksi?**
+1. **Iteratiivinen palautesilmukka:** Pienet askeleet, jatkuva palaute ja täsmentävät kysymykset estävät virheiden juurtumisen koodikantaan.
+2. **Selitettävyys ja abstraktiot:** Agentin tekemien valintojen lyhyet perustelut ja tiivistelmät tekevät arvioinnista mahdollista ilman, että ihmisen täytyy käydä läpi jokaista rivikohtaista mikropäätöstä.
+3. **Turvakaiteet ja hyväksyntäportit:** Teknisten ja prosessuaalisten rajojen avulla estetään peruuttamattomat toimet (kuten tuotantoajot tai tietokantamuutokset) ilman ihmisen explisiittistä hyväksyntää.
+4. **Mittarit ja auditointi:** Semanttisten tavoitteiden mitattavuus, jäljitettävyys ja riippumaton auditointi ylläpitävät toiminnan luotettavuutta.
 
-Seuraava vaihe on konkretisoida nämä periaatteet kehitysputkessa ja tiimityössä: määritellä mittarit, rakentaa hyväksyntäportit ja kouluttaa arvioijat, jotta semanttinen validointi toimii aidosti suojana eikä uudena riskinä.
+---
 
+## Johtopäätökset ja jatkokysymykset
+
+Tämä siirtymä ei poista ohjelmoijaa, vaan muuttaa hänen rooliaan: koodin mekaaninen tuottaminen siirtyy koneelle, ja ihmisen tehtäväksi jää tarkoituksen asettaminen sekä lopullinen laadunvarmistus. 
+
+Tämä edellyttää uusia taitoja ja prosesseja — selitettävyys, mitattavat hyväksymiskriteerit ja kerrostettu validointi ovat jatkossa välttämättömiä.
+
+Kolme keskeistä jatkokysymystä ohjaavat työtä eteenpäin:
+
+- **Miten teemme semanttisesta validoinnista mitattavaa?**
+- **Miten jaamme vastuun ihmisen ja agentin välillä organisaatiossa?**
+- **Millä ehdoilla ihmisen ”viimeinen sana” säilyttää merkityksensä ilman, että se muuttuu pelkäksi seremonialliseksi hyväksynnäksi?**
+
+Seuraava vaihe oppaassa on konkretisoida nämä periaatteet käytännön kehitysputkessa ja tiimityössä: määritellä mittarit, rakentaa hyväksyntäportit ja valmentaa kehittäjät arvioijiksi, jotta semanttinen validointi toimii aidosti suojana eikä uutena riskinä.

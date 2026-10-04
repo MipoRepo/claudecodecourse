@@ -1,55 +1,53 @@
 # Miten LLM toimii teknisesti?
 
-Suuri kielimalli (LLM) ei "ymmärrä" tekstiä ihmisen tavoin. Sen toiminta perustuu matemaattiseen optimointiin, vektorilaskentaan ja todennäköisyysjakaumiin. 
+Luvussa 2 kävimme läpi laajahkon yleiskuvan kielimalleista. Nyt syvennymme siihen, mitä mallin sisällä tapahtuu matemaattisesti.
 
-Alla on tekninen, mutta aloittelijalle suunnattu läpikäynti siitä, mitä mallin sisällä tapahtuu. Tavoitteena ei ole opetella jokaista kaavaa ulkoa, vaan luoda selkeä ajatus ja intuitio siitä matemaattisesta konseptista, jolla teksti muuttuu numeroidun avaruuden kautta järkevältä kuullostavaksi kieleksi.
+Suuri kielimalli (LLM) ei ymmärrä tekstiä ihmisen tavoin. Sen toiminta perustuu matemaattiseen optimointiin, vektorilaskentaan ja todennäköisyysjakaumiin. Tavoitteena on luoda selkeä intuitio siitä, miten teksti muuttuu numeroidun avaruuden kautta laadukkaaksi kieleksi.
 
 ---
 
 ## 1. Tokenointi — teksti muutetaan numeroiksi
 
-LLM ei käsittele sanoja, vaan **tokeneita**. Tokeni voi olla:
+Tietokoneet eivät käsittele kirjaimia tai sanoja, vaan **tokeneita**. Tokeni voi olla kokonainen sana, sanan osa tai yksittäinen merkki (kuten välimerkki tai koodin erikoismerkki).
 
-- sana  
-- sanan osa  
-- yksittäinen merkki  
+Jokaiselle tokenille on määritelty oma **kokonaisluku-ID** mallin sanastossa (*vocabulary*).
 
-Jokainen tokeni muutetaan **kokonaisluvuksi** (ID).  
+Esimerkki sana-jakosta:
 
-Esimerkiksi:
-
-| Teksti | Token | ID |
-|--------|--------|----|
+| Teksti | Token | Token-ID |
+|--------|-------|----------|
 | "kissa" | "kis" | 15342 |
 | "kissa" | "sa"  | 981 |
 
-Mallin sisällä kaikki teksti on **numeroita**, ei kirjaimia.
+Kielimallin syötteeksi ja tulosteeksi muotoutuu siten aina lista kokonaislukuja: `[15342, 981]`.
 
 ---
+
 ## 2. Embedding-tila — tokenit muutetaan vektoreiksi
 
-Pelkkä numero-ID (kuten *kissa* = 1024) ei vielä kerro tietokoneelle mitään sanan merkityksestä tai sen suhteesta muihin sanoihin. Tietokoneelle luvut 1024 ja 1025 ovat vain peräkkäisiä kokonaislukuja, vaikka ne edustaisivat sanoja *"kissa"* ja *"lentokone"*.
+Pelkkä numero-ID (kuten *kissa* = 15342) ei vielä kerro mallille mitään sanan merkityksestä tai sen suhteesta muihin sanoihin. Tietokoneelle luvut 15342 ja 15343 ovat vain peräkkäisiä kokonaislukuja, vaikka ne edustaisivat sanoja *"kissa"* ja *"lentokone"*.
 
-Jotta malli voisi ymmärtää sanojen välisiä merkityssuhteita, jokainen token-ID muunnetaan **vektoriksi** (moniulotteiseksi koordinaatiksi): 
+Sanojen välisen merkityssuhteen koodaamiseksi jokainen token-ID muunnetaan **vektoriksi** eli moniulotteiseksi koordinaatiksi:
 
 $$v = \text{embedding}(\text{token})$$
 
-missä $v$ on vektori, eli pitkä lista liukulukuja (esim. 1 024, 4 096 tai 12 288 lukua). Tämä vektori sijoittaa sanan moniulotteiseen merkitys- eli vektoriavaruuteen ($\mathbb{R}^d$). 
+missä $v$ on vektori (pitkä lista liukulukuja, tyypillisesti 4 096–12 288 lukua). Tämä vektori sijoittaa sanan moniulotteiseen merkitys- eli vektoravaruuteen ($\mathbb{R}^d$).
 
-Vektoriavaruudessa samankaltaisia asioita tarkoittavat sanat (kuten *"kissa"* ja *"koira"*) päätyvät lähelle toisiaan, kun taas aivan eri kontekstiin kuuluvat sanat (kuten *"auto"*) sijoittuvat kauemmas.
+Vektoriavaruudessa samankaltaisia asioita edustavat sanat (kuten *"kissa"* ja *"koira"*) päätyvät lähelle toisiaan, kun taas eri kontekstiin kuuluvat sanat (kuten *"auto"*) sijoittuvat kauemmas.
 
 > **Käsitepankki: Embedding (Vektorointi)**
 >
 > * **Embedding-vektori:** Numeerinen esitysmuoto, joka koodaa sanan perusmerkityksen koordinaateiksi moniulotteiseen avaruuteen.
-> * **Avaruuden dimensio ($d$):** Vektorin pituus (esim. 4 096 lukua), joka määrittää, kuinka monta eri merkitysominaisuutta malli voi kerralla koodata yhteen sanaan.
+> * **Avaruuden dimensio ($d$):** Vektorin pituus (esim. 4 096 lukua), joka määrittää, kuinka monta eri merkitysominaisuutta malli voi koodata yhteen sanaan.
 > * **Kosini-similaarisuus:** Matemaattinen mittari, jolla arvioidaan kahden vektorin välistä kulmaa eli sanojen merkityksellistä läheisyyttä.
 
-Esimerkiksi:
+Haastavammat käsitteet havainnollistuvat vektoreina näin:
 
 - "kissa" → [0.12, −0.44, 0.91, …]  
-- "koira" → [0.10, −0.40, 0.88, …]
+- "koira" → [0.10, −0.40, 0.88, …]  
+- "auto"  → [−0.85, 0.11, −0.32, …]
 
-Jos kaksi vektoria ovat lähellä toisiaan, sanat ovat **merkitykseltään lähellä**. Embedding‑tila on siis **matemaattinen kartta**, jossa merkitykset ovat pisteitä.
+Jos kaksi vektoria osoittavat samaan suuntaan avaruudessa, niiden edustamat sanat ovat **merkitykseltään lähellä toisiaan**. Embedding-tila on siis matemaattinen kartta, jossa merkitykset ovat koordinaatteja.
 
 <div class="md-hero">
   <img src="../../assets/diagrams/images/embedding-avaruus-token-vektori.png"
@@ -58,38 +56,34 @@ Jos kaksi vektoria ovat lähellä toisiaan, sanat ovat **merkitykseltään lähe
 
 ## 3. Transformer-arkkitehtuuri — Attention-mekanismi
 
-Pelkät embedding-vektorit kertovat sanojen yleisen perusmerkityksen, mutta ne eivät vielä ota huomioon lauseen kontekstia. Esimerkiksi sana *"kissa"* tarkoittaa eri asiaa lauseessa *"Kissa istuu matolla"* kuin lauseessa *"Kissa nostettiin nosturilla"*.
+Pelkät embedding-vektorit koodaavat sanojen staattisen perusmerkityksen, mutta ne eivät vielä ota huomioon lauseen kontekstia. Esimerkiksi sana *"kissa"* tarkoittaa täysin eri asiaa lauseissa *"Kissa istuu matolla"* ja *"Siltanosturin kissa liikkui kiskolla"*.
 
-Transformerin ydin on **Attention-mekanismi** (huomiomekanismi), joka mahdollistaa sanojen välisen vuorovaikutuksen. Se laskee, **kuinka paljon huomiota kunkin sanan tulee kiinnittää tekstin muihin sanoihin** luodakseen tilanteeseen sopivan kontekstivektorin.
+Transformer-arkkitehtuurin ydin on **Attention-mekanismi** (huomiomekanismi), joka mahdollistaa sanojen välisen vuorovaikutuksen. Se laskee, **kuinka paljon painoarvoa eli huomiota kunkin sanan tulee kiinnittää lauseen muihin sanoihin**, jotta sanalle muodostuu tilanteeseen sopiva kontekstisidonnainen vektori.
 
 Attention perustuu matriisilaskentaan:
 
 $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$
 
----
+Kaavassa:
 
-### Mitä matriisit Q, K ja V tarkoittavat?
-
-Attention-mekanismissa jokaisesta syötevektorista muodostetaan kolme eri roolia edustavaa matriisia lineaarimuunnoksilla (painokerroimilla):
-
-* **Q (Query / Kysely):** Määrittelee, mitä tietoa nykyinen sana **etsii** muilta sanoilta (esim. *"Koira"* etsii tekijää tai toimintaa).
-* **K (Key / Avain):** Määrittelee, mitä tietoa sana **tarjoaa** muille sanoille (esim. *"Auto"* tarjoaa kategoriaa 'kulkuneuvo' ja *"pihaan"* tarjoaa paikkaa).
-* **V (Value / Arvo):** Sisältää sanan **varsinaisen sisällön/informaation**, joka siirretään muille sanoille, jos kysely ja avain täsmäävät.
+* **Query ($Q$):** Hakupyyntö eli mitä tietoa nykyinen sana etsii ympäristöstään.
+* **Key ($K$):** Avain eli mitä tietoa muut lauseen sanat tarjoavat.
+* **Value ($V$):** Arvo eli sanojen varsinainen tietosisältö, joka yhdistetään lopulliseen kontekstivektoriin saadun huomioarvon perusteella.
+* **$\sqrt{d_k}$:** Skalaustekijä, joka estää pistetulon kasvamisen liian suureksi suurilla vektorin dimensioilla.
 
 ---
-
 ### Miten kaava toimii vaihe vaiheelta?
 
-1. **Pistetulo ($QK^T$):** Lasketaan yhtensopivuus eli "osuma" Queryn ja Keyn välillä. Mitä suurempi pistetulo, sitä enemmän sanojen merkitykset liittyvät toisiinsa (esim. *koira* $\rightarrow$ *haukkuu* saa suuren arvon).
-2. **Skaalaus ($\sqrt{d_k}$):** Tulos jaetaan avaimen dimension neliöjuurella ($d_k$). Tämä estää arvojen kasvattamisen liian suuriksi syvissä verkoissa ja pitää laskennan numeerisesti stabiilina.
-3. **Softmax:** Muuntaa pistetulokset todennäköisyyksiksi (0–1 eli 0–100 %), joiden summa on aina 1. Tämä muodostaa varsinaisen **attention-painojakauman**.
-4. **Painotettu summa ($\cdot V$):** Saadut painokertoimet kerrotaan Value-matriisilla ($V$). Lopputuloksena saadaan uusi vektori, joka yhdistää sanan oman merkityksen ja kontekstin muista sanoista.
+1. **Pistetulo ($QK^T$):** Lasketaan yhteensopivuus eli "osuma" Queryn ja Keyn välillä. Mitä suurempi pistetulo on, sitä enemmän sanojen merkitykset liittyvät toisiinsa siinä kontekstissa (esim. sanojen *koira* ja *haukkuu* välille muodostuu suuri arvo).
+2. **Skaalaus ($\sqrt{d_k}$):** Tulos jaetaan avaimen dimension ($d_k$) neliöjuurella. Tämä estää arvojen kasvamisen liian suuriksi syvissä verkoissa ja pitää laskennan numeerisesti stabiilina.
+3. **Softmax:** Muuntaa saadut pistetulokset todennäköisyyksiksi (välille 0–1), joiden summa on aina 1 (100 %). Tämä muodostaa varsinaisen **attention-painojakauman** (huomiomietaulukon).
+4. **Painotettu summa ($\cdot V$):** Saadut painokertoimet kerrotaan Value-matriisilla ($V$). Lopputuloksena syntyy uusi vektori, joka yhdistää sanan oman perusmerkityksen ja ympäröivän kontekstin.
 
 > **Käsitepankki: Attention-mekanismi**
 >
-> * **Self-Attention (Itsehuomio):** Mekanismi, jossa sarjan jokainen sana vertaa itseään samanaikaisesti kaikkiin muihin saman sarjan sanoihin.
-> * **Query, Key, Value (Q, K, V):** Hakukonevertaus: *Query* on hakusana, *Key* on hakutuloksen otsikko/avainsana ja *Value* on sivun varsinainen sisältö.
-> * **Skaalattu piste-attensio:** Laskentatapa, jossa yhteensopivuus lasketaan piste tulolla ja tasataan jakamalla vektorin pituuden neliöjuurella.
+> * **Self-Attention (Itsehuomio):** Mekanismi, jossa sarjan jokainen sana vertaa itseään samanaikaisesti kaikkiin muihin saman syötteen sanoihin.
+> * **Query, Key, Value (Q, K, V):** Hakukonevertaus: *Query* on hakusana, *Key* on tuloksen avainsana/otsikko ja *Value* on sivun varsinainen tietosisältö.
+> * **Skaalattu pistetulo-attention:** Laskentatapa, jossa yhteensopivuus lasketaan pistetulolla ja tasataan jakamalla vektorin pituuden neliöjuurella.
 
 ## 4. Mallin kerrokset — vektorien muokkausta
 
@@ -111,6 +105,7 @@ Jokainen Transformer-kerros suorittaa sarjan täsmällisiä matemaattisia operaa
 yhtälöllä: **$$\vec{h}_{i+1} = f(\text{Attention}(\vec{h}_i)) + g(\vec{h}_i)$$**
 
 **Yhtälön osat:**
+
 * $\vec{h}_i$ = Kerroksen $i$ **syötevektori** (edellisen kerroksen lopputulos).
 * $\text{Attention}(\vec{h}_i)$ = **Huomiomekanismi**, joka suhteuttaa syötevektorin kaikkiin muihin lauseen vektoreihin.
 * $f(\dots)$ = **Feed-forward-verkko** (FFN), joka tekee vektorille pistekohtaisia lineaarisia ja ei-lineaarisia muunnoksia.

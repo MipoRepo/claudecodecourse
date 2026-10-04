@@ -1,10 +1,9 @@
 # 1. Mikä Claude Code on?
 
-Claude Code on **CLI-pohjainen kehitysympäristö**, jossa kielimalli toimii kuin ohjelmistokehittäjä suoraan päätelaitteessasi (terminal). Se ei ole vain perinteinen tekstipohjainen "chatbot", vaan autonominen agentti, joka kykenee toimimaan suoraan projektisi koodikannassa.
+Claude Code on CLI‑pohjainen kehitysympäristö, jossa kielimalli toimii kuin ohjelmistokehittäjä suoraan päätelaitteessasi. Se ei ole perinteinen tekstipohjainen “chatbot”, vaan agentti, joka kykenee toimimaan suoraan projektisi koodikannassa.
 
-> **Määritelmä: Agentti**
-> Claude Code on agenttityyppinen kehitysympäristö, joka voi lukea tiedostoja, suorittaa Bash-komentoja, muokata koodia ja käyttää ulkoisia työkaluja itsenäisesti annettujen ohjeiden rajoissa.
-
+> **Määritelmä:**  
+> Claude Code on agenttityyppinen kehitysympäristö, joka voi lukea tiedostoja, suorittaa Bash‑komentoja, muokata koodia ja käyttää ulkoisia työkaluja itsenäisesti annettujen ohjeiden rajoissa.
 ---
 
 ## 1.2 Miten Claude Code eroaa chat-käyttöliittymistä?
@@ -26,10 +25,9 @@ Claude Code siirtää tekoälyavustuksen koodin kopioinnista ja liittämisestä 
 * **Järjestelmällinen automaatio:** Rutiinitehtävät (kuten refaktorointi ja testien generointi) voidaan antaa agentin hoidettavaksi.
 * **Tiimimäinen työskentely:** Agentille voidaan antaa selkeä rooli ja rajoitetut oikeudet projektin sisällä.
 
-> **Tärkeä periaate:**
-> Kielimalli tekee päätöksiä todennäköisyysperusteisesti, mutta projektin säännöt, lupa-asetukset ja Git-versionhallinta pitävät kriittiset toiminnot turvallisen deterministisinä.
-
 ---
 
-### Seuraavaksi
-→ **Luku 2: Claude Coden arkkitehtuuri ja rakenne** *(Sivulla syvennytään kerroksittaiseen rakenteeseen, kuten Hooks-, MCP- ja Sub-agent -mekanismeihin)*
+> **Tärkeä periaate:**
+> Kielimalli tekee päätöksiä todennäköisyysperusteisesti - mutta projektin: säännöt, lupa-asetukset ja Git-versionhallinta pitävät kriittiset toiminnot turvallisen deterministisinä.
+
+---
